@@ -1,355 +1,1906 @@
-import { MISSIONS } from './missions.js';
-import { CAMPAIGN_CUTSCENES, CAST, NPC_LINES } from './campaign.js';
-import { CutsceneDirector } from './cinematics.js';
-import { PerformanceMonitor } from './performance.js';
+Û^š›bžh¥êß¢¹­…â'ŠØš–,ÞçÚº[C®+Þ²Š^­«b¢z'¶…ŠW’ÊË^ššè¾'^­ö¢•çZ[\ÜÈRTÔÒSÓ”ÈHœ›ÛH	Ë‹ÛZ\ÜÚ[ÛœËšœÉÎÂš[\ÜÈÐSTRQÓ—ÐÕUÐÑS‘TËÐTÕ”×ÓS‘TÈHœ›ÛH	Ë‹ØØ[\ZYÛ‹šœÉÎÂš[\ÜÈÝ]ØÙ[™Q\™XÝÜˆHœ›ÛH	Ë‹ØÚ[™[X]XÜËšœÉÎÂš[\ÜÈ\™›Ü›X[˜ÙS[Ûš]ÜˆHœ›ÛH	Ë‹Ü\™›Ü›X[˜ÙKšœÉÎÂ‚˜ÛÛœÝ	ZOO™ØÝ[Y[™Ù][[Y[žRY
+JKU‘QKSX]œ˜[™ÛKMŒÏLNÝI
+	ÙÉÊKOSX]”NÂ˜ÛÛœÝ›[™]È•ÙX‘Ó™[™\™\ŠØØ[˜\Î˜Ý‹[X[X\Î™˜[ÙKÝÙ\”™Y™\™[˜ÙN‰ÚYÚ\\™›Ü›X[˜ÙIËÝ[˜Ú[™˜[ÙK™XÚ\Ú[ÛŽ‰ÛYY][\	ßJKØÙ[™O[™]È”ØÙ[™J
+KØ[O[™]È”\œÜXÝ]™PØ[Y\˜JKKŒKÌ
+NÂœØÙ[™K™›ÙÏ[™]È‘›ÙÑ^Š˜˜™M‹ŒÍJNÜ›‹Û™SX\[™ÏUPÑTÑš[ZXÕÛ™SX\[™ÎÜ›‹Û™SX\[™Ñ^ÜÝ\™OLKŒÎÜ›‹œÚYÝÓX\™[˜X›Y]YNÜ›‹œÚYÝÓX\\OU”Ñ”ÛÙÚYÝÓX\Â˜ÛÛœÝ[ZO[™]È’[Z\Ü\™SYÚ
+™™™‹MMMMMKŠKÝ[[™]È‘\™XÝ[Û˜[YÚ
+™™™™™‹JNÂœÝ[‹˜Ø\ÝÚYÝÏ]YNÜÝ[‹œÚYÝË›X\Ú^™KœÙ]
+ŒŒ
+NÜÝ[‹œÚYÝË˜šX\ÏKKŒÞØÛÛœÝÏ\Ý[‹œÚYÝË˜Ø[Y\˜NØË›YXË˜›ÝÛOKNØËœšYÚXËÜNØË™˜\MBœØÙ[™K˜Y
+[ZKÝ[‹Ý[‹\™Ù]
+NÂ˜ÛÛœÝ\™[™]È\™›Ü›X[˜ÙS[Ûš]ÜŠ›‹Ý[‹	
+	ÙXYÉÊJNÂ›]šYÚLØÛÛœÝQT[™]ÈÛÛÜŠ˜MŒ˜Ž
+KÚÞUO^ÝÜžÝ˜[YN›™]ÈÛÛÜŠ
+_KÜŽžÝ˜[YN›™]ÈÛÛÜŠ
+_KÙžÝ˜[YN›™]È•™XÝÜŒÊK
+_KžÝ˜[YNŒ_NÂ˜ÛÛœÝÚÞO[™]È“Y\Ú
+™]È”Ü\™QÙ[ÛY]žJLÌ‹MŠK™]È”ÚY\“X]\šX[
+Ý[šY›Ü›\ÎœÚÞUKÚYN•˜XÚÔÚYK\Üš]N™˜[ÙK™\^ÚY\Ž‰Ý˜\žZ[™È™XÌÈÝ›ÚYXZ[Š
+^Ü[›Ü›X[^™JÜÚ][ÛŠNÙÛÔÜÚ][Û\›Ú™XÝ[Û“X]š^
+›[Ù[šY]ÓX]š^
+™XÍ
+ÜÚ][Û‹KŠNßIËœ˜YÛY[ÚY\Ž‰Ý[šY›Ü›H™XÌÈÜÜ‹ÙÝ[šY›Ü›H›Ø]Ý˜\žZ[™È™XÌÈÙ›Ø]
+™XÌˆJ^Ü™]\›ˆœ˜XÝ
+Ú[ŠÝ
+K™XÌŠL‹ŽKÎŒŠJJJÍÍNJNß]›ÚYXZ[Š
+^Ù›Ø]O[X^
+žKŠNÝ™XÌÈÏ[Z^
+Ü‹ÜÝÊKJJNÙ›Ø]Ï[X^
+Ý
+›Ü›X[^™JÙ
+JKŠNØÊÏ]™XÌÊK‹ŽJJŠÝÊËLŠJŒËŠÜÝÊËŠJ‹ŒÊJŠK‹[
+NØÊÏ]™XÌÊÝ\
+ŽNM‹
+›ÛÜŠžŠŒŒŠJJJ›
+žJNÙÛÑœ˜YÐÛÛÜ]™XÍ
+ËKŠNßIßJJNÜÚÞKœ™[™\“Ü™\KLNÜÚÞK™œ\Ý[PÝ[YY˜[ÙNÜØÙ[™K˜Y
+ÚÞJNÂ˜ÛÛœÝX]ØXÚO[™]ÈX\
 
-const $=i=>document.getElementById(i),T=THREE,R=Math.random,P=60,W=180,cv=$('g'),PI=Math.PI;
-const rn=new T.WebGLRenderer({canvas:cv,antialias:true}),scene=new T.Scene(),cam=new T.PerspectiveCamera(65,1,.1,700);
-scene.fog=new T.FogExp2(0x8fbbe6,.0035);rn.toneMapping=T.ACESFilmicToneMapping;rn.toneMappingExposure=1.3;rn.shadowMap.enabled=true;rn.shadowMap.type=T.PCFSoftShadowMap;
-const hemi=new T.HemisphereLight(0xbfd8ff,0x555555,.6),sun=new T.DirectionalLight(0xffffff,1);
-sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.0004;{const c=sun.shadow.camera;c.left=c.bottom=-80;c.right=c.top=80;c.far=400}
-scene.add(hemi,sun,sun.target);
-const perf=new PerformanceMonitor(rn,sun,$('debug'));
-let nightV=0;const DEEP=new T.Color(0x2a62b8),skyU={top:{value:new T.Color()},hor:{value:new T.Color()},sd:{value:new T.Vector3(0,1,0)},nt:{value:0}};
-const sky=new T.Mesh(new T.SphereGeometry(500,32,16),new T.ShaderMaterial({uniforms:skyU,side:T.BackSide,depthWrite:false,vertexShader:'varying vec3 p;void main(){p=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'uniform vec3 top,hor,sd;uniform float nt;varying vec3 p;float h(vec2 q){return fract(sin(dot(q,vec2(12.9,78.2)))*43758.5);}void main(){float y=max(p.y,0.);vec3 c=mix(hor,top,pow(y,.5));float s=max(dot(p,normalize(sd)),0.);c+=vec3(1.,.8,.5)*(pow(s,500.)*3.+pow(s,8.)*.3)*(1.-nt);c+=vec3(step(.996,h(floor(p.xz*260.)))*nt*y);gl_FragColor=vec4(c,1.);}'}));sky.renderOrder=-1;sky.frustumCulled=false;scene.add(sky);
-const std=(c,r=.85,m=0)=>new T.MeshStandardMaterial({color:c,roughness:r,metalness:m});
-const add=(g,m,x,y,z,cast=true)=>{const o=new T.Mesh(g,m);o.position.set(x,y,z);o.castShadow=cast;o.receiveShadow=true;scene.add(o);return o};
-const box=(w,h,d,m,x,y,z,c)=>add(new T.BoxGeometry(w,h,d),m,x,y,z,c);
-const cyl=(a,b,h,s)=>new T.CylinderGeometry(a,b,h,s);
-const bmesh=[],col=[],addC=(x,z,hx,hz)=>col.push({x,z,hx,hz});
-let hit=false;
-function push(p,r){hit=false;for(const b of col){const cx=Math.max(b.x-b.hx,Math.min(p.x,b.x+b.hx)),cz=Math.max(b.z-b.hz,Math.min(p.z,b.z+b.hz));let dx=p.x-cx,dz=p.z-cz,d=dx*dx+dz*dz;if(d<r*r){hit=true;if(d<1e-6)p.x+=r;else{d=Math.sqrt(d);p.x+=dx/d*(r-d);p.z+=dz/d*(r-d)}}}return hit}
-/* ---------- WORLD ---------- */
-const rt=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');g.fillStyle='#2a2d33';g.fillRect(0,0,128,128);for(let i=0;i<2500;i++){const v=R()*70|0;g.fillStyle='rgba('+v+','+v+','+v+',.35)';g.fillRect(R()*128,R()*128,2,2)}const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(90,5);t.anisotropy=8;return t})();
-const roadMat=new T.MeshStandardMaterial({map:rt,roughness:.9});
-box(560,.2,560,std(0x6f7478,.95),0,-.1,0,false);
-for(let k=-3;k<=3;k++){box(2*W+16,.2,16,roadMat,0,0,k*P,false);box(16,.2,2*W+16,roadMat,k*P,0,0,false)}
-{const ms=[],d=new T.Object3D();for(let k=-3;k<=3;k++)for(let u=-176;u<=176;u+=10){const m=((u%P)+P)%P;if(m<10||m>P-10)continue;for(const v of[0,1]){d.position.set(v?k*P:u,.12,v?u:k*P);d.rotation.y=v?PI/2:0;d.updateMatrix();ms.push(d.matrix.clone())}}
-const im=new T.InstancedMesh(new T.BoxGeometry(4,.05,.3),new T.MeshBasicMaterial({color:0xe8e8e8}),ms.length);ms.forEach((m,i)=>im.setMatrixAt(i,m));scene.add(im)}
-{const zMat=new T.MeshBasicMaterial({color:0xe2dfd3}),stripes=[],dummy=new T.Object3D();for(let ix=-3;ix<=3;ix++)for(let iz=-3;iz<=3;iz++)for(const side of[-1,1])for(let n=-3;n<=3;n++){dummy.position.set(ix*P+n*2,.14,iz*P+side*10);dummy.rotation.y=0;dummy.updateMatrix();stripes.push(dummy.matrix.clone());dummy.position.set(ix*P+side*10,.14,iz*P+n*2);dummy.rotation.y=Math.PI/2;dummy.updateMatrix();stripes.push(dummy.matrix.clone())}const cross=new T.InstancedMesh(new T.BoxGeometry(1.1,.035,.28),zMat,stripes.length);stripes.forEach((m,i)=>cross.setMatrixAt(i,m));cross.receiveShadow=true;scene.add(cross)}
-function wt(lit){const c=document.createElement('canvas');c.width=256;c.height=512;const g=c.getContext('2d');g.fillStyle=lit?'#000':'#b0a898';g.fillRect(0,0,256,512);
-if(!lit)for(let i=0;i<900;i++){g.fillStyle='rgba(0,0,0,'+R()*.07+')';g.fillRect(R()*256,R()*512,4,4)}
-for(let y=0;y<8;y++)for(let x=0;x<4;x++){const X=x*64,Y=y*64;
-if(lit){if(R()<.45){g.fillStyle=R()<.8?'#ffd98a':'#9fd4ff';g.fillRect(X+12,Y+14,40,38)}}
-else{g.fillStyle='#8f887c';g.fillRect(X,Y+60,64,4);g.fillStyle='#d8d2c6';g.fillRect(X+8,Y+10,48,46);const gr=g.createLinearGradient(0,Y+14,0,Y+52);gr.addColorStop(0,'#86a3c0');gr.addColorStop(1,'#2a3a4e');g.fillStyle=gr;g.fillRect(X+12,Y+14,40,38);g.fillStyle='#d8d2c6';g.fillRect(X+30,Y+14,4,38);g.fillRect(X+12,Y+31,40,3)}}
-const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.anisotropy=8;return t}
-const CORN=std(0x8f8a80,.9),shopMat=new T.MeshStandardMaterial({color:0x1b2733,roughness:.15,metalness:.6,emissive:0xffcc88,emissiveIntensity:0});
-{const ms=[],d=new T.Object3D();for(let a=-3;a<=3;a++)for(let b=-3;b<=3;b++)for(const s of[-11,11])for(let q=-7;q<=7;q+=2){d.position.set(a*P+s,.12,b*P+q);d.scale.set(3.4,1,1);d.updateMatrix();ms.push(d.matrix.clone());d.position.set(a*P+q,.12,b*P+s);d.scale.set(1,1,3.4);d.updateMatrix();ms.push(d.matrix.clone())}
-const im=new T.InstancedMesh(new T.BoxGeometry(1,.05,1),new T.MeshBasicMaterial({color:0xd8d8d8}),ms.length);ms.forEach((m,i)=>im.setMatrixAt(i,m));scene.add(im)}
-const T1=wt(0),T2=wt(1),bm=[],TINT=[0xd9cdb8,0xc4b5a0,0xb7bcc4,0xcfa88a,0xa8b5a2,0xd0d0d0],NEON=[0xff2d95,0x19e6ff,0xfff03a,0x7dff6a];
-const BAL=[];function bld(x,z,w,h){const a=T1.clone(),b=T2.clone();a.repeat.set(w/16,h/32);b.repeat.copy(a.repeat);a.needsUpdate=b.needsUpdate=true;
-const m=new T.MeshStandardMaterial({map:a,emissiveMap:b,emissive:0xffffff,emissiveIntensity:0,color:TINT[(R()*6)|0],roughness:.85});bm.push(m);
-bmesh.push(box(w,h,w,m,x,h/2,z));addC(x,z,w/2,w/2);box(w+.8,.7,w+.8,CORN,x,h+.35,z);box(w+.3,3.4,w+.3,shopMat,x,2,z,false);box(3,1.6,3,CORN,x+R()*5-2.5,h+1.5,z+R()*5-2.5);box(6,1.2,.2,new T.MeshBasicMaterial({color:NEON[(R()*4)|0]}),x,4.5,z+(R()<.5?-1:1)*(w/2+.1),false);if(w>14&&h>16){const step=h>38?10:12;for(let y=6;y<h-3;y+=step){const o=new T.Object3D();o.position.set(x-w*.23,y,z+w/2+.72);o.updateMatrix();BAL.push(o.matrix.clone())}}}
-function tower(x,z){add(cyl(1.6,3.2,100,14),std(0xc9ced4,.5,.3),x,50,z);add(new T.SphereGeometry(8.5,20,14),std(0xdfe3e8,.25,.8),x,92,z);add(cyl(.15,.7,34,8),std(0xd22222),x,125,z);addC(x,z,3.2,3.2)}
-function gate(x,z){const s=std(0xc9b88a);for(let c=0;c<6;c++)for(let r=0;r<2;r++){const px=x-15+c*6,pz=z+(r?3.5:-3.5);add(cyl(1.1,1.1,14,12),s,px,7,pz);addC(px,pz,1.2,1.2)}box(36,3.5,10,s,x,15.75,z);box(32,3,7,s,x,19,z);box(8,2.2,3,std(0x8a9055),x,21.6,z);box(5,2,1.6,std(0xb8a040,.4,.7),x,23.7,z)}
-function park(x,z){const n=45,cr=new T.InstancedMesh(new T.ConeGeometry(3,7,8),std(0x2f6b34),n),tr=new T.InstancedMesh(cyl(.35,.45,3,6),std(0x5a4030),n),d=new T.Object3D();
-for(let i=0;i<n;i++){let px,pz;do{px=R()*38-19;pz=R()*38-19}while(Math.abs(px)<6&&Math.abs(pz)<6);d.position.set(x+px,6.5,z+pz);d.updateMatrix();cr.setMatrixAt(i,d.matrix);d.position.y=1.5;d.updateMatrix();tr.setMatrixAt(i,d.matrix);addC(x+px,z+pz,.5,.5)}cr.castShadow=true;scene.add(cr,tr)}
-if(BAL.length){const metal=std(0x39434a,.45,.72),slabs=new T.InstancedMesh(new T.BoxGeometry(5,.22,1.5),std(0x857b6c,.8),BAL.length),rails=new T.InstancedMesh(new T.BoxGeometry(4.8,.12,.1),metal,BAL.length),fronts=new T.InstancedMesh(new T.BoxGeometry(.1,.72,.1),metal,BAL.length*2),sides=new T.InstancedMesh(new T.BoxGeometry(.1,.72,1.35),metal,BAL.length*2),d=new T.Object3D();BAL.forEach((m,i)=>{slabs.setMatrixAt(i,m);d.matrix.copy(m);d.decompose(d.position,d.quaternion,d.scale);d.position.z+=.72;d.position.y+=.42;d.updateMatrix();rails.setMatrixAt(i,d.matrix);for(const sign of[-1,1]){const e=new T.Object3D();e.matrix.copy(m);e.decompose(e.position,e.quaternion,e.scale);e.position.y+=.5;e.position.x+=sign*2.35;e.position.z+=.02;e.updateMatrix();fronts.setMatrixAt(i*2+(sign>0?1:0),e.matrix);e.position.x-=sign*4.7;e.updateMatrix();fronts.setMatrixAt(i*2+(sign>0?0:1),e.matrix);const q=new T.Object3D();q.matrix.copy(m);q.decompose(q.position,q.quaternion,q.scale);q.position.y+=.5;q.position.x+=sign*2.35;q.position.z-=.02;q.rotation.y=Math.PI/2;q.updateMatrix();sides.setMatrixAt(i*2+(sign>0?1:0),q.matrix)}});[slabs,rails,fronts,sides].forEach(o=>{o.castShadow=true;o.receiveShadow=true;scene.add(o)})}
-for(let i=-3;i<3;i++)for(let j=-3;j<3;j++){const cx=(i+.5)*P,cz=(j+.5)*P,sp=(i==0&&j==0)?1:(i==-1&&j==-1)?2:(i==-1&&j==0)?3:0;
-box(44,.3,44,std(sp==3?0x3f6b3a:0x8d9096,.95),cx,.15,cz,false);
-if(sp==1)tower(cx,cz);else if(sp==2)gate(cx,cz);else if(sp==3)park(cx,cz);
-else if(i!=1||j!=0)for(let a=0;a<2;a++)for(let b=0;b<2;b++)bld(cx+(a?9.5:-9.5),cz+(b?9.5:-9.5),17,(i==1&&j==-1)?60+R()*45:(j>=1?10+R()*16:14+R()*26))}
-for(let i=0;i<12;i++){const z=-165+i*30;box(1,4.5,26,std(new T.Color().setHSL(R(),.7,.5),.7),-187,2.25,z);addC(-187,z,.6,13)}
-const lampMat=new T.MeshBasicMaterial({color:0x555555}),sigX=new T.InstancedMesh(new T.BoxGeometry(.5,.5,.5),new T.MeshBasicMaterial(),49),sigZ=new T.InstancedMesh(new T.BoxGeometry(.5,.5,.5),new T.MeshBasicMaterial(),49);
-{const pm=new T.InstancedMesh(cyl(.12,.15,8,6),std(0x333840),196),lm=new T.InstancedMesh(new T.SphereGeometry(.5,8,6),lampMat,196),d=new T.Object3D();let n=0,q=0;
-for(let a=-3;a<=3;a++)for(let b=-3;b<=3;b++){for(const sx of[-1,1])for(const sz of[-1,1]){d.position.set(a*P+sx*10,4,b*P+sz*10);d.updateMatrix();pm.setMatrixAt(n,d.matrix);d.position.y=8.2;d.updateMatrix();lm.setMatrixAt(n++,d.matrix)}
-d.position.set(a*P+10,5.3,b*P-10);d.updateMatrix();sigX.setMatrixAt(q,d.matrix);d.position.y=6.2;d.updateMatrix();sigZ.setMatrixAt(q++,d.matrix)}
-scene.add(pm,lm,sigX,sigZ)}
-const rainG=new T.BufferGeometry(),RN=900,rx=new Float32Array(RN),ry=new Float32Array(RN),rz=new Float32Array(RN),rp=new Float32Array(RN*6);
-for(let i=0;i<RN;i++){rx[i]=R()*80-40;ry[i]=R()*30;rz[i]=R()*80-40}
-rainG.setAttribute('position',new T.BufferAttribute(rp,3));const rain=new T.LineSegments(rainG,new T.LineBasicMaterial({color:0xaab8d0,transparent:true,opacity:.5}));rain.frustumCulled=false;scene.add(rain);
-const beam=add(cyl(2,2,70,16),new T.MeshBasicMaterial({color:0xffd900,transparent:true,opacity:.35}),0,35,0,false),wbeam=add(cyl(1.5,1.5,70,12),new T.MeshBasicMaterial({color:0x19e6ff,transparent:true,opacity:.35}),0,-99,0,false);
-/* ---------- PEOPLE & CARS ---------- */
-const JC=[0x2d4a7a,0xb03030,0x2f6a3a,0x161616,0xd9a520];
-function human(shirt,pants){const g=new T.Group(),L={},skin=std(0xc98d6c,.82),hair=std(0x30251f,.94),shoe=std(0x22252a,.9),eye=std(0xe5d6c5,.8),pM=std(pants,.92),sM=std(shirt,.88);
-const sph=(parent,mat,x,y,z,sx,sy,sz,seg=10)=>{const o=new T.Mesh(new T.SphereGeometry(1,seg,8),mat);o.position.set(x,y,z);o.scale.set(sx,sy,sz);o.castShadow=true;parent.add(o);return o};
-const cyl=(parent,mat,rt,rb,h,x,y,z)=>{const o=new T.Mesh(new T.CylinderGeometry(rt,rb,h,10),mat);o.position.set(x,y,z);o.castShadow=true;parent.add(o);return o};
-const limb=(x,mat,arm=false)=>{const root=new T.Group();root.position.set(x,arm?1.43:.93,0);g.add(root);const len=arm?.39:.44,top=arm?.095:.145,bot=arm?.075:.105;cyl(root,mat,bot,top,len,0,-len/2,0);sph(root,mat,0,-len,0,bot*1.05,bot*1.05,bot*1.05,8);const lower=new T.Group();lower.position.y=-len;root.add(lower);cyl(lower,mat,arm?.07:.085,bot*.88,.37,0,-.18,0);sph(lower,skin,0,-.38,0,arm?.07:.09,.075,.075,8);if(arm)sph(lower,skin,0,-.45,.02,.075,.11,.065,8);else{const foot=new T.Mesh(new T.BoxGeometry(.2,.12,.34),shoe);foot.position.set(0,-.44,.07);lower.add(foot)}root.userData.lower=lower;return root};
-L.ll=limb(-.16,pM);L.rl=limb(.16,pM);L.la=limb(-.37,sM,true);L.ra=limb(.37,sM,true);
-L.t=new T.Group();L.t.position.y=.98;g.add(L.t);cyl(L.t,sM,.25,.19,.66,0,.2,0);sph(L.t,sM,0,.48,0,.3,.17,.2);const belt=new T.Mesh(new T.CylinderGeometry(.195,.205,.09,12),std(0x343638,.7));belt.position.y=-.09;L.t.add(belt);
-cyl(g,skin,.09,.105,.14,0,1.58,0);sph(g,skin,0,1.76,0,.145,.19,.13,12);sph(g,hair,0,1.87,-.015,.15,.105,.135,10);sph(g,skin,0,1.72,.126,.04,.035,.025,8);
-for(const x of[-1,1]){sph(g,eye,x*.052,1.79,.116,.023,.018,.012,8);sph(g,std(0x25201e,.8),x*.052,1.79,.128,.009,.012,.008,6);sph(g,skin,x*.15,1.75,0,.035,.06,.035,8)}
-g.L=L;scene.add(g);return g}
-const dress=(g,c)=>[g.L.t,g.L.la,g.L.ra].forEach(p=>p.children[0].material.color.setHex(c));
-// Distant pedestrians swap to a six-part shared-geometry model. Nearby actors keep
-// the articulated model so the walk cycle remains visible where it matters.
-const liteCache=new Map(),liteGeo={body:new T.BoxGeometry(.42,.68,.24),head:new T.SphereGeometry(.13,7,5),limb:new T.CylinderGeometry(.075,.095,.72,6)};
-function liteMat(color){const key=new T.Color(color).getHex();if(!liteCache.has(key))liteCache.set(key,std(key,.9));return liteCache.get(key)}
-function humanLite(shirt,pants){const g=new T.Group(),L={},skin=liteMat(0xc98d6c),top=liteMat(shirt),bottom=liteMat(pants);
-const mesh=(geo,mat,parent,x,y,z,sx=1,sy=1,sz=1)=>{const m=new T.Mesh(geo,mat);m.position.set(x,y,z);m.scale.set(sx,sy,sz);parent.add(m);return m};
-mesh(liteGeo.body,top,g,0,1.2,0);mesh(liteGeo.head,skin,g,0,1.72,.01,1,1.15,1);
-const limb=(x,y,mat)=>{const p=new T.Group();p.position.set(x,y,0);g.add(p);mesh(liteGeo.limb,mat,p,0,-.34,0);return p};
-L.ll=limb(-.12,.92,bottom);L.rl=limb(.12,.92,bottom);L.la=limb(-.29,1.42,top);L.ra=limb(.29,1.42,top);g.L=L;scene.add(g);return g}
-const SP={hatch:{n:'Hatchback',col:0x3b6ea8,w:1.8,h:.75,l:4,max:36,acc:13,brk:30,turn:2.2},sports:{n:'Sports car',col:0xe2231a,w:1.9,h:.6,l:4.4,max:58,acc:24,brk:40,turn:2.6},van:{n:'Van',col:0xe4e4e0,w:2,h:1.5,l:5.2,max:30,acc:9,brk:24,turn:1.7},bus:{n:'Bus',col:0xffd900,w:2.5,h:2.8,l:10,max:24,acc:6,brk:18,turn:1.2,bus:1},sedan:{n:'Executive sedan',col:0x596271,w:1.9,h:.9,l:4.8,max:42,acc:14,brk:33,turn:2},suv:{n:'City SUV',col:0x52634d,w:2.1,h:1.25,l:4.9,max:38,acc:12,brk:28,turn:1.8},taxi:{n:'Berlin taxi',col:0xe2c642,w:1.9,h:.9,l:4.7,max:40,acc:13,brk:32,turn:2,taxi:1},courier:{n:'Courier van',col:0x397b76,w:2,h:1.8,l:5.4,max:32,acc:10,brk:26,turn:1.7},coupe:{n:'Street coupe',col:0x773e68,w:1.85,h:.58,l:4.25,max:54,acc:21,brk:38,turn:2.5},pickup:{n:'Utility pickup',col:0xa76535,w:2.05,h:1.15,l:5.3,max:35,acc:11,brk:26,turn:1.7},police:{n:'Police car',col:0x2043a0,w:1.9,h:.8,l:4.5,max:46,acc:20,brk:34,turn:2.4,pol:1}};
-const cars=[];let cur=null;
-function mkCar(k,x,z,h,ai){const s=SP[k],g=new T.Group(),b=new T.Group(),bodyM=std(s.col,.35,.5);g.add(b);
-const part=(w,hh,l,m,y,zz)=>{const o=new T.Mesh(new T.BoxGeometry(w,hh,l),m);o.position.set(0,y,zz);o.castShadow=true;b.add(o);return o};
-const profile=new T.Shape();profile.moveTo(-s.l*.5,0);profile.lineTo(s.l*.5,0);profile.lineTo(s.l*.5,s.h*.58);profile.lineTo(s.l*.3,s.h*.67);profile.lineTo(s.l*.17,s.h+.22);profile.lineTo(-s.l*.2,s.h+.22);profile.lineTo(-s.l*.4,s.h*.62);profile.lineTo(-s.l*.5,s.h*.58);profile.closePath();const shell=new T.ExtrudeGeometry(profile,{depth:s.w,bevelEnabled:true,bevelSegments:2,steps:1,bevelSize:.055,bevelThickness:.055});shell.translate(0,0,-s.w/2);shell.rotateY(-Math.PI/2);shell.translate(0,.35,0);const shellMesh=new T.Mesh(shell,bodyM);shellMesh.castShadow=shellMesh.receiveShadow=true;b.add(shellMesh);const dk=std(0x141a24,.2,.6);
-if(s.bus)part(s.w+.04,1,s.l*.92,dk,2.3,0);else{const cabinW=s.w*.86,cabinH=s.h*.7,cabinL=s.l*(s.taxi?.54:.5),cabinY=s.h+.35+s.h*.35,cabinZ=-s.l*.05;part(cabinW,cabinH,cabinL,dk,cabinY,cabinZ);const glass=new T.MeshStandardMaterial({color:0x80a1b3,metalness:.55,roughness:.18,transparent:true,opacity:.84});const front=part(cabinW*.82,cabinH*.72,.07,glass,cabinY,cabinZ+cabinL*.49);front.rotation.x=-.22;const rear=part(cabinW*.78,cabinH*.68,.06,glass,cabinY,cabinZ-cabinL*.49);rear.rotation.x=.22;for(const side of[-1,1]){const pane=part(.055,cabinH*.62,cabinL*.67,glass,cabinY,cabinZ);pane.position.x=side*(cabinW/2+.012)}}if(s.taxi)part(.65,.18,.55,std(0xf5e6a6,.5),s.h+1.05,0);if(s.n==='Utility pickup'){for(const x of[-1,1]){const rail=part(.08,.45,s.l*.28,bodyM,.95,-s.l*.26);rail.position.x=x*s.w*.45}}
-const hm=new T.MeshBasicMaterial({color:0xfff2c0}),tl=new T.MeshBasicMaterial({color:0xaa1111});
-for(const sx of[-1,1]){part(.4,.2,.1,hm,.65,s.l/2).position.x=sx*s.w*.32;part(.4,.2,.1,tl,.65,-s.l/2).position.x=sx*s.w*.32}
-part(s.w*1.03,.25,.3,dk,.5,s.l/2);part(s.w*1.03,.25,.3,dk,.5,-s.l/2);part(s.w*.48,.22,.06,dk,.55,s.l/2+.16);for(const sx of[-1,1]){const lamp=part(.34,.16,.07,hm,.68,s.l/2+.19);lamp.position.x=sx*s.w*.32;const brake=part(.3,.13,.07,tl,.68,-s.l/2-.16);brake.position.x=sx*s.w*.32;part(.12,.12,.25,dk,s.h+.5,s.l*.12).position.x=sx*(s.w/2+.08)}
-const wh=[];for(const sx of[-1,1])for(const sz of[-1,1]){const p=new T.Group();p.position.set(sx*s.w/2,.38,sz*s.l*.32);const m=new T.Mesh(cyl(.38,.38,.26,16),std(0x111111));m.rotation.z=PI/2;p.add(m);const hub=new T.Mesh(new T.CylinderGeometry(.19,.19,.275,16),std(0x9ba2a7,.35,.75));hub.rotation.z=PI/2;p.add(hub);g.add(p);wh.push(p)}
-const bar=s.pol?part(.9,.2,.3,new T.MeshBasicMaterial({color:0xff0000}),s.h+1.1,0):null;
-g.position.set(x,0,z);g.rotation.y=h;scene.add(g);
-const c={s,g,b,bodyM,base:new T.Color(s.col),wh,bar,x,z,h,v:0,sv:0,pv:0,dmg:0,ai,tv:0,stuck:0,r:.8+s.l*.17};cars.push(c);return c}
-function carPhys(c,dt,thr,str,hb){const s=c.s;
-if(thr>0)c.v+=thr*s.acc*(1-Math.max(0,c.v)/s.max)*dt;
-else if(thr<0){if(c.v>1)c.v-=s.brk*dt;else c.v-=s.acc*.5*(1-Math.max(0,-c.v)/(s.max*.3))*dt}
-c.v-=c.v*.25*dt;if(!thr)c.v-=Math.sign(c.v)*Math.min(Math.abs(c.v),2*dt);if(hb)c.v-=c.v*1.8*dt;
-c.sv+=(str-c.sv)*Math.min(1,dt*8);
-c.h+=c.sv*s.turn*dt*Math.max(-1,Math.min(1,c.v/5))/(1+Math.abs(c.v)*.03)*(hb?1.6:1);
-c.x+=Math.sin(c.h)*c.v*dt;c.z+=Math.cos(c.h)*c.v*dt}
-function wall(c){if(push(c,c.r)){const sp=Math.abs(c.v);if(sp>6)c.dmg+=sp*.6;c.v*=sp>6?.45:.92}c.x=Math.max(-W-8,Math.min(W+8,c.x));c.z=Math.max(-W-8,Math.min(W+8,c.z))}
-function bump(c){for(const o of cars){if(o===c)continue;const dx=c.x-o.x,dz=c.z-o.z,d=Math.hypot(dx,dz),m=c.r+o.r;if(d<m&&d>.01){c.x+=dx/d*(m-d);c.z+=dz/d*(m-d);c.dmg+=Math.abs(c.v)*.25;c.v*=.6;o.v*=.7}}}
-function visual(c,dt){c.g.position.set(c.x,0,c.z);c.g.rotation.y=c.h;c.wh.forEach(p=>p.rotation.x+=c.v*dt/.38);
-const ac=Math.max(-30,Math.min(30,(c.v-c.pv)/Math.max(dt,.001)));c.pv=c.v;
-c.b.rotation.z+=(-c.sv*Math.min(1,Math.abs(c.v)/30)*.1-c.b.rotation.z)*.15;c.b.rotation.x+=(-ac*.002-c.b.rotation.x)*.1;
-c.bodyM.color.copy(c.base).multiplyScalar(1-Math.min(.7,c.dmg/150));if(c.bar)c.bar.material.color.setHex((clock*6|0)%2?0xff2020:0x2060ff)}
-mkCar('hatch',20,-6.5,PI/2);mkCar('sports',30,-6.5,PI/2);mkCar('van',40,-6.5,PI/2);mkCar('bus',-60+6.5,20,0);mkCar('sedan',50,-6.5,PI/2);mkCar('suv',60,-6.5,PI/2);mkCar('taxi',70,-6.5,PI/2);mkCar('courier',80,-6.5,PI/2);mkCar('coupe',90,-6.5,PI/2);mkCar('pickup',100,-6.5,PI/2);
-const trK=['hatch','sedan','van','sports','bus','suv','taxi','courier','coupe','pickup'];
-for(let i=0;i<26;i++){const ax=R()<.5?'x':'z',sg=R()<.5?-1:1,k=(R()*7|0)-3,u=R()*340-170;
-const c=mkCar(trK[i%trK.length],ax=='x'?u:k*P-sg*4,ax=='x'?k*P+sg*4:u,ax=='x'?sg*PI/2:(sg>0?0:PI),{ax,sg});c.cruise=11+R()*7}
-const peds=[];for(let i=0;i<110;i++){const shirt=new T.Color().setHSL(R(),.5,.45).getHex(),pants=new T.Color().setHSL(R(),.3,.2).getHex(),g=human(shirt,pants),lod=humanLite(shirt,pants);g.visible=false;lod.visible=false;peds.push({stand:R()<.25,g,lod,ax:R()<.5?'x':'z',k:(R()*7|0)-3,sd:R()<.5?-1:1,sg:R()<.5?-1:1,u:R()*340-170,dead:0,ph:R()*9})}
-const me=human(JC[0],0x1c1f2a),pl={x:12,y:0,z:12,h:0},pv={x:0,z:0};let vy=0,ph=0,jumpQueued=false;
-const cutsceneDirector=new CutsceneDirector(cam,$('cin'),$('cinText'),()=>new T.Vector3(pl.x,pl.y+1,pl.z));
-const storyPeople=CAST.map(c=>{const g=human(c.shirt,c.pants);g.position.set(c.x,0,c.z);g.rotation.y=c.h;g.visible=false;return{...c,g,visits:0}});
-let storyChoices={},talker=null;
-const hl=new T.SpotLight(0xfff0cc,0,70,.55,.6);hl.target=new T.Object3D();scene.add(hl,hl.target);
-/* ---------- STATE ---------- */
-const MS=MISSIONS;
-let state='menu',money=300,mi=0,stage=0,mt=0,houseRepair=0,controlPreset=0,hp=100,wanted=0,heat=0,gt=17,clock=0,lp=0,cy=0,cp=.35,fp=false,wx=0,rainA=0,fd=.0035,wp=null,hurtT=0,gfx=perf.quality,si=1,mapOpen=false,locked=false,hadLock=false,jc=0,stats={kills:0,dist:0};
-const GN=['Low','Medium','High','Ultra'],SN=['Slow','Normal','Fast'],SS=[.0015,.0025,.004],WXN=['Clear','Cloudy','Rain','Fog'],WF=[.0035,.005,.007,.02],WR=[0,0,1,0],SK='berlinlife.v2';
-/* ---------- SAVE ---------- */
-function save(){try{localStorage.setItem(SK,JSON.stringify({v:2,m:money,mi,st:stage,mt,hr:houseRepair,x:pl.x,z:pl.z,jc,gt,k:stats.kills,w:own.join(''),q:storyChoices}))}catch(e){}}
-function load(){try{let s=JSON.parse(localStorage.getItem(SK)||localStorage.getItem('berlinlife.v1'));if(s&&s.v===1){s.st=0;s.mt=0;s.v=2}if(s&&s.v===2&&[s.m,s.mi,s.x,s.z,s.jc,s.gt].every(Number.isFinite)&&s.mi>=0&&s.mi<=MS.length&&Math.abs(s.x)<W+10&&Math.abs(s.z)<W+10&&s.jc>=0&&s.jc<JC.length)return s}catch(e){}return null}
-/* ---------- UI ---------- */
-let tto;function toast(t){$('tt').textContent=t;clearTimeout(tto);tto=setTimeout(()=>$('tt').textContent='',2800)}
-function menu(kind){state=kind==='pause'?'pause':'menu';$('ov').style.display='flex';const b=[],mb=$('mb');
-if(kind==='main'){b.push(['New game',()=>start(null)]);const s=load();if(s)b.push(['Continue',()=>start(s)])}
-else b.push(['Resume',resume],['Save game',()=>{save();toast('Game saved')}],['Graphics: '+perf.name(),()=>{perf.cycle();gfx=perf.quality;applyGfx();menu('pause')}],['Weather: '+WXN[wx],()=>{wx=(wx+1)%WXN.length;menu('pause')}],['Movement keys: '+(controlPreset?'Arrows':'WASD'),()=>{controlPreset^=1;menu('pause')}],['Mouse speed: '+SN[si],()=>{si=(si+1)%3;menu('pause')}],['Main menu',()=>{save();menu('main')}]);
-mb.innerHTML='';b.forEach(([t,f])=>{const e=document.createElement('button');e.textContent=t;e.onclick=f;mb.appendChild(e)})}
-function lock(){/* Pointer lock is optional; drag-look is available without browser permission. */}
-function resume(){state='play';$('ov').style.display='none';lock()}
-function cutscene(which,phase='intro'){let beats;if(typeof which==='number')beats=CAMPAIGN_CUTSCENES[which]?.[phase];else beats=[{speaker:'NIKO',line:String(which),camera:[18,10,22],look:[0,1,0],duration:3.2}];cutsceneDirector.play(beats)}
-function seedCrowd(){for(const p of peds){const x=p.ax==='x'?p.u:p.k*P+p.sd*10.5,z=p.ax==='x'?p.k*P+p.sd*10.5:p.u,d=Math.hypot(x-pl.x,z-pl.z);p.g.position.set(x,0,z);p.lod.position.set(x,0,z);p.g.visible=d<42;p.lod.visible=d>=42&&d<150}for(const a of storyPeople)a.g.visible=Math.hypot(a.x-pl.x,a.z-pl.z)<125}
-function start(s){audio();money=300;mi=0;stage=0;mt=0;houseRepair=0;hp=100;wanted=0;jc=0;gt=17;pl.x=12;pl.z=12;stats={kills:0,dist:0};storyChoices={};talker=null;cutsceneDirector.skip();$('talk').hidden=true;
-if(s){money=s.m;mi=s.mi;stage=s.st||0;mt=s.mt||0;houseRepair=s.hr||0;pl.x=s.x;pl.z=s.z;jc=s.jc;gt=s.gt;stats.kills=s.k||0;storyChoices=s.q&&typeof s.q==='object'?s.q:{}}
-cur=null;dress(me,JC[jc]);resetWeapons(s);cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar);seedCrowd();resume();if(s&&mi>=MS.length&&storyChoices.ending===undefined)endingChoice()}
-function applyGfx(){gfx=perf.quality;resize()}
-function resize(){rn.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
-addEventListener('resize',resize);
-let ac,eo,eg,so,sg;function audio(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();eo=ac.createOscillator();eo.type='sawtooth';eg=ac.createGain();eg.gain.value=0;eo.connect(eg);eg.connect(ac.destination);eo.start();so=ac.createOscillator();so.type='square';sg=ac.createGain();sg.gain.value=0;so.connect(sg);sg.connect(ac.destination);so.start()}catch(e){}}
-function drawMapOld(c,sc,full){const g=c.getContext('2d'),w=c.width,h=c.height,ox=full?0:pl.x,oz=full?0:pl.z,hd=cur?cur.h:pl.h,tg=wp||obj();
-g.fillStyle='#101317';g.fillRect(0,0,w,h);g.save();g.translate(w/2-ox*sc,h/2-oz*sc);
-g.fillStyle='#2b3038';for(let k=-3;k<=3;k++){g.fillRect((-W-8)*sc,(k*P-8)*sc,(2*W+16)*sc,16*sc);g.fillRect((k*P-8)*sc,(-W-8)*sc,16*sc,(2*W+16)*sc)}
-for(let i=-3;i<3;i++)for(let j=-3;j<3;j++){g.fillStyle=(i==-1&&j==0)?'#2f5a34':'#444b55';g.fillRect(((i+.5)*P-18)*sc,((j+.5)*P-18)*sc,36*sc,36*sc)}
-if(full){g.fillStyle='#e8e9ea';g.font='bold 15px sans-serif';[['TV tower',30,30],['Brandenburg Gate',-30,-30],['Tiergarten',-30,30],['East Side Gallery',-150,0],['Potsdamer Platz',90,-30]].forEach(l=>g.fillText(l[0],l[1]*sc-30,l[2]*sc))}
-g.strokeStyle='#ffd900';g.lineWidth=3;g.beginPath();g.moveTo(pl.x*sc,pl.z*sc);g.lineTo(tg.x*sc,pl.z*sc);g.lineTo(tg.x*sc,tg.z*sc);g.stroke();
-const dot=(x,z,c)=>{g.fillStyle=c;g.beginPath();g.arc(x*sc,z*sc,5,0,7);g.fill()};
-if(mi<MS.length)dot(obj().x,obj().z,'#ffd900');if(wp)dot(wp.x,wp.z,'#19e6ff');cars.forEach(c=>{if(c.ai&&c.ai.pol)dot(c.x,c.z,'#ff3030')});
-g.translate(pl.x*sc,pl.z*sc);g.rotate(PI-hd);g.fillStyle='#fff';g.beginPath();g.moveTo(0,-8);g.lineTo(6,7);g.lineTo(-6,7);g.fill();g.restore()}
-$('mc').onclick=e=>{const r=e.target.getBoundingClientRect(),k=640/r.width;wp={x:((e.clientX-r.left)*k-320)/(640/(2*W+40)),z:((e.clientY-r.top)*k-320)/(640/(2*W+40))};toast('Waypoint set')};
-function obj(){if(mi>=MS.length)return{x:0,z:0};const m=MS[mi];return stage?{x:m[4],z:m[5]}:{x:m[2],z:m[3]}}
-/* ---------- GAME LOGIC ---------- */
-const angd=(a,b)=>((b-a+PI)%(2*PI)+2*PI)%(2*PI)-PI,V1=new T.Vector3();
-function rmCar(c){scene.remove(c.g);cars.splice(cars.indexOf(c),1)}
-function spawnPol(){const a=R()*6.28;let x=pl.x+Math.sin(a)*100,z=pl.z+Math.cos(a)*100;if(R()<.5)x=Math.round(x/P)*P;else z=Math.round(z/P)*P;x=Math.max(-W,Math.min(W,x));z=Math.max(-W,Math.min(W,z));mkCar('police',x,z,0,{pol:1})}
-function crime(n){if(!wanted)lastSeen=null;wanted=Math.min(3,wanted+n);heat=25;toast('Wanted level '+wanted)}
-function hurt(n){hp-=n;if(hp<=0){toast('Busted â€” â‚¬100 fine');money=Math.max(0,money-100);hp=100;wanted=0;cur=null;pl.x=12;pl.z=12;cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar)}}
-function toggleCar(){if(cur){const c=cur;cur=null;pl.x=c.x+Math.cos(c.h)*2.8;pl.z=c.z-Math.sin(c.h)*2.8;pl.y=0;pv.x=pv.z=0;toast('You stepped out');return}
-let b=null,bd=6;for(const c of cars){if(c===cur||(c.ai&&c.ai.pol))continue;const d=Math.hypot(c.x-pl.x,c.z-pl.z);if(d<bd){bd=d;b=c}}if(b){if(b.ai&&b.ai.ax){b.ai=null;b.v=0}cur=b;toast('Driving: '+b.s.n)}}
-let endingPending=false;
-function finish(){const done=mi,m=MS[done],final=done===MS.length-1;money+=m[8];$('rt').textContent=final?'STORY COMPLETE':'MISSION COMPLETE';$('rx').textContent=m[0]+' Â· +â‚¬'+m[8];$('res').style.display='flex';setTimeout(()=>$('res').style.display='none',final?6500:3500);if(final)houseRepair=100;mi++;stage=0;mt=0;endingPending=final;save();cutscene(done,'outro')}
-function missions(dt){beam.visible=mi<MS.length;if(mi>=MS.length)return;const m=MS[mi],o=obj(),d=Math.hypot(pl.x-o.x,pl.z-o.z);beam.position.set(o.x,35,o.z);
-if(!stage){if(d<8){stage=1;mt=m[7];if(mi===5)gt=20;if(mi===7)wx=2;toast('Mission: '+m[0]);cutscene(mi,'intro');if(mi===6||mi===10)crime(mi===10?2:1);save()}}
-else{if(m[7]){mt-=dt;if(mt<=0){toast('Timeâ€™s up â€” try again');stage=0;mt=0;save();return}}
-if(d<(cur?10:7)){if(m[6]&&!cur)$('pr').textContent='Arrive by car';else if(mi===6&&wanted>0)$('pr').textContent='Lose the search first';else if(mi===MS.length-1&&houseRepair<100)$('pr').textContent='E â€” repair your home (â‚¬200 each)';else if(m[10]&&!storyChoices['mission-'+mi]){$('pr').textContent='Talk to '+(storyPeople.find(a=>a.id===m[10])?.name||'the contact')}else finish()}}}
-function walk(dt){const ix=(K.KeyD?1:0)-(K.KeyA?1:0),iz=(K.KeyW?1:0)-(K.KeyS?1:0),fx=-Math.sin(cy),fz=-Math.cos(cy);let mx=fx*iz-fz*ix,mz=fz*iz+fx*ix;const ml=Math.hypot(mx,mz),cr=K.ControlLeft,sp=cr?2:(K.ShiftLeft||K.ShiftRight)?8.5:4.8;
-if(ml>0){mx=mx/ml*sp;mz=mz/ml*sp}else{mx=mz=0}
-const k=Math.min(1,dt*10);pv.x+=(mx-pv.x)*k;pv.z+=(mz-pv.z)*k;pl.x+=pv.x*dt;pl.z+=pv.z*dt;
-if(jumpQueued&&pl.y<=0){vy=6.5;jumpQueued=false}vy-=18*dt;pl.y+=vy*dt;if(pl.y<=0){pl.y=0;vy=0}
-push(pl,.45);for(const c of cars){if(c===cur)continue;const dx=pl.x-c.x,dz=pl.z-c.z,d=Math.hypot(dx,dz),r=c.r*.72+.52;if(d<r){const nx=d>.001?dx/d:1,nz=d>.001?dz/d:0,overlap=r-d;pl.x+=nx*overlap;pl.z+=nz*overlap;const into=pv.x*nx+pv.z*nz;if(into<0){pv.x-=nx*into*1.25;pv.z-=nz*into*1.25}}}pl.x=Math.max(-W+2,Math.min(W-2,pl.x));pl.z=Math.max(-W+2,Math.min(W-2,pl.z));
-const s=Math.hypot(pv.x,pv.z);if(s>.4)pl.h+=angd(pl.h,Math.atan2(pv.x,pv.z))*Math.min(1,dt*12);
-ph+=s*dt*2.2;const L=me.L,amp=s>.25?Math.min(1,s/4):.035,a=Math.sin(ph)*amp*.8,kA=1-Math.exp(-dt*13);L.ll.rotation.x+=(a-L.ll.rotation.x)*kA;L.rl.rotation.x+=(-a-L.rl.rotation.x)*kA;L.la.rotation.x+=(-a-L.la.rotation.x)*kA;L.ra.rotation.x+=(a-L.ra.rotation.x)*kA;
-L.t.position.y=.98+Math.sin(clock*1.6)*.012;me.position.set(pl.x,pl.y,pl.z);me.rotation.y=pl.h;me.scale.y+=( (cr?.75:1)-me.scale.y)*kA}
-function update(dt){clock+=dt;gt=(gt+dt/30)%24;lp=((clock/8)|0)%2;
-sigX.material.color.setHex(lp?0xff3030:0x2ecc40);sigZ.material.color.setHex(lp?0x2ecc40:0xff3030);
-if(cur){const c=cur;carPhys(c,dt,(K.KeyW?1:0)-(K.KeyS?1:0),(K.KeyA?1:0)-(K.KeyD?1:0),K.Space);wall(c);bump(c);pl.x=c.x;pl.z=c.z;pl.h=c.h;stats.dist+=Math.abs(c.v)*dt;cy+=angd(cy,c.h+PI)*Math.min(1,dt*2);cp+=(.25-cp)*dt*.8}else walk(dt);
-me.visible=!cur&&!fp;
-let polN=0,near=1e9;
-for(const c of cars.slice()){if(c===cur){visual(c,dt);continue}const d=Math.hypot(c.x-pl.x,c.z-pl.z);
-if(c.ai&&c.ai.pol){polN++;near=Math.min(near,d);if(c.ai.block&&d<45)c.ai.block=0;const sx_=d<90||!lastSeen,tx=sx_?pl.x:lastSeen.x,tz=sx_?pl.z:lastSeen.z,a=Math.atan2(tx-c.x,tz-c.z),df=angd(c.h,a);if(c.ai.block)c.v=0;else carPhys(c,dt,(d>9||!sx_)?1:.2,Math.max(-1,Math.min(1,df*2)),false);wall(c);bump(c);
-if(Math.abs(c.v)<1.5&&!c.ai.block)c.stuck+=dt;else c.stuck=0;if(c.stuck>4){rmCar(c);continue}if(d<3.4&&!cur)hurt(15*dt);else if(d<c.r+(cur?cur.r:.5)+.5)hurt(10*dt)}
-else if(c.ai){const a=c.ai;let tv=c.cruise;const u=(a.ax=='x'?c.x:c.z)*a.sg,n=Math.ceil(u/P)*P-u;if(((a.ax=='x')!==(lp==0))&&n<15&&n>5)tv=0;
-for(const o of cars){if(o===c)continue;const dx=o.x-c.x,dz=o.z-c.z,f=dx*Math.sin(c.h)+dz*Math.cos(c.h),l=dx*Math.cos(c.h)-dz*Math.sin(c.h);if(f>0&&f<14&&Math.abs(l)<2.6)tv=Math.min(tv,Math.max(0,(f-6)*1.2))}
-c.v+=(tv-c.v)*Math.min(1,dt*(tv<c.v?2.5:.8));c.x+=Math.sin(c.h)*c.v*dt;c.z+=Math.cos(c.h)*c.v*dt;
-if(a.ax=='x'&&Math.abs(c.x)>W+4)c.x=-Math.sign(c.x)*(W+3);if(a.ax=='z'&&Math.abs(c.z)>W+4)c.z=-Math.sign(c.z)*(W+3);
-if(!cur&&Math.abs(c.v)>5&&d<c.r+.6&&hurtT<=0){hurt(20);hurtT=.8;pv.x=Math.sin(c.h)*8;pv.z=Math.cos(c.h)*8}}
-else{c.v*=Math.pow(.05,dt);c.x+=Math.sin(c.h)*c.v*dt;c.z+=Math.cos(c.h)*c.v*dt;wall(c)}
-c.g.visible=d<145;if(c.g.visible)visual(c,dt)}
-hurtT-=dt;combat(dt,near,polN);
-for(const p of peds){const x=p.ax=='x'?p.u:p.k*P+p.sd*10.5,z=p.ax=='x'?p.k*P+p.sd*10.5:p.u,d=Math.hypot(x-pl.x,z-pl.z);
-if(d>150){p.g.visible=false;p.lod.visible=false;continue}
-if(p.dead>0){p.dead-=dt;p.g.visible=d<42;p.lod.visible=d>=42;if(p.dead<=0){p.g.rotation.x=p.lod.rotation.x=0;p.g.position.y=p.lod.position.y=0}continue}
-p.flee=Math.max(0,(p.flee||0)-dt);if(d<125&&(!p.stand||p.flee>0))p.u+=p.sg*(p.flee>0?5.2:1.4)*dt;if(Math.abs(p.u)>W+10)p.u=-Math.sign(p.u)*(W+9);
-const px=p.ax=='x'?p.u:p.k*P+p.sd*10.5,pz=p.ax=='x'?p.k*P+p.sd*10.5:p.u,heading=Math.atan2(p.ax=='x'?p.sg:0,p.ax=='z'?p.sg:0),detail=d<42,actor=detail?p.g:p.lod;
-p.g.visible=detail;p.lod.visible=!detail;p.g.position.set(px,0,pz);p.lod.position.set(px,0,pz);p.g.rotation.y=p.lod.rotation.y=heading;
-if(!p.stand||p.flee>0){p.ph+=dt*(p.flee>0?11:6);const a=Math.sin(p.ph)*.6,L=actor.L;L.ll.rotation.x=a;L.rl.rotation.x=-a;L.la.rotation.x=-a;L.ra.rotation.x=a}
-if(cur&&Math.abs(cur.v)>5&&Math.hypot(px-cur.x,pz-cur.z)<cur.r+.6){p.dead=6;p.g.rotation.x=p.lod.rotation.x=-1.5;p.g.position.y=p.lod.position.y=.3;stats.kills++;crime(1)}}
-for(const a of storyPeople){const d=Math.hypot(a.x-pl.x,a.z-pl.z);a.g.visible=d<125;if(a.g.visible){a.g.L.la.rotation.x=Math.sin(clock*1.4+a.mission)*.08;a.g.L.ra.rotation.x=Math.sin(clock*1.1+a.mission+1)*.05}}
-if(wanted>0){heat-=dt*(near>120?3:1);if(heat<=0){wanted--;heat=18;if(!wanted){toast('Wanted level cleared');cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar)}}if(polN<wanted+1)spawnPol()}
-missions(dt);if(scoreAction){scoreAction.t+=dt;if(Math.hypot(pl.x-scoreAction.side.x,pl.z-scoreAction.side.z)>9||cur){toast('Bonus scene cancelled');scoreAction=null}else if(scoreAction.t>=4){money+=scoreAction.side.reward;scoreAction.side.cool=180;toast(scoreAction.side.label+' bonus Â· +â‚¬'+scoreAction.side.reward);radio('Niko: I am sure the receipt for that is somewhere.');scoreAction=null;save()}}
-// camera
-const cd=cur?6+cur.s.l*.9:5.2,ty=cur?1.5:1.6+pl.y,ox=Math.sin(cy)*Math.cos(cp),oy=Math.sin(cp),oz=Math.cos(cy)*Math.cos(cp);
-if(fp&&!cur){cam.position.set(pl.x,pl.y+1.65,pl.z);cam.lookAt(pl.x-ox,pl.y+1.65-oy,pl.z-oz)}
-else{const sh=(wi&&!cur)?1.1:0,sx=oz*sh,sz=-ox*sh;V1.set(pl.x+ox*cd+sx,ty+oy*cd+(cur?1.2:0),pl.z+oz*cd+sz);cam.position.lerp(V1,1-Math.pow(1e-4,dt));cam.lookAt(pl.x+sx,ty,pl.z+sz)}
-env(dt,pl.x,pl.z);
-rain.position.set(pl.x,0,pl.z);if(rain.visible){for(let i=0;i<RN;i++){ry[i]-=40*dt;if(ry[i]<0)ry[i]=30;rp.set([rx[i],ry[i],rz[i],rx[i],ry[i]+.8,rz[i]],i*6)}rainG.attributes.position.needsUpdate=true}
-if(eg){eg.gain.setTargetAtTime(cur?.035:0,ac.currentTime,.1);eo.frequency.setTargetAtTime(40+(cur?Math.abs(cur.v)*5:0),ac.currentTime,.1);so.frequency.setTargetAtTime((clock*2|0)%2?700:950,ac.currentTime,.02);sg.gain.setTargetAtTime(near<90?(1-near/90)*.012:0,ac.currentTime,.1)}
-hud()}
-const NIGHT=new T.Color(0x070b18),DAYC=[0x8fbbe6,0x9aa3ad,0x6f7882,0xaab0b4].map(c=>new T.Color(c)),ORG=new T.Color(0xe8905a),sk=new T.Color();
-function env(dt,fx,fz){const a=(gt-6)/12*PI,e=Math.sin(a),day=Math.max(0,Math.min(1,e*2+.25)),k=Math.min(1,dt*.5);
-rainA+=(WR[wx]-rainA)*k;fd+=(WF[wx]-fd)*k;sk.copy(NIGHT).lerp(DAYC[wx],day).lerp(ORG,Math.max(0,1-Math.abs(e)/.35)*.45);
-skyU.hor.value.copy(sk);skyU.top.value.copy(sk).lerp(DEEP,(wx?.15:.55)*day);skyU.nt.value=1-day;skyU.sd.value.set(Math.cos(a),Math.sin(a),.4);scene.fog.color.copy(sk);scene.fog.density=fd;
-const sunset=Math.max(0,1-Math.abs(e)/.62);sun.color.setRGB(1,1-.16*sunset,1-.32*sunset);sun.intensity=Math.max(0,e)*(wx?.85:1.25);sun.position.set(fx+Math.cos(a)*120,30+Math.abs(e)*120,fz+50);sun.target.position.set(fx,0,fz);hemi.intensity=.3+.68*day;rn.toneMappingExposure=1.18+.14*sunset;
-const n=1-day;nightV=n;shopMat.emissiveIntensity=n*.9;bm.forEach(m=>m.emissiveIntensity=n);lampMat.color.setHex(n>.5?0xffe9a0:0x555555);roadMat.roughness=.9-.55*rainA;
-rain.visible=rainA>.05;rain.material.opacity=.58*rainA;roadMat.roughness=.9-.68*rainA;roadMat.metalness=.12*rainA;
-hl.intensity=cur&&n>.4?3:0;if(cur){hl.position.set(cur.x+Math.sin(cur.h)*2.3,1,cur.z+Math.cos(cur.h)*2.3);hl.target.position.set(cur.x+Math.sin(cur.h)*20,0,cur.z+Math.cos(cur.h)*20)}}
-function hud(){const o=obj(),tg=wp||o,m=MS[mi];
-if(wp&&Math.hypot(pl.x-wp.x,pl.z-wp.z)<12){wp=null;toast('Waypoint reached')}
-if(m){$('mtt').textContent=String(mi+1).padStart(2,'0')+' / '+MS.length+' Â· '+m[0]+(houseRepair>=100?' Â· HOME RESTORED':'');$('mtx').textContent=stage?(m[1]+(m[7]?'  â± '+Math.max(0,mt|0)+'s':'')):'Go to the yellow marker to start.'}else{$('mtt').textContent='Story complete';$('mtx').textContent='Free roam. Set waypoints with M.'}
-$('mn').textContent='â‚¬'+money.toLocaleString('en-US');$('st').textContent='â˜…'.repeat(wanted)+'â˜†'.repeat(3-wanted);$('hi').style.width=Math.max(0,hp)+'%';
-const h=Math.floor(gt),mm=Math.floor((gt%1)*60);$('tm').textContent=(h<10?'0':'')+h+':'+(mm<10?'0':'')+mm+' Â· '+WXN[wx];
-$('sp').innerHTML=cur?Math.round(Math.abs(cur.v)*3.6)+'<small> km/h</small>':'';
-$('nav').textContent=navTxt;
-let p=promptX;if(scoreAction)p='Bonus objective Â· stay close '+Math.max(0,4-scoreAction.t).toFixed(1)+'s';if(cur)p='F â€” Get out';else if(mi===MS.length-1&&houseRepair<100&&Math.hypot(pl.x+140,pl.z-150)<10)p='E â€” Repair your home (â‚¬200 each)';else{let person=null,pd=5;for(const a of storyPeople){const d=Math.hypot(a.x-pl.x,a.z-pl.z);if(d<pd){person=a;pd=d}}if(person)p='E â€” Talk to '+person.name;else for(const c of cars){const d=Math.hypot(c.x-pl.x,c.z-pl.z);if(!(c.ai&&c.ai.pol)&&d<7){p=d<6?'F â€” Enter '+c.s.n:'Walk closer to '+c.s.n;break}}}
-if($('pr').textContent!=='Arrive by car'||!p)$('pr').textContent=p;if(m&&stage&&m[10]&&!storyChoices['mission-'+mi]&&Math.hypot(pl.x-o.x,pl.z-o.z)<7&&!(mi===MS.length-1&&houseRepair<100))$('pr').textContent='E â€” Talk to '+(storyPeople.find(a=>a.id===m[10])?.name||'the contact');$('pr').style.display=$('pr').textContent?'block':'none';
-if(m&&stage&&m[6]&&!cur&&Math.hypot(pl.x-o.x,pl.z-o.z)>=7)$('pr').style.display=$('pr').textContent?'block':'none';
-drawMap($('mm'),.6,false);if(mapOpen)drawMap($('mc'),640/(2*W+40)*mz,true)}
-/* ---------- GUNS, MARKET, POLICE, NAV ---------- */
-const WP=[{n:'Holstered',len:0},{n:'Pistol',d:1.2,rate:.28,mag:12,spr:.008,pel:1,len:.35,f:420},{n:'SMG',d:.7,rate:.085,mag:30,spr:.03,pel:1,len:.5,f:300},{n:'Shotgun',d:1.8,rate:.85,mag:6,spr:.06,pel:6,len:.75,f:180}];
-let wi=0,own=[1,1,0,0],mag=[0,12,30,6],res=[0,60,120,30],fireT=0,reloadT=0,mouseDown=false,flash=0,promptX='',navTxt='',lastSeen=null,rbT=0,radT=0,rto,srch=false,mz=1;
-const gunM=WP.map((w,i)=>{if(!i)return null;const g=new T.Group(),m=new T.Mesh(new T.BoxGeometry(.07,w.len,.11),std(i==3?0x5a3b22:0x25272c,.4,.6));m.position.y=-.5-w.len/2;g.add(m);if(i>1){const b=new T.Mesh(new T.BoxGeometry(.06,.16,.08),std(0x111111));b.position.set(0,-.62,-.09);g.add(b)}g.visible=false;me.L.ra.add(g);return g});
-const rc=new T.Raycaster(),D=new T.Vector3(),trs=[],sps=[],offs=[],rob={on:0,t:0},sideScores=[{x:120,z:-60,label:'Potsdamer kiosk',reward:250,cool:0},{x:-90,z:30,label:'record-shop counter',reward:350,cool:0}],scoreAction=null,cl={x:90,z:27,alive:true,rt:0,cool:0,hands:0};
-for(let i=0;i<10;i++){const l=new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(),new T.Vector3()]),new T.LineBasicMaterial({color:0xffe8a0,transparent:true}));l.visible=false;l.frustumCulled=false;l.life=0;scene.add(l);trs.push(l);const s=new T.Mesh(new T.SphereGeometry(.12,6,4),new T.MeshBasicMaterial({color:0xffc060}));s.visible=false;s.life=0;scene.add(s);sps.push(s)}
-const mf=new T.Mesh(new T.SphereGeometry(.14,6,4),new T.MeshBasicMaterial({color:0xffd070})),mfL=new T.PointLight(0xffa040,0,14);mf.visible=false;scene.add(mf,mfL);
-function tracer(a,b,c){const l=trs.find(x=>x.life<=0)||trs[0],p=l.geometry.attributes.position;p.setXYZ(0,a.x,a.y,a.z);p.setXYZ(1,b.x,b.y,b.z);p.needsUpdate=true;l.material.color.setHex(c||0xffe8a0);l.life=.08;l.visible=true}
-function spark(e){const s=sps.find(x=>x.life<=0)||sps[0];s.position.copy(e);s.life=.15;s.visible=true}
-function snd(f,d,v){if(!ac)return;const t=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type='sawtooth';o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(40,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(ac.destination);o.start();o.stop(t+d)}
-function radio(t){const e=$('rad');e.textContent='ðŸ“» '+t;e.style.display='block';clearTimeout(rto);rto=setTimeout(()=>e.style.display='none',3500)}
-function mkOff(x,z){offs.push({g:human(0x1d3f8f,0x14213d),x,z,hp:4,st:.5+R(),ph:0})}
-function killOff(f){scene.remove(f.g);offs.splice(offs.indexOf(f),1);crime(1);radio('Officer down! All units respond!')}
-/* the SpÃ¤ti market */
-(function(){const wm=std(0xdad8d0,.8),wl_=(x0,x1,z0,z1)=>{bmesh.push(box(x1-x0,4.2,z1-z0,wm,(x0+x1)/2,2.4,(z0+z1)/2));addC((x0+x1)/2,(z0+z1)/2,(x1-x0)/2,(z1-z0)/2)};
-wl_(78,102,31.6,32.2);wl_(77.6,78.2,16,32);wl_(101.8,102.4,16,32);wl_(78,88,16,16.6);wl_(92,102,16,16.6);
-box(24,.4,16.6,std(0x2d3a4a),90,4.7,24);box(24,.06,16,std(0xcfd3d6,.6),90,.34,24,false);
-for(const [x,z,w] of [[82,21,8],[82,25,8],[90,21,5]]){box(w,1.8,.9,std(0x7a5a3a),x,1.2,z);addC(x,z,w/2,.5);for(let i=0;i<w;i++)box(.7,.5,.5,new T.MeshBasicMaterial({color:NEON[(R()*4)|0]}),x-w/2+.6+i,1.75,z)}
-box(8,1.1,1.2,std(0x555e68),96,.9,27.6);addC(96,27.6,4,.6);
-const c=document.createElement('canvas');c.width=512;c.height=128;const g=c.getContext('2d');g.fillStyle='#0b3d1e';g.fillRect(0,0,512,128);g.fillStyle='#7dff6a';g.font='bold 84px sans-serif';g.textAlign='center';g.fillText('SPÃ„TI 24h',256,98);
-add(new T.PlaneGeometry(10,2.5),new T.MeshBasicMaterial({map:new T.CanvasTexture(c)}),90,5.6,15.5,false).rotation.y=PI;
-const lt=new T.PointLight(0xfff0d0,1.2,26);lt.position.set(90,3.8,24);scene.add(lt)})();
-bld(82,43,14,22);bld(98,43,14,30);
-cl.g=storyPeople.find(a=>a.id==='clerk').g;cl.g.position.set(cl.x,0,cl.z);cl.g.rotation.y=PI;
-function showTalk(person){talker=person;state='dialogue';$('talk').hidden=false;$('talkRole').textContent=person.role;$('talkName').textContent=person.name;pl.h=Math.atan2(person.x-pl.x,person.z-pl.z);me.rotation.y=pl.h;person.g.rotation.y=Math.atan2(pl.x-person.x,pl.z-person.z);
-const lines=NPC_LINES[person.id]||['Good to see you.'];$('talkLine').textContent=lines[(person.visits+(storyChoices[person.id]||0))%lines.length];
-me.L.ra.rotation.x=-.85;person.g.L.la.rotation.x=-.55;person.g.L.ra.rotation.x=-.25;
-const options=$('talkChoices');options.innerHTML='';[['Ask about work',0],['Ask how things are',1]].forEach(([label,n])=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>{storyChoices[person.id]=n;if(state==='dialogue'&&mi<MS.length&&MS[mi][10]===person.id)storyChoices['mission-'+mi]=true;person.visits++;$('talkLine').textContent=n?`${person.name}: ${lines[(person.visits+1)%lines.length]}`:`${person.name}: ${lines[person.visits%lines.length]}`;options.innerHTML='';const done=document.createElement('button');done.textContent='End conversation';done.onclick=closeTalk;options.appendChild(done);save()};options.appendChild(b)})}
-function closeTalk(){if(talker){talker.g.L.la.rotation.x=talker.g.L.ra.rotation.x=0}me.L.ra.rotation.x=0;talker=null;$('talk').hidden=true;state='play';save()}
-function endingChoice(){state='dialogue';$('talk').hidden=false;$('talkRole').textContent='BERLIN LIFE Â· FINALE';$('talkName').textContent='What should Alex do next?';$('talkLine').textContent='The city is quieter for a moment. Choose how the story ends.';const options=$('talkChoices');options.innerHTML='';[['A new start','Alex leaves trouble behind and starts over.'],['Family first','Alex puts Jonas and his friends first.'],['The city remembers','Alex exposes Viktor and changes the city.']].forEach(([title,line],i)=>{const b=document.createElement('button');b.textContent=title;b.onclick=()=>{storyChoices.ending=i;state='play';$('talk').hidden=true;save();const speaker=['ALEX','JONAS','LENA'][i];cutsceneDirector.play([{speaker,line,camera:[16,8,18],look:[0,1,0],duration:3.4},{speaker:'DENIZ',line:'Breakfast is on me. I know a place that is open.',camera:[-8,4,10],look:[0,1,0],duration:2.8}])};options.appendChild(b)})}
-function interact(){if(state!=='play'||cur||!cl.alive)return;if(mi===MS.length-1&&Math.hypot(pl.x+140,pl.z-150)<10){if(houseRepair>=100){showTalk(storyPeople.find(a=>a.id==='niko'));return}if(money<200){toast('You need â‚¬200 for the next repair');return}money-=200;houseRepair=Math.min(100,houseRepair+25);toast('Home repairs '+houseRepair+'% Â· âˆ’â‚¬200');if(houseRepair>=100)cutscene('Niko: It is not fancy, but it is ours.');save();return}let near=null,nd=5;for(const p of storyPeople){const d=Math.hypot(pl.x-p.x,pl.z-p.z);if(d<nd){near=p;nd=d}}if(near&&!(near.id==='clerk'&&wi>0&&!(mi<MS.length&&MS[mi][10]==='clerk'))){showTalk(near);return}const side=sideScores.find(s=>Math.hypot(pl.x-s.x,pl.z-s.z)<7);if(side){if(side.cool>0)toast('That fictional side job has cooled off');else if(!wi)toast('Select an item with 1â€“3 to start this fictional side job');else{scoreAction={side,t:0};crime(1);toast('Bonus scene started. Stay near the counter for four seconds.')}return;}if(Math.hypot(pl.x-cl.x,pl.z-cl.z)>6)return;
-if(wi>0){if(cl.cool>0||rob.on)return;rob.on=1;rob.t=0;cl.hands=1;crime(2);radio('Silent alarm at the SpÃ¤ti!');toast('Hold position â€” emptying the register')}
-else if(money>=40&&hp<100){money-=40;hp=Math.min(100,hp+40);toast('First aid âˆ’â‚¬40')}else toast(hp>=100?'Already healthy':'Not enough money')}
-function buyStuff(){if(cur||Math.hypot(pl.x-cl.x,pl.z-cl.z)>6||wi>0)return;
-if(!own[2]&&money>=600){money-=600;own[2]=1;mag[2]=30;res[2]=120;toast('Bought SMG âˆ’â‚¬600')}
-else if(!own[3]&&money>=900){money-=900;own[3]=1;mag[3]=6;res[3]=30;toast('Bought shotgun âˆ’â‚¬900')}
-else if(money>=50){money-=50;[1,2,3].forEach(i=>{if(own[i])res[i]=[0,60,120,30][i]});toast('Ammo refilled âˆ’â‚¬50')}else toast('Not enough money')}
-function resetWeapons(s){own=[1,1,0,0];mag=[0,12,30,6];res=[0,60,120,30];wi=0;if(s&&/^[01]{4}$/.test(s.w||''))own=s.w.split('').map(Number);offs.forEach(f=>scene.remove(f.g));offs.length=0;rob.on=0;showGun();wp=s?null:{x:90,z:12};if(!s)toast('GPS set to the SpÃ¤ti â€” follow the yellow arrows')}
-function showGun(){gunM.forEach((g,i)=>{if(g)g.visible=i==wi});reloadT=0;$('xh').style.display=wi?'block':'none'}
-function reload(){if(!wi||reloadT>0||mag[wi]>=WP[wi].mag||res[wi]<=0)return;reloadT=1.1;toast('Reloadingâ€¦')}
-function fire(){const w=WP[wi];if(fireT>0||reloadT>0)return;if(mag[wi]<=0){reload();return}
-fireT=w.rate;mag[wi]--;flash=.05;snd(w.f,.12,.12);cam.getWorldDirection(D);const o=cam.position.clone().addScaledVector(D,5.2);
-me.updateMatrixWorld(true);const mz2=gunM[wi].localToWorld(new T.Vector3(0,-.5-w.len,0));
-for(let i=0;i<w.pel;i++){const d=D.clone();d.x+=(R()-.5)*w.spr*2;d.y+=(R()-.5)*w.spr*2;d.z+=(R()-.5)*w.spr*2;shoot(o,d.normalize(),mz2,w.d)}
-mf.position.copy(mz2);mfL.position.copy(mz2);let n=0;
-for(const p of peds){const dx=p.g.position.x-pl.x,dz=p.g.position.z-pl.z;if(dx*dx+dz*dz<900){n++;p.flee=7;p.sg=(p.ax=='x'?dx:dz)>=0?1:-1}}
-if(n&&!wanted)crime(1)}
-function shoot(o,d,mz2,dmg){let best=200,tg=null;rc.set(o,d);rc.far=200;const hs=rc.intersectObjects(bmesh);if(hs.length)best=hs[0].distance;
-const sph=(x,y,z,r)=>{const lx=x-o.x,ly=y-o.y,lz=z-o.z,t=lx*d.x+ly*d.y+lz*d.z;if(t<0)return 1e9;const px=lx-d.x*t,py=ly-d.y*t,pz=lz-d.z*t;return px*px+py*py+pz*pz<r*r?t:1e9};
-for(const p of peds){if(p.dead>0||!p.g.visible)continue;const t=sph(p.g.position.x,1,p.g.position.z,.55);if(t<best){best=t;tg={p}}}
-for(const f of offs){const t=sph(f.x,1,f.z,.55);if(t<best){best=t;tg={f}}}
-if(cl.alive){const t=sph(cl.x,1,cl.z,.55);if(t<best){best=t;tg={k:1}}}
-for(const c of cars){if(c===cur)continue;const t=sph(c.x,1,c.z,c.r);if(t<best){best=t;tg={c}}}
-const e=o.clone().addScaledVector(d,best);tracer(mz2,e);spark(e);
-if(tg){if(tg.p){tg.p.dead=6;tg.p.g.rotation.x=-1.5;tg.p.g.position.y=.3;stats.kills++;crime(1)}else if(tg.f){tg.f.hp-=dmg;if(tg.f.hp<=0)killOff(tg.f)}else if(tg.k){cl.alive=false;cl.rt=60;rob.on=0;cl.g.rotation.x=-1.5;cl.g.position.y=.3;crime(2)}else{tg.c.dmg+=dmg*10;if(tg.c.ai&&tg.c.ai.pol)crime(1)}}}
-function combat(dt,near,polN){fireT-=dt;flash-=dt;
-if(reloadT>0){reloadT-=dt;if(reloadT<=0){const n=Math.min(WP[wi].mag-mag[wi],res[wi]);mag[wi]+=n;res[wi]-=n}}
-if(wi&&!cur){pl.h+=angd(pl.h,Math.atan2(-Math.sin(cy),-Math.cos(cy)))*Math.min(1,dt*14);me.rotation.y=pl.h;me.L.ra.rotation.x=-1.45;me.L.la.rotation.x=-.3;if((mouseDown&&locked)||K.KeyX)fire()}
-mf.visible=flash>0;mfL.intensity=flash>0?2.5:0;
-for(const l of trs)if(l.life>0){l.life-=dt;if(l.life<=0)l.visible=false}
-for(const s of sps)if(s.life>0){s.life-=dt;s.scale.setScalar(1+(.15-s.life)*8);if(s.life<=0)s.visible=false}
-cl.cool=Math.max(0,cl.cool-dt);if(!cl.alive){cl.rt-=dt;if(cl.rt<=0){cl.alive=true;cl.g.rotation.x=0;cl.g.position.y=0}}
-cl.g.L.la.rotation.x=cl.g.L.ra.rotation.x=cl.hands?-2.8:0;const dc=Math.hypot(pl.x-cl.x,pl.z-cl.z);
-if(rob.on){rob.t+=dt;if(!cl.alive||dc>9||wi==0||cur){rob.on=0;cl.hands=0;toast('Robbery aborted')}else if(rob.t>=6){rob.on=0;cl.hands=0;const g=300+(R()*600|0);money+=g;cl.cool=150;toast('Robbed â‚¬'+g+' â€” get out!');radio('Suspect fleeing the SpÃ¤ti!')}}
-$('rob').style.display=rob.on?'block':'none';$('rob').firstChild.style.width=(rob.t/6*100)+'%';
-promptX=rob.on?'Robbingâ€¦ keep your gun on the clerk':(!cur&&cl.alive&&dc<6)?(wi?(cl.cool>0?'Register is empty':'E â€” Rob the SpÃ¤ti'):'E â€” First aid â‚¬40 Â· B â€” Dealer (guns, ammo)'):'';
-for(const c of cars.slice()){if(c.ai&&c.ai.pol){if(c.dmg>220){rmCar(c);continue}if(!c.dep&&!c.ai.block&&wanted>0&&offs.length<8&&Math.hypot(c.x-pl.x,c.z-pl.z)<32){c.dep=1;mkOff(c.x+Math.cos(c.h)*2.6,c.z-Math.sin(c.h)*2.6);mkOff(c.x-Math.cos(c.h)*2.6,c.z+Math.sin(c.h)*2.6);radio('Units on foot â€” suspect in sight')}}}
-for(const f of offs.slice()){const dx=pl.x-f.x,dz=pl.z-f.z,d=Math.hypot(dx,dz),sp=d>14?4.6:0;if(d>1&&sp){f.x+=dx/d*sp*dt;f.z+=dz/d*sp*dt}push(f,.45);f.g.position.set(f.x,0,f.z);f.g.rotation.y=Math.atan2(dx,dz);f.ph+=dt*sp*2;const a=Math.sin(f.ph)*.7*(sp?1:0);f.g.L.ll.rotation.x=a;f.g.L.rl.rotation.x=-a;
-f.st-=dt;if(d<40&&f.st<=0&&wanted>0){f.st=.9+R()*.7;const ht=R()<(cur?.25:.4);tracer(new T.Vector3(f.x,1.3,f.z),new T.Vector3(pl.x+(ht?0:(R()-.5)*3),1.1,pl.z+(ht?0:(R()-.5)*3)),0xff8080);snd(260,.1,.05);if(ht)hurt(6)}
-if(d>160||!wanted){scene.remove(f.g);offs.splice(offs.indexOf(f),1)}}
-srch=wanted>0&&near>90;if(near<90)lastSeen={x:pl.x,z:pl.z};
-rbT-=dt;if(wanted>=3&&cur&&Math.abs(cur.v)>8&&rbT<=0){rbT=45;const m=Math.abs(Math.sin(cur.h))>Math.abs(Math.cos(cur.h)),bx=Math.max(-W,Math.min(W,cur.x+Math.sin(cur.h)*130)),bz=Math.max(-W,Math.min(W,cur.z+Math.cos(cur.h)*130)),rz=Math.round(cur.z/P)*P,rx=Math.round(cur.x/P)*P;
-for(const s of[-3,3]){if(m)mkCar('police',bx,rz+s,0,{pol:1,block:1});else mkCar('police',rx+s,bz,PI/2,{pol:1,block:1})}radio('Roadblock set up ahead!')}
-radT-=dt;if(wanted&&radT<=0){radT=8+R()*5;radio(srch?'Lost visual â€” sweep the last known position.':wanted>2?'All units: suspect armed and dangerous!':'Suspect on the run, pursue!')}
-$('st').style.opacity=(srch&&(clock*3|0)%2)?.3:1;
-$('wpn').textContent=wi?WP[wi].n+'  '+mag[wi]+' / '+res[wi]+(reloadT>0?' âŸ³':''):'';$('stn').textContent=streetName();navHud();lamps()}
-/* navigation */
-const SNH=['Bernauer Str.','TorstraÃŸe','Unter den Linden','Karl-Marx-Allee','KantstraÃŸe','OranienstraÃŸe','Warschauer Str.'],SNV=['FriedrichstraÃŸe','Invalidenstr.','Leipziger Str.','Alexanderstr.','KurfÃ¼rstendamm','HermannstraÃŸe','Sonnenallee'],ci=v=>Math.max(0,Math.min(6,Math.round(v/P)+3));
-function streetName(){for(let k=-3;k<=3;k++)if(Math.abs(pl.z-k*P)<9)return SNH[k+3];for(let k=-3;k<=3;k++)if(Math.abs(pl.x-k*P)<9)return SNV[k+3];return Math.hypot(pl.x-90,pl.z-24)<14?'SpÃ¤ti':'Sidewalk'}
-function snapPt(x,z){const rz=Math.max(-W,Math.min(W,Math.round(z/P)*P)),rx=Math.max(-W,Math.min(W,Math.round(x/P)*P));return Math.abs(z-rz)<Math.abs(x-rx)?{x,z:rz,h:1}:{x:rx,z,h:0}}
-function route(t){const a=snapPt(pl.x,pl.z),b=snapPt(t.x,t.z),r=[{x:pl.x,z:pl.z},a],mid=(v,w)=>Math.max(-W,Math.min(W,Math.round((v+w)/2/P)*P));
-if(a.h&&b.h){if(a.z!==b.z){const c=mid(a.x,b.x);r.push({x:c,z:a.z},{x:c,z:b.z})}}
-else if(!a.h&&!b.h){if(a.x!==b.x){const c=mid(a.z,b.z);r.push({x:a.x,z:c},{x:b.x,z:c})}}
-else if(a.h)r.push({x:b.x,z:a.z});else r.push({x:a.x,z:b.z});
-r.push(b,{x:t.x,z:t.z});return r}
-const arr=[];for(let i=0;i<28;i++)arr.push(add(new T.BoxGeometry(1.4,.05,2.6),new T.MeshBasicMaterial({color:0xffd900}),0,-9,0,false));
-function navHud(){arr.forEach(a=>a.visible=false);if(mi>=MS.length&&!wp){navTxt='';return}const r=route(wp||obj()),sq=[];
-for(let i=1;i<r.length;i++){const dx=r[i].x-r[i-1].x,dz=r[i].z-r[i-1].z,l=Math.hypot(dx,dz);if(l>1)sq.push({dx:dx/l,dz:dz/l,l,x:r[i].x,z:r[i].z})}
-let tot=0;sq.forEach(s=>tot+=s.l);let t='Arrived';
-if(sq.length){let d=sq[0].l,i=1;while(i<sq.length&&sq[i].dx*sq[i-1].dx+sq[i].dz*sq[i-1].dz>.9){d+=sq[i].l;i++}
-if(i<sq.length){const c=sq[i-1].dx*sq[i].dz-sq[i-1].dz*sq[i].dx,nm=Math.abs(sq[i].dz)<.5?SNH[ci(sq[i].z)]:SNV[ci(sq[i].x)];t=Math.abs(c)<.2?'Make a U-turn':'In '+Math.round(d)+' m turn '+(c<0?'left':'right')+' onto '+nm}else t='Continue '+Math.round(d)+' m to destination'}
-navTxt=t+' Â· '+Math.round(tot)+' m left';
-const path=r.slice(1,r.length-1);let k=0,s0=2;
-for(let i=1;i<path.length&&k<28;i++){const p0=path[i-1],p1=path[i],dx=p1.x-p0.x,dz=p1.z-p0.z,l=Math.hypot(dx,dz);if(l<1)continue;for(;s0<l&&k<28;s0+=7){const a=arr[k++];a.visible=true;a.position.set(p0.x+dx/l*s0,.16,p0.z+dz/l*s0);a.rotation.y=Math.atan2(dx,dz)}s0-=l}}
-const LL=[0,1,2].map(()=>{const l=new T.PointLight(0xffd9a0,0,34);scene.add(l);return l});
-function lamps(){const c=[],ax=Math.round(pl.x/P),az=Math.round(pl.z/P);for(let a=ax-1;a<=ax+1;a++)for(let b=az-1;b<=az+1;b++)for(const sx of[-10,10])for(const sz of[-10,10]){const x=a*P+sx,z=b*P+sz;c.push([(x-pl.x)**2+(z-pl.z)**2,x,z])}
-c.sort((u,v)=>u[0]-v[0]);LL.forEach((l,i)=>{l.position.set(c[i][1],7.5,c[i][2]);l.intensity=nightV>.45?1.6:0})}
-function drawMap(c,sc,full){const g=c.getContext('2d'),w=c.width,h=c.height,hd=cur?cur.h:pl.h,cx=full?(mz>1?pl.x:0):pl.x,cz=full?(mz>1?pl.z:0):pl.z;
-g.fillStyle='#101317';g.fillRect(0,0,w,h);g.save();g.translate(w/2,h/2);if(!full)g.rotate(hd-PI);g.translate(-cx*sc,-cz*sc);
-g.fillStyle='#2b3038';for(let k=-3;k<=3;k++){g.fillRect((-W-8)*sc,(k*P-8)*sc,(2*W+16)*sc,16*sc);g.fillRect((k*P-8)*sc,(-W-8)*sc,16*sc,(2*W+16)*sc)}
-for(let i=-3;i<3;i++)for(let j=-3;j<3;j++){g.fillStyle=(i==-1&&j==0)?'#2f5a34':'#444b55';g.fillRect(((i+.5)*P-18)*sc,((j+.5)*P-18)*sc,36*sc,36*sc)}
-const r=route(wp||obj());g.strokeStyle='#ffd900';g.lineWidth=full?4:3;g.lineJoin='round';g.beginPath();r.forEach((p,i)=>i?g.lineTo(p.x*sc,p.z*sc):g.moveTo(p.x*sc,p.z*sc));g.stroke();
-const dot=(x,z,col,sq)=>{g.fillStyle=col;if(sq)g.fillRect(x*sc-5,z*sc-5,10,10);else{g.beginPath();g.arc(x*sc,z*sc,5,0,7);g.fill()}};
-dot(90,24,cl.cool>0?'#777':'#3ddc57',1);if(mi<MS.length){const o=obj();dot(o.x,o.z,'#ffd900')}sideScores.forEach(q=>dot(q.x,q.z,q.cool>0?'#64686c':'#ff9b44',1));if(wp)dot(wp.x,wp.z,'#19e6ff');
-if(wanted)cars.forEach(q=>{if(q.ai&&q.ai.pol)dot(q.x,q.z,(clock*4|0)%2?'#ff3030':'#3060ff')});offs.forEach(f=>dot(f.x,f.z,'#ff3030'));
-if(full){g.fillStyle='#e8e9ea';g.font='bold 14px sans-serif';[['TV tower',30,30],['Brandenburg Gate',-30,-30],['Tiergarten',-30,30],['East Side Gallery',-150,0],['Potsdamer Platz',90,-30],['SpÃ¤ti',90,24]].forEach(l=>g.fillText(l[0],l[1]*sc-30,l[2]*sc-8));
-g.translate(pl.x*sc,pl.z*sc);g.rotate(PI-hd);g.fillStyle='#fff';g.beginPath();g.moveTo(0,-8);g.lineTo(6,7);g.lineTo(-6,7);g.fill()}
-g.restore();if(!full){g.fillStyle='#fff';g.beginPath();g.moveTo(w/2,h/2-10);g.lineTo(w/2+7,h/2+8);g.lineTo(w/2-7,h/2+8);g.fill()}}
-$('mc').onwheel=e=>{e.preventDefault();mz=Math.max(1,Math.min(4,mz*(e.deltaY<0?1.2:.83)))};
-$('mc').onclick=e=>{const r=e.target.getBoundingClientRect(),k=640/r.width,sc=640/(2*W+40)*mz,cx=mz>1?pl.x:0,cz=mz>1?pl.z:0;wp={x:cx+((e.clientX-r.left)*k-320)/sc,z:cz+((e.clientY-r.top)*k-320)/sc};toast('Waypoint set')};
-/* ---------- INPUT & LOOP ---------- */
-const K={};addEventListener('keydown',e=>{if(e.code==='F3'){ $('debug').hidden=!$('debug').hidden;e.preventDefault();return}if(cutsceneDirector.active&&(e.code==='Space'||e.code==='Escape')){cutsceneDirector.skip();e.preventDefault();return}if(state==='dialogue'){if(e.code==='Escape'){if(talker)closeTalk();else{$('talk').hidden=true;state='play'}}return}let code=e.code;if(controlPreset&&code.startsWith('Arrow'))code=({ArrowUp:'KeyW',ArrowDown:'KeyS',ArrowLeft:'KeyA',ArrowRight:'KeyD'})[code]||code;if(code==='Space'&&!K.Space)jumpQueued=true;K[code]=1;if(e.code=='Space'||e.code.startsWith('Arrow'))e.preventDefault();if(e.repeat||state!=='play')return;
-if(e.code=='KeyF')toggleCar();else if(e.code=='KeyM'){mapOpen=!mapOpen;$('mw').style.display=mapOpen?'flex':'none';if(mapOpen)document.exitPointerLock();else lock()}
-else if(e.code=='KeyC'){if(money>=50){money-=50;jc=(jc+1)%JC.length;dress(me,JC[jc]);toast('New jacket âˆ’â‚¬50')}else toast('Not enough money')}
-else if(e.code=='KeyY'){wx=(wx+1)%4;toast('Weather: '+WXN[wx])}else if(e.code=='KeyR')reload();else if(e.code=='KeyE')interact();else if(e.code=='KeyB')buyStuff();else if(e.code.startsWith('Digit')){const n=+e.code[5];if(n<4&&own[n]&&!cur){wi=n;showGun()}}else if(e.code=='KeyN'){gt=(gt+3)%24;toast('Time skipped')}
-else if(e.code=='KeyV')fp=!fp;else if(e.code=='KeyK'){save();toast('Game saved')}else if(e.code=='KeyP'){document.exitPointerLock();if(!hadLock||!locked)menu('pause')}});
-addEventListener('keyup',e=>{let code=e.code;if(controlPreset&&code.startsWith('Arrow'))code=({ArrowUp:'KeyW',ArrowDown:'KeyS',ArrowLeft:'KeyA',ArrowRight:'KeyD'})[code]||code;K[code]=0});addEventListener('blur',()=>{for(const k in K)K[k]=0});
-addEventListener('mousemove',e=>{if(state!=='play'||mapOpen)return;if(locked||(e.buttons&1)){cy-=e.movementX*SS[si];cp=Math.max(-.2,Math.min(1.2,cp+e.movementY*SS[si]))}});
-cv.addEventListener('mousedown',e=>{if(state==='play'&&!locked&&!mapOpen)lock();if(e.button===0)mouseDown=true});addEventListener('mouseup',()=>mouseDown=false);
-document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===cv;if(locked)hadLock=true;else if(state==='play'&&hadLock&&!mapOpen)menu('pause')});
-setInterval(()=>{if(state==='play')save()},15000);
-let last=performance.now();
-function frame(now){requestAnimationFrame(frame);const rawDt=Math.max(0,(now-last)/1000),dt=Math.min(.05,rawDt);last=now;
-if(state==='play'&&!mapOpen){if(cutsceneDirector.active){const active=cutsceneDirector.update(dt);if(!active&&endingPending){endingPending=false;endingChoice()}}else update(dt)}else if(state==='menu'){gt=(gt+dt/60)%24;env(dt,0,0);const a=now/9000;cam.position.set(Math.sin(a)*150,70,Math.cos(a)*150);cam.lookAt(0,25,0)}
-perf.sample(rawDt,now,{npcs:peds.filter(p=>p.g.visible||p.lod.visible).length+storyPeople.filter(p=>p.g.visible).length,cars:cars.filter(c=>c.g.visible).length});sky.position.copy(cam.position);rn.render(scene,cam)}
-applyGfx();dress(me,JC[0]);menu('main');requestAnimationFrame(frame);
+KÝJËKŽKOL
+OOžØÛÛœÝÛÛÜ]\[ÙˆÏOOIÛ[X™\‰ÏØÎ˜Ë™Ù]^
+
+KÙ^OXÛÛÜŠÉÎ‰ÊÜŠÉÎ‰ÊÛNÚYŠ[X]ØXÚKš\ÊÙ^JJ[X]ØXÚKœÙ]
+Ù^K™]È“Y\ÚÝ[™\™X]\šX[
+ØÛÛÜ‹›ÝYÚ™\ÜÎœ‹Y][™\ÜÎ›_JJNÜ™]\›ˆX]ØXÚK™Ù]
+Ù^J_NÂ˜ÛÛœÝYJËKK‹Ø\ÝY˜[ÙJOOžØÛÛœÝÏ[™]È“Y\Ú
+ËJNÛËœÜÚ][Û‹œÙ]
+KŠNÛË˜Ø\ÝÚYÝÏXØ\ÝÛËœ™XÙZ]™TÚYÝÏY˜[ÙNÜØÙ[™K˜Y
+ÊNÜ™]\›ˆßNÂ˜ÛÛœÝ›ÞÙ[ÐØXÚO[™]ÈX\
+
+K›ÞÙ[ÛY]žOJË
+OOžØÛÛœÝÙ^O]ÊÉÎ‰ÊÚ
+ÉÎ‰ÊÙÛ]ÏX›ÞÙ[ÐØXÚK™Ù]
+Ù^JNÚYŠYÊ^ÙÏ[™]È›ÞÙ[ÛY]žJË
+NØ›ÞÙ[ÐØXÚKœÙ]
+Ù^KÊ_\™]\›ˆßK›ÞJËKK‹ÊOO˜Y
+›ÞÙ[ÛY]žJË
+KKK‹ÊNÂ˜ÛÛœÝÞ[JK‹ÊOO›™]ÈÞ[[™\‘Ù[ÛY]žJK‹ÊNÂ˜ÛÛœÝ›Y\ÚV×KÛÛV×KYÏJ‹ŠOO˜ÛÛœ\Ú
+Þ‹ŸJNÂ›]]Y˜[ÙNÂ™[˜Ý[Ûˆ\Ú
+Š^Ú]Y˜[ÙNÙ›ÜŠÛÛœÝˆÙˆÛÛ
+^ØÛÛœÝÞSX]›X^
+‹žX‹šX]›Z[Šž‹ž
+Ø‹š
+JKÞSX]›X^
+‹ž‹X‹š‹X]›Z[Šž‹‹žŠØ‹šŠJNÛ]\žXÞ\ž‹XÞ‹Y
+™
+ÙŠ™ŽÚYŠŠœŠ^Ú]]YNÚYŠYKMŠ\ž
+Ï\ŽÙ[Ù^ÙSX]œÜ\
+
+NÜž
+ÏYÙ
+Š‹Y
+NÜžŠÏY‹Ù
+Š‹Y
+___\™]\›ˆ]B‹ÊˆKKKKKKKKKHÓÔ“KKKKKKKKKH
+‹Â˜ÛÛœÝJ
+
+OOžØÛÛœÝÏYØÝ[Y[˜Ü™X]Q[[Y[
+	ØØ[˜\ÉÊNØËÚYXËšZYÚLLŽØÛÛœÝÏXË™Ù]ÛÛ^
+	Ì™	ÊNÙË™š[Ý[OIÈÌ˜L™ÌÉÎÙË™š[™XÝ
+LŽLŽ
+NÙ›ÜŠ]OLÚOLÚJÊÊ^ØÛÛœÝTŠ
+JÌÙË™š[Ý[OIÜ™Ø˜J	ÊÝŠÉË	ÊÝŠÉË	ÊÝŠÉËŒÍJIÎÙË™š[™XÝ
+Š
+JŒLŽŠ
+JŒLŽ‹Š_XÛÛœÝ[™]ÈØ[˜\Õ^\™JÊNÝÜ˜\Ï]Ü˜\U”™\X]Ü˜\[™ÎÝœ™\X]œÙ]
+LJNÝ˜[š\ÛÝ›ÜONÜ™]\›ˆJJ
+NÂ˜ÛÛœÝ›ØYX][™]È“Y\ÚÝ[™\™X]\šX[
+ÛX\œ›ÝYÚ™\ÜÎ‹Ž_JNÂ˜›Þ
+MŒŒ‹MŒÝ
+™ÍÎŽMJKKŒK˜[ÙJNÂ™›ÜŠ]ÏKLÎÚÏLÎÚÊÊÊ^Ø›Þ
+Š•ÊÌM‹Œ‹M‹›ØYX]Ê”˜[ÙJNØ›Þ
+M‹Œ‹Š•ÊÌM‹›ØYX]Ê”˜[ÙJ_BžØÛÛœÝ\ÏV×K[™]È“Øš™XÝÑ
+
+NÙ›ÜŠ]ÏKLÎÚÏLÎÚÊÊÊY›ÜŠ]OKLMÍŽÝOLMÍŽÝJÏLL
+^ØÛÛœÝOJ
+IT
+JÔ
+ITÚYŠOLO”LL
+XÛÛ[YNÙ›ÜŠÛÛœÝˆÙ–ÌWJ^ÙœÜÚ][Û‹œÙ]
+ÚÊ”KŒL‹ÝNšÊ”
+NÙœ›Ý][Û‹žO]ÔKÌŽŒÙ\]SX]š^
+
+NÛ\Ëœ\Ú
+›X]š^˜ÛÛ™J
+J__B˜ÛÛœÝ[O[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJŒKŒÊK™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒNNNJK\Ë›[™Ý
+NÛ\Ë™›Ü‘XXÚ
+
+KJOOš[KœÙ]X]š^]
+KJJNÜØÙ[™K˜Y
+[J_BžØÛÛœÝ“X][™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒL™™ßJKÝš\\ÏV×K[[^O[™]È“Øš™XÝÑ
+
+NÙ›ÜŠ]^KLÎÚ^LÎÚ^
+ÊÊY›ÜŠ]^KLÎÚ^LÎÚ^ŠÊÊY›ÜŠÛÛœÝÚYHÙ–ËLKWJY›ÜŠ]KLÎÛLÎÛŠÊÊ^Ù[[^KœÜÚ][Û‹œÙ]
+^
+”
+ÛŠŒ‹ŒM^Š”
+ÜÚYJŒL
+NÙ[[^Kœ›Ý][Û‹žOLÙ[[^K\]SX]š^
+
+NÜÝš\\Ëœ\Ú
+[[^K›X]š^˜ÛÛ™J
+JNÙ[[^KœÜÚ][Û‹œÙ]
+^
+”
+ÜÚYJŒLŒM^Š”
+ÛŠŒŠNÙ[[^Kœ›Ý][Û‹žOSX]”KÌŽÙ[[^K\]SX]š^
+
+NÜÝš\\Ëœ\Ú
+[[^K›X]š^˜ÛÛ™J
+J_XÛÛœÝÜ›ÜÜÏ[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJKŒKŒÍKŒŽ
+K“X]Ýš\\Ë›[™Ý
+NÜÝš\\Ë™›Ü‘XXÚ
+
+KJOO˜Ü›ÜÜËœÙ]X]š^]
+KJJNØÜ›ÜÜËœ™XÙZ]™TÚYÝÏ]YNÜØÙ[™K˜Y
+Ü›ÜÜÊ_B™[˜Ý[ÛˆÝ
+]
+^ØÛÛœÝÏYØÝ[Y[˜Ü™X]Q[[Y[
+	ØØ[˜\ÉÊNØËÚYLMŽØËšZYÚMLLŽØÛÛœÝÏXË™Ù]ÛÛ^
+	Ì™	ÊNÙË™š[Ý[O[]ÉÈÌ	Î‰ÈØŒNN	ÎÙË™š[™XÝ
+M‹LLŠNÂšYŠ[]
+Y›ÜŠ]OLÚOLÚJÊÊ^ÙË™š[Ý[OIÜ™Ø˜J	ÊÔŠ
+J‹ŒÊÉÊIÎÙË™š[™XÝ
+Š
+JŒM‹Š
+JLL‹
+_B™›ÜŠ]OLÞOÞJÊÊY›ÜŠ]LÞÞ
+ÊÊ^ØÛÛœÝ^
+O^JÂšYŠ]
+^ÚYŠŠ
+OJ^ÙË™š[Ý[OTŠ
+OŽÉÈÙ™™NIÎ‰ÈÎY™™‰ÎÙË™š[™XÝ
+
+ÌL‹JÌMÎ
+__B™[Ù^ÙË™š[Ý[OIÈÎŽØÉÎÙË™š[™XÝ
+JÍŒ
+NÙË™š[Ý[OIÈÙ˜Í‰ÎÙË™š[™XÝ
+
+ÎJÌLŠNØÛÛœÝÜYË˜Ü™X]S[™X\‘Ü˜YY[
+JÌMJÍLŠNÙÜ‹˜YÛÛÜ”ÝÜ
+	ÈÎ˜LØÌ	ÊNÙÜ‹˜YÛÛÜ”ÝÜ
+K	ÈÌ˜LØMIÊNÙË™š[Ý[OYÜŽÙË™š[™XÝ
+
+ÌL‹JÌMÎ
+NÙË™š[Ý[OIÈÙ˜Í‰ÎÙË™š[™XÝ
+
+ÌÌJÌMÎ
+NÙË™š[™XÝ
+
+ÌL‹JÌÌKÊ__B˜ÛÛœÝ[™]ÈØ[˜\Õ^\™JÊNÝÜ˜\Ï]Ü˜\U”™\X]Ü˜\[™ÎÝ˜[š\ÛÝ›ÜONÜ™]\›ˆB˜ÛÛœÝÓÔ“\Ý
+ŽNŽJKÚÜX][™]È“Y\ÚÝ[™\™X]\šX[
+ØÛÛÜŽŒXŒÌÌË›ÝYÚ™\ÜÎ‹ŒMKY][™\ÜÎ‹‹[Z\ÜÚ]™NŒ™˜ØÎ[Z\ÜÚ]™R[[œÚ]NŒJNÂžØÛÛœÝ\ÏV×K[™]È“Øš™XÝÑ
+
+NÙ›ÜŠ]OKLÎØOLÎØJÊÊY›ÜŠ]KLÎØLÎØŠÊÊY›ÜŠÛÛœÝÈÙ–ËLLKLWJY›ÜŠ]OKMÎÜOMÎÜJÏLŠ^ÙœÜÚ][Û‹œÙ]
+J”
+ÜËŒL‹Š”
+ÜJNÙœØØ[KœÙ]
+ËKJNÙ\]SX]š^
+
+NÛ\Ëœ\Ú
+›X]š^˜ÛÛ™J
+JNÙœÜÚ][Û‹œÙ]
+J”
+ÜKŒL‹Š”
+ÜÊNÙœØØ[KœÙ]
+KKË
+NÙ\]SX]š^
+
+NÛ\Ëœ\Ú
+›X]š^˜ÛÛ™J
+J_B˜ÛÛœÝ[O[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJKŒKJK™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒJK\Ë›[™Ý
+NÛ\Ë™›Ü‘XXÚ
+
+KJOOš[KœÙ]X]š^]
+KJJNÜØÙ[™K˜Y
+[J_B˜ÛÛœÝO]Ý
+
+K]Ý
+JK›OV×KS•VÌXÙŽÍXLØ˜ØÍÙ˜NKNXL‹K‘SÓVÌ™Œ™MKNYM™™‹™™ŒØKÙ™˜WNÂ˜ÛÛœÝSV×NÙ[˜Ý[Ûˆ›
+‹Ë
+^ØÛÛœÝOUK˜ÛÛ™J
+KU‹˜ÛÛ™J
+NØKœ™\X]œÙ]
+ËÌM‹ÌÌŠNØ‹œ™\X]˜ÛÜJKœ™\X]
+NØK›™YYÕ\]OX‹›™YYÕ\]O]YNÂ˜ÛÛœÝO[™]È“Y\ÚÝ[™\™X]\šX[
+ÛX\˜K[Z\ÜÚ]™SX\˜‹[Z\ÜÚ]™NŒ™™™™™‹[Z\ÜÚ]™R[[œÚ]NŒÛÛÜŽ•S•ÊŠ
+JŠ_K›ÝYÚ™\ÜÎ‹Ž_JNØ›Kœ\Ú
+JNÂ˜›Y\Úœ\Ú
+›Þ
+ËËKÌ‹ŠJNØYÊ‹ËÌ‹ËÌŠNØ›Þ
+ÊËŽËÊËŽÓÔ“‹
+ËŒÍKŠNØ›Þ
+ÊËŒËËÊËŒËÚÜX]‹‹˜[ÙJNØ›Þ
+ËK‹ËÓÔ“‹
+ÔŠ
+JKL‹K
+ÌKKŠÔŠ
+JKL‹JNØ›Þ
+‹KŒ‹Œ‹™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽ“‘SÓ–ÊŠ
+J
+__JKKŠÊŠ
+OOËLNŒJJŠËÌŠËŒJK˜[ÙJNÚYŠÏŒM	‰šŒMŠ^ØÛÛœÝÝ\ZŒÎÌLŒLŽÙ›ÜŠ]OMŽÞOLÎÞJÏ\Ý\
+^ØÛÛœÝÏ[™]È“Øš™XÝÑ
+
+NÛËœÜÚ][Û‹œÙ]
+]Ê‹ŒŒËKŠÝËÌŠËÌŠNÛË\]SX]š^
+
+NÐSœ\Ú
+Ë›X]š^˜ÛÛ™J
+J___B™[˜Ý[ÛˆÝÙ\ŠŠ^ØY
+Þ[
+K‹ËŒ‹LM
+KÝ
+ÎXÙYKŒÊKLŠNØY
+™]È”Ü\™QÙ[ÛY]žJKŒM
+KÝ
+™LÙNŒKŽ
+KL‹ŠNØY
+Þ[
+ŒMKËÍ
+KÝ
+ŒŒŒŒŠKLKŠNØYÊ‹ËŒ‹ËŒŠ_B™[˜Ý[ÛˆØ]JŠ^ØÛÛœÝÏ\Ý
+ÎXŽJNÙ›ÜŠ]ÏLØÏŽØÊÊÊY›ÜŠ]LÜŽÜŠÊÊ^ØÛÛœÝ^LMJØÊ‹^ŠÊÌËN‹LËJNØY
+Þ[
+KŒKKŒKMLŠKËËŠNØYÊ‹KŒ‹KŒŠ_X›Þ
+Í‹ËKLËMKÍKŠNØ›Þ
+Ì‹ËËËNKŠNØ›Þ
+‹Œ‹ËÝ
+NLMJKŒK‹ŠNØ›Þ
+K‹K‹Ý
+ŽLÊKŒËËŠ_B™[˜Ý[Ûˆ\šÊŠ^ØÛÛœÝMKÜ[™]È’[œÝ[˜ÙYY\Ú
+™]ÈÛÛ™QÙ[ÛY]žJËË
+KÝ
+™˜ŒÍ
+KŠK[™]È’[œÝ[˜ÙYY\Ú
+Þ[
+ŒÍKKËŠKÝ
+XMÌ
+KŠK[™]È“Øš™XÝÑ
+
+NÂ™›ÜŠ]OLÚOŽÚJÊÊ^Û]ŽÙÞÜTŠ
+JŒÎLNNÜTŠ
+JŒÎLN_]Ú[JX]˜XœÊ
+O‰‰“X]˜XœÊŠOŠNÙœÜÚ][Û‹œÙ]
+
+Ü‹KŠÜŠNÙ\]SX]š^
+
+NØÜ‹œÙ]X]š^]
+K›X]š^
+NÙœÜÚ][Û‹žOLKNÙ\]SX]š^
+
+NÝ‹œÙ]X]š^]
+K›X]š^
+NØYÊ
+ÜŠÜ‹KJ_XÜ‹˜Ø\ÝÚYÝÏ]YNÜØÙ[™K˜Y
+Ü‹Š_BšYŠS›[™Ý
+^ØÛÛœÝY][\Ý
+ÎMÍKKÌŠKÛXœÏ[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJKŒŒ‹KJKÝ
+MØ˜ËŽ
+KS›[™Ý
+K˜Z[Ï[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJŽŒL‹ŒJKY][S›[™Ý
+Kœ›ÛÏ[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJŒKÌ‹ŒJKY][S›[™Ý
+ŒŠKÚY\Ï[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJŒKÌ‹KŒÍJKY][S›[™Ý
+ŒŠK[™]È“Øš™XÝÑ
+
+NÐS™›Ü‘XXÚ
+
+KJOOžÜÛXœËœÙ]X]š^]
+KJNÙ›X]š^˜ÛÜJJNÙ™XÛÛ\ÜÙJœÜÚ][Û‹œ]X]\›š[Û‹œØØ[JNÙœÜÚ][Û‹žŠÏKÌŽÙœÜÚ][Û‹žJÏKŽÙ\]SX]š^
+
+NÜ˜Z[ËœÙ]X]š^]
+K›X]š^
+NÙ›ÜŠÛÛœÝÚYÛˆÙ–ËLKWJ^ØÛÛœÝO[™]È“Øš™XÝÑ
+
+NÙK›X]š^˜ÛÜJJNÙK™XÛÛ\ÜÙJKœÜÚ][Û‹Kœ]X]\›š[Û‹KœØØ[JNÙKœÜÚ][Û‹žJÏKNÙKœÜÚ][Û‹ž
+Ï\ÚYÛŠŒ‹ŒÍNÙKœÜÚ][Û‹žŠÏKŒŽÙK\]SX]š^
+
+NÙœ›ÛËœÙ]X]š^]
+JŒŠÊÚYÛŒÌNŒ
+KK›X]š^
+NÙKœÜÚ][Û‹žO\ÚYÛŠÎÙK\]SX]š^
+
+NÙœ›ÛËœÙ]X]š^]
+JŒŠÊÚYÛŒÌŒJKK›X]š^
+NØÛÛœÝO[™]È“Øš™XÝÑ
+
+NÜK›X]š^˜ÛÜJJNÜK™XÛÛ\ÜÙJKœÜÚ][Û‹Kœ]X]\›š[Û‹KœØØ[JNÜKœÜÚ][Û‹žJÏKNÜKœÜÚ][Û‹ž
+Ï\ÚYÛŠŒ‹ŒÍNÜKœÜÚ][Û‹ž‹OKŒŽÜKœ›Ý][Û‹žOSX]”KÌŽÜK\]SX]š^
+
+NÜÚY\ËœÙ]X]š^]
+JŒŠÊÚYÛŒÌNŒ
+KK›X]š^
+__JNÖÜÛXœË˜Z[Ëœ›ÛËÚY\×K™›Ü‘XXÚ
+ÏOžÛË˜Ø\ÝÚYÝÏ]YNÛËœ™XÙZ]™TÚYÝÏ]YNÜØÙ[™K˜Y
+Ê_J_B™›ÜŠ]OKLÎÚOÎÚJÊÊY›ÜŠ]KLÎÚÎÚŠÊÊ^ØÛÛœÝÞJJËJJ”ÞJŠËJJ”ÜJOOL	‰šOL
+OÌNŠOOKLI‰šOKLJOÌŽŠOOKLI‰šOL
+OÌÎŒÂ˜›Þ
+ŒËÝ
+ÜOLÏÌÙ˜ŒØNŒLM‹ŽMJKÞŒMKÞ‹˜[ÙJNÂšYŠÜOLJ]ÝÙ\ŠÞÞŠNÙ[ÙHYŠÜOLŠYØ]JÞÞŠNÙ[ÙHYŠÜOLÊ\\šÊÞÞŠNÂ™[ÙHYŠHOL_ˆOL
+Y›ÜŠ]OLØOŽØJÊÊY›ÜŠ]LØŽØŠÊÊX›
+Þ
+ÊOÎKN‹NKJKÞŠÊÎKN‹NKJKMË
+OOLI‰šOKLJOÍŒ
+ÔŠ
+JNŠLOÌL
+ÔŠ
+JŒMŽŒM
+ÔŠ
+JŒŠJ_B™›ÜŠ]OLÚOLŽÚJÊÊ^ØÛÛœÝKLMJÚJŒÌØ›Þ
+KK‹Ý
+™]ÈÛÛÜŠ
+KœÙ]Ó
+Š
+KËJKÊKLNË‹ŒKŠNØYÊLNË‹‹LÊ_B˜ÛÛœÝ[\X][™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒMMMMM_JKÚYÖ[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJKKJK™]È“Y\Ú˜\ÚXÓX]\šX[
+
+KJKÚYÖ[™]È’[œÝ[˜ÙYY\Ú
+™]È›ÞÙ[ÛY]žJKKJK™]È“Y\Ú˜\ÚXÓX]\šX[
+
+KJNÂžØÛÛœÝO[™]È’[œÝ[˜ÙYY\Ú
+Þ[
+ŒL‹ŒMKŠKÝ
+ÌÌÎ
+KNMŠKO[™]È’[œÝ[˜ÙYY\Ú
+™]È”Ü\™QÙ[ÛY]žJKŠK[\X]NMŠK[™]È“Øš™XÝÑ
+
+NÛ]LOLÂ™›ÜŠ]OKLÎØOLÎØJÊÊY›ÜŠ]KLÎØLÎØŠÊÊ^Ù›ÜŠÛÛœÝÞÙ–ËLKWJY›ÜŠÛÛœÝÞˆÙ–ËLKWJ^ÙœÜÚ][Û‹œÙ]
+J”
+ÜÞ
+ŒLŠ”
+ÜÞŠŒL
+NÙ\]SX]š^
+
+NÜKœÙ]X]š^]
+‹›X]š^
+NÙœÜÚ][Û‹žONŒŽÙ\]SX]š^
+
+NÛKœÙ]X]š^]
+ŠÊË›X]š^
+_B™œÜÚ][Û‹œÙ]
+J”
+ÌLKŒËŠ”LL
+NÙ\]SX]š^
+
+NÜÚYÖœÙ]X]š^]
+K›X]š^
+NÙœÜÚ][Û‹žOM‹ŒŽÙ\]SX]š^
+
+NÜÚYÖ‹œÙ]X]š^]
+JÊË›X]š^
+_BœØÙ[™K˜Y
+KKÚYÖÚYÖŠ_B˜ÛÛœÝ˜Z[‘Ï[™]ÈY™™\‘Ù[ÛY]žJ
+K“LŒž[™]È›Ø]Ì\œ˜^J“ŠKžO[™]È›Ø]Ì\œ˜^J“ŠKž[™]È›Ø]Ì\œ˜^J“ŠKœ[™]È›Ø]Ì\œ˜^J“ŠŠNÂ™›ÜŠ]OLÚO“ŽÚJÊÊ^ÜžÚWOTŠ
+JŽMÜžVÚWOTŠ
+JŒÌÜž–ÚWOTŠ
+JŽMBœ˜Z[‘ËœÙ]]šX]J	ÜÜÚ][Û‰Ë™]ÈY™™\]šX]JœÊJNØÛÛœÝ˜Z[[™]È“[™TÙYÛY[Ê˜Z[‘Ë™]È“[™P˜\ÚXÓX]\šX[
+ØÛÛÜŽŒXXŽ˜[œÜ\™[YKÜXÚ]N‹_JJNÜ˜Z[‹™œ\Ý[PÝ[YY˜[ÙNÜØÙ[™K˜Y
+˜Z[ŠNÂ˜ÛÛœÝ™X[OXY
+Þ[
+‹‹ÌMŠK™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™™L˜[œÜ\™[YKÜXÚ]N‹ŒÍ_JKÍK˜[ÙJKØ™X[OXY
+Þ[
+KKKKÌLŠK™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒNYM™™‹˜[œÜ\™[YKÜXÚ]N‹ŒÍ_JKNNK˜[ÙJNÂ‹ÊˆKKKKKKKKKHSÔH	ˆÐT”ÈKKKKKKKKKH
+‹Â˜ÛÛœÝÏVÌ™MØKŒÌÌ™˜LØKMŒMŒM‹XMLŒNÂ˜ÛÛœÝSPS—ÔÔT‘TÏ^ÌL›™]È”Ü\™QÙ[ÛY]žJKL
+KLŽ›™]È”Ü\™QÙ[ÛY]žJKL‹
+K›™]È”Ü\™QÙ[ÛY]žJK
+_KSPS—ÐÖSS‘T”Ï[™]ÈX\
+
+NÂ™[˜Ý[Ûˆ[X[ŠÚ\[ËØ\ÝY˜[ÙJ^ØÛÛœÝÏ[™]È‘Ü›Ý\
+
+K^ßKÚÚ[\Ý
+ÎN˜ËŽŠKZ\\Ý
+ÌLY‹ŽM
+KÚÙO\Ý
+ŒŒL˜KŽJK^YO\Ý
+MY˜ÍKŽ
+KO\Ý
+[ËŽLŠK˜ÛÛ™J
+KÓO\Ý
+Ú\Ž
+K˜ÛÛ™J
+NÂ˜ÛÛœÝÜJ\™[X]K‹ÞÞKÞ‹ÙYÏLL
+OOžØÛÛœÝÏ[™]È“Y\Ú
+SPS—ÔÔT‘TÖÜÙY×_SPS—ÔÔT‘TÖÌLKX]
+NÛËœÜÚ][Û‹œÙ]
+KŠNÛËœØØ[KœÙ]
+ÞÞKÞŠNÛË˜Ø\ÝÚYÝÏXØ\ÝÜ\™[˜Y
+ÊNÜ™]\›ˆßNÂ˜ÛÛœÝÞ[J\™[X]˜‹KŠOOžØÛÛœÝÙ^O\
+ÉÎ‰ÊÜ˜ŠÉÎ‰ÊÚÛ]Ù[ÏRSPS—ÐÖSS‘T”Ë™Ù]
+Ù^JNÚYŠYÙ[Ê^ÙÙ[Ï[™]ÈÞ[[™\‘Ù[ÛY]žJ˜‹L
+NÒSPS—ÐÖSS‘T”ËœÙ]
+Ù^KÙ[Ê_XÛÛœÝÏ[™]È“Y\Ú
+Ù[ËX]
+NÛËœÜÚ][Û‹œÙ]
+KŠNÛË˜Ø\ÝÚYÝÏXØ\ÝÜ\™[˜Y
+ÊNÜ™]\›ˆßNÂ˜ÛÛœÝ[XJX]\›OY˜[ÙJOOžØÛÛœÝ›ÛÝ[™]È‘Ü›Ý\
+
+NÜ›ÛÝœÜÚ][Û‹œÙ]
+\›OÌKÎ‹ŽLË
+NÙË˜Y
+›ÛÝ
+NØÛÛœÝ[X\›OËŒÎN‹ÜX\›OËŒMN‹ŒMK›ÝX\›OËŒÍN‹ŒLNØÞ[
+›ÛÝX]›ÝÜ[‹[[‹Ì‹
+NÜÜ
+›ÛÝX][[‹›Ý
+ŒKŒK›Ý
+ŒKŒK›Ý
+ŒKŒK
+NØÛÛœÝÝÙ\[™]È‘Ü›Ý\
+
+NÛÝÙ\‹œÜÚ][Û‹žOK[[ŽÜ›ÛÝ˜Y
+ÝÙ\ŠNØÞ[
+ÝÙ\‹X]\›OËŒÎ‹ŒK›Ý
+‹ŽŒÍËKŒN
+NÜÜ
+ÝÙ\‹ÚÚ[‹KŒÎ\›OËŒÎ‹ŒKŒÍKŒÍK
+NÚYŠ\›J\Ü
+ÝÙ\‹ÚÚ[‹KKŒ‹ŒÍKŒLKŒK
+NÙ[Ù^ØÛÛœÝ›ÛÝ[™]È“Y\Ú
+›ÞÙ[ÛY]žJŒ‹ŒL‹ŒÍ
+KÚÙJNÙ›ÛÝœÜÚ][Û‹œÙ]
+KŒÊNÛÝÙ\‹˜Y
+›ÛÝ
+_\›ÛÝ\Ù\‘]K›ÝÙ\[ÝÙ\ŽÜ™]\›ˆ›ÛÝNÂ“›[[XŠKŒM‹JNÓœ›[[XŠŒM‹JNÓ›O[[XŠKŒÍËÓKYJNÓœ˜O[[XŠŒÍËÓKYJNÂ“[™]È‘Ü›Ý\
+
+NÓœÜÚ][Û‹žOKŽNÙË˜Y
+
+NØÞ[
+ÓKŒKŒNK‹Œ‹
+NÜÜ
+ÓKŒËŒMËŒŠNØÛÛœÝ™[[™]È“Y\Ú
+™]ÈÞ[[™\‘Ù[ÛY]žJŒNMKŒŒKŒKLŠKÝ
+ÍÍŒÎÊJNØ™[œÜÚ][Û‹žOKKŒNÓ˜Y
+™[
+NÂ˜Þ[
+ËÚÚ[‹ŒKŒLKŒMKN
+NÜÜ
+ËÚÚ[‹KÍ‹ŒMKŒNKŒLËLŠNÜÜ
+ËZ\‹KŽËKŒMKŒMKŒLKŒLÍKL
+NÜÜ
+ËÚÚ[‹KÌ‹ŒL‹ŒŒÍKŒK
+NÂ™›ÜŠÛÛœÝÙ–ËLKWJ^ÜÜ
+Ë^YK
+‹ŒL‹KÎKŒLM‹ŒŒËŒNŒL‹
+NÜÜ
+ËÝ
+LŒYKŽ
+K
+‹ŒL‹KÎKŒLŽŒKŒL‹ŒŠNÜÜ
+ËÚÚ[‹
+‹ŒMKKÍKŒÍKŒ‹ŒÍK
+_B™Ë“SÜØÙ[™K˜Y
+ÊNÜ™]\›ˆßB˜ÛÛœÝ™\ÜÏJËÊOO–ÙË“Ë“›KË“œ˜WK™›Ü‘XXÚ
+Oœ˜Ú[™[–ÌK›X]\šX[˜ÛÛÜ‹œÙ]^
+ÊJNÂ‹ËÈ\Ý[Y\ÝšX[œÈÝØ\ÈHÚ^\\Ú\™YYÙ[ÛY]žH[Ù[ˆ™X\˜žHXÝÜœÈÙY\‹ËÈH\XÝ[]Y[Ù[ÛÈHØ[ÈÞXÛH™[XZ[œÈš\ÚX›HÚ\™H]X]\œË‚˜ÛÛœÝ]PØXÚO[™]ÈX\
+
+K]QÙ[Ï^Ø›ÙN›™]È›ÞÙ[ÛY]žJ‹ŽŒ
+KXY›™]È”Ü\™QÙ[ÛY]žJŒLËËJK[XŽ›™]ÈÞ[[™\‘Ù[ÛY]žJŒÍKŒMKÌ‹Š_NÂ™[˜Ý[Ûˆ]SX]
+ÛÛÜŠ^ØÛÛœÝÙ^O[™]ÈÛÛÜŠÛÛÜŠK™Ù]^
+
+NÚYŠ[]PØXÚKš\ÊÙ^JJ[]PØXÚKœÙ]
+Ù^KÝ
+Ù^KŽJJNÜ™]\›ˆ]PØXÚK™Ù]
+Ù^J_B™[˜Ý[Ûˆ[X[“]JÚ\[Ê^ØÛÛœÝÏ[™]È‘Ü›Ý\
+
+K^ßKÚÚ[[]SX]
+ÎN˜ÊKÜ[]SX]
+Ú\
+K›ÝÛO[]SX]
+[ÊNÂ˜ÛÛœÝY\ÚJÙ[ËX]\™[K‹ÞLKÞOLKÞLJOOžØÛÛœÝO[™]È“Y\Ú
+Ù[ËX]
+NÛKœÜÚ][Û‹œÙ]
+KŠNÛKœØØ[KœÙ]
+ÞÞKÞŠNÜ\™[˜Y
+JNÜ™]\›ˆ_NÂ›Y\Ú
+]QÙ[Ë˜›ÙKÜËKŒ‹
+NÛY\Ú
+]QÙ[ËšXYÚÚ[‹ËKÌ‹ŒKKKŒMKJNÂ˜ÛÛœÝ[XJKX]
+OOžØÛÛœÝ[™]È‘Ü›Ý\
+
+NÜœÜÚ][Û‹œÙ]
+K
+NÙË˜Y
+
+NÛY\Ú
+]QÙ[Ë›[X‹X]KŒÍ
+NÜ™]\›ˆNÂ“›[[XŠKŒL‹ŽL‹›ÝÛJNÓœ›[[XŠŒL‹ŽL‹›ÝÛJNÓ›O[[XŠKŒŽKK‹Ü
+NÓœ˜O[[XŠŒŽKK‹Ü
+NÙË“SÜØÙ[™K˜Y
+ÊNÜ™]\›ˆßB˜ÛÛœÝÔ^Ú]ÚžÛŽ‰Ò]Ú˜XÚÉËÛÛŒØ™XNÎŒKŽ‹ÍKX^ŒÍ‹XØÎŒLËœšÎŒÌ\›ŽŒ‹ŒŸKÜÜÎžÛŽ‰ÔÜÜÈØ\‰ËÛÛŒLŒŒÌXKÎŒKŽK‹‹X^NXØÎŒœšÎ\›ŽŒ‹ŸK˜[ŽžÛŽ‰Õ˜[‰ËÛÛŒMMLÎŒ‹ŒKKKŒ‹X^ŒÌXØÎŽKœšÎŒ\›ŽŒKßK\ÎžÛŽ‰Ð\ÉËÛÛŒ™™LÎŒ‹KŒ‹ŽŒLX^ŒXØÎ‹œšÎŒN\›ŽŒKŒ‹\ÎŒ_KÙY[ŽžÛŽ‰Ñ^XÝ]]™HÙY[‰ËÛÛŒNMŒÌKÎŒKŽK‹ŽKŽX^‹XØÎŒMœšÎŒÌË\›ŽŒŸKÝ]ŽžÛŽ‰ÐÚ]HÕU‰ËÛÛŒLŒÍÎŒ‹ŒKŒKŒKŽKX^ŒÎXØÎŒL‹œšÎŒŽ\›ŽŒKŽK^NžÛŽ‰Ð™\›[ˆ^IËÛÛŒL˜Í‹ÎŒKŽK‹ŽKËX^XØÎŒLËœšÎŒÌ‹\›ŽŒ‹^NŒ_KÛÝ\šY\ŽžÛŽ‰ÐÛÝ\šY\ˆ˜[‰ËÛÛŒÎMØÍ‹ÎŒ‹ŒKŽKX^ŒÌ‹XØÎŒLœšÎŒ‹\›ŽŒKßKÛÝ\NžÛŽ‰ÔÝ™Y]ÛÝ\IËÛÛŒÍÌÙMŽÎŒKŽK‹NŒKX^MXØÎŒŒKœšÎŒÎ\›ŽŒ‹_KXÚÝ\žÛŽ‰Õ][]HXÚÝ\	ËÛÛŒMÍLÍKÎŒ‹ŒKŒKŒMKKŒËX^ŒÍKXØÎŒLKœšÎŒ‹\›ŽŒKßKÛXÙNžÛŽ‰ÔÛXÙHØ\‰ËÛÛŒŒØLÎŒKŽK‹ŽKX^‹XØÎŒŒœšÎŒÍ\›ŽŒ‹ÛŒ__NÂ˜ÛÛœÝØ\œÏV×NÛ]Ý\[[ØÛÛœÝÚ[ØXÚO[™]ÈX\
+
+NÂ™[˜Ý[ÛˆZÐØ\ŠË‹ZJ^ØÛÛœÝÏTÔÚ×KÏ[™]È‘Ü›Ý\
+
+K[™]È‘Ü›Ý\
+
+K›ÙSO\Ý
+Ë˜ÛÛŒÍKJK˜ÛÛ™J
+NÙË˜Y
+ŠNÂ˜ÛÛœÝ\JËKKžŠOOžØÛÛœÝÏ[™]È“Y\Ú
+›ÞÙ[ÛY]žJË
+KJNÛËœÜÚ][Û‹œÙ]
+KžŠNÛË˜Ø\ÝÚYÝÏY˜[ÙNØ‹˜Y
+ÊNÜ™]\›ˆßNÂ›]Ú[\Ú[ØXÚK™Ù]
+ÊNÚYŠ\Ú[
+^ØÛÛœÝ›Ùš[O[™]È”Ú\J
+NÜ›Ùš[K›[Ý™UÊ\Ë›
+‹K
+NÜ›Ùš[K›[™UÊË›
+‹K
+NÜ›Ùš[K›[™UÊË›
+‹KËš
+‹N
+NÜ›Ùš[K›[™UÊË›
+‹ŒËËš
+‹ÊNÜ›Ùš[K›[™UÊË›
+‹ŒMËËš
+ËŒŒŠNÜ›Ùš[K›[™UÊ\Ë›
+‹Œ‹Ëš
+ËŒŒŠNÜ›Ùš[K›[™UÊ\Ë›
+‹Ëš
+‹ŒŠNÜ›Ùš[K›[™UÊ\Ë›
+‹KËš
+‹N
+NÜ›Ùš[K˜ÛÜÙT]
+
+NÜÚ[[™]È‘^YQÙ[ÛY]žJ›Ùš[KÙ\œËË™]™[[˜X›YYK™]™[ÙYÛY[ÎŒ‹Ý\ÎŒK™]™[Ú^™N‹ŒMK™]™[XÚÛ™\ÜÎ‹ŒM_JNÜÚ[˜[œÛ]J\ËËÌŠNÜÚ[œ›Ý]VJSX]”KÌŠNÜÚ[˜[œÛ]JŒÍK
+NÜÚ[ØXÚKœÙ]
+ËÚ[
+_XÛÛœÝÚ[Y\Ú[™]È“Y\Ú
+Ú[›ÙSJNÜÚ[Y\Ú˜Ø\ÝÚYÝÏY˜[ÙNÜÚ[Y\Úœ™XÙZ]™TÚYÝÏY˜[ÙNØ‹˜Y
+Ú[Y\Ú
+NØÛÛœÝÏ\Ý
+MXLŒ‹ŠNÂšYŠË˜\Ê\\
+ËÊËŒKË›
+‹ŽL‹Ë‹ŒË
+NÙ[Ù^ØÛÛœÝØXš[•Ï\ËÊ‹Ž‹ØXš[’\Ëš
+‹ËØXš[“\Ë›
+ŠË^OËM‹JKØXš[–O\Ëš
+ËŒÍJÜËš
+‹ŒÍKØXš[–K\Ë›
+‹ŒNÜ\
+ØXš[•ËØXš[’ØXš[“ËØXš[–KØXš[–ŠNØÛÛœÝÛ\ÜÏ[™]È“Y\ÚÝ[™\™X]\šX[
+ØÛÛÜŽŒLXŒËY][™\ÜÎ‹MK›ÝYÚ™\ÜÎ‹ŒN˜[œÜ\™[YKÜXÚ]N‹ŽJNØÛÛœÝœ›Û\\
+ØXš[•Ê‹Ž‹ØXš[’
+‹Ì‹ŒËÛ\ÜËØXš[–KØXš[–ŠØØXš[“
+‹JNÙœ›Ûœ›Ý][Û‹žKKŒŒŽØÛÛœÝ™X\\\
+ØXš[•Ê‹ÎØXš[’
+‹ŽŒ‹Û\ÜËØXš[–KØXš[–‹XØXš[“
+‹JNÜ™X\‹œ›Ý][Û‹žKŒŒŽÙ›ÜŠÛÛœÝÚYHÙ–ËLKWJ^ØÛÛœÝ[™O\\
+ŒMKØXš[’
+‹Œ‹ØXš[“
+‹ËÛ\ÜËØXš[–KØXš[–ŠNÜ[™KœÜÚ][Û‹ž\ÚYJŠØXš[•ËÌŠËŒLŠ__ZYŠË^J\\
+KŒNMKÝ
+YM˜M‹JKËš
+ÌKŒK
+NÚYŠË›OOIÕ][]HXÚÝ\	Ê^Ù›ÜŠÛÛœÝÙ–ËLKWJ^ØÛÛœÝ˜Z[\\
+ŒKË›
+‹ŒŽ›ÙSKŽMK\Ë›
+‹ŒŠNÜ˜Z[œÜÚ][Û‹ž^
+œËÊ‹__B˜ÛÛœÝO[™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™™Œ˜ÌJK[™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒXLLLL_JNÂ™›ÜŠÛÛœÝÞÙ–ËLKWJ^Ü\
+Œ‹ŒKKKË›ÌŠKœÜÚ][Û‹ž\Þ
+œËÊ‹ŒÌŽÜ\
+Œ‹ŒKK\Ë›ÌŠKœÜÚ][Û‹ž\Þ
+œËÊ‹ŒÌŸBœ\
+ËÊŒKŒËŒKŒËËKË›ÌŠNÜ\
+ËÊŒKŒËŒKŒËËK\Ë›ÌŠNÜ\
+ËÊ‹ŒŒ‹Œ‹ËMKË›ÌŠËŒMŠNÙ›ÜŠÛÛœÝÞÙ–ËLKWJ^ØÛÛœÝ[\\\
+ŒÍŒM‹ŒËKŽË›ÌŠËŒNJNÛ[\œÜÚ][Û‹ž\Þ
+œËÊ‹ŒÌŽØÛÛœÝœ˜ZÙO\\
+ŒËŒLËŒËŽ\Ë›Ì‹KŒMŠNØœ˜ZÙKœÜÚ][Û‹ž\Þ
+œËÊ‹ŒÌŽÜ\
+ŒL‹ŒL‹ŒKËËš
+ËKË›
+‹ŒLŠKœÜÚ][Û‹ž\Þ
+ŠËËÌŠËŒ
+_B˜ÛÛœÝÚV×NÙ›ÜŠÛÛœÝÞÙ–ËLKWJY›ÜŠÛÛœÝÞˆÙ–ËLKWJ^ØÛÛœÝ[™]È‘Ü›Ý\
+
+NÜœÜÚ][Û‹œÙ]
+Þ
+œËËÌ‹ŒÎÞŠœË›
+‹ŒÌŠNØÛÛœÝO[™]È“Y\Ú
+Þ[
+ŒÎŒÎŒ‹MŠKÝ
+LLLLLJJNÛKœ›Ý][Û‹žTKÌŽÜ˜Y
+JNØÛÛœÝX[™]È“Y\Ú
+™]ÈÞ[[™\‘Ù[ÛY]žJŒNKŒNKŒÍKMŠKÝ
+X˜L˜MËŒÍKÍJJNÚX‹œ›Ý][Û‹žTKÌŽÜ˜Y
+XŠNÙË˜Y
+
+NÝÚœ\Ú
+
+_B˜ÛÛœÝ˜\\ËœÛÜ\
+ŽKŒ‹ŒË™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™ŒJKËš
+ÌKŒK
+N›[Â™ËœÜÚ][Û‹œÙ]
+ŠNÙËœ›Ý][Û‹žOZÜØÙ[™K˜Y
+ÊNÂ˜ÛÛœÝÏ^ÜËË‹›ÙSK˜\ÙN›™]ÈÛÛÜŠË˜ÛÛ
+KÚ˜\‹‹ŽŒÝŽŒŽŒYÎŒZKŽŒÝXÚÎŒŽ‹Ž
+ÜË›
+‹ŒMßNØØ\œËœ\Ú
+ÊNÜ™]\›ˆßB™[˜Ý[ÛˆØ\”\ÊË‹Ý‹Š^ØÛÛœÝÏXËœÎÂšYŠŒ
+XËŠÏ]ŠœË˜XØÊŠKSX]›X^
+ËŠKÜË›X^
+J™Â™[ÙHYŠ
+^ÚYŠËŒJXË‹O\Ë˜œšÊ™Ù[ÙHË‹O\Ë˜XØÊ‹JŠKSX]›X^
+XËŠKÊË›X^
+‹ŒÊJJ™B˜Ë‹OXËŠ‹ŒJ™ÚYŠ]ŠXË‹OSX]œÚYÛŠËŠJ“X]›Z[ŠX]˜XœÊËŠKŠ™
+NÚYŠŠXË‹OXËŠŒKŽ
+™Â˜ËœÝŠÏJÝ‹XËœÝŠJ“X]›Z[ŠK
+Ž
+NÂ˜Ëš
+ÏXËœÝŠœË\›Š™
+“X]›X^
+LKX]›Z[ŠKË‹ÍJJKÊJÓX]˜XœÊËŠJ‹ŒÊJŠÌKŽŒJNÂ˜Ëž
+ÏSX]œÚ[ŠËš
+J˜ËŠ™ØËžŠÏSX]˜ÛÜÊËš
+J˜ËŠ™B™[˜Ý[ÛˆØ[
+Ê^ÚYŠ\Ú
+ËËœŠJ^ØÛÛœÝÜSX]˜XœÊËŠNÚYŠÜŠXË™YÊÏ\Ü
+‹ŽØËŠ\ÜËN‹ŽLŸXËžSX]›X^
+UËNX]›Z[ŠÊÎËž
+JNØËžSX]›X^
+UËNX]›Z[ŠÊÎËžŠJ_B™[˜Ý[Ûˆ[\
+Ê^Ù›ÜŠÛÛœÝÈÙˆØ\œÊ^ÚYŠÏOOXÊXÛÛ[YNØÛÛœÝXËž[ËžXËž‹[Ëž‹SX]š\Ý
+ŠKOXËœŠÛËœŽÚYŠI‰™‹ŒJ^ØËž
+ÏYÙ
+ŠKY
+NØËžŠÏY‹Ù
+ŠKY
+NØË™YÊÏSX]˜XœÊËŠJ‹ŒNØËŠKŽÛËŠKß__B™[˜Ý[Ûˆš\ÝX[
+Ë
+^ØË™ËœÜÚ][Û‹œÙ]
+ËžËžŠNØË™Ëœ›Ý][Û‹žOXËšØËÚ™›Ü‘XXÚ
+Oœœ›Ý][Û‹ž
+ÏXËŠ™ËŒÎ
+NÂ˜ÛÛœÝXÏSX]›X^
+LÌX]›Z[ŠÌ
+Ë‹XËœŠKÓX]›X^
+ŒJJJNØËœXËŽÂ˜Ë˜‹œ›Ý][Û‹žŠÏJXËœÝŠ“X]›Z[ŠKX]˜XœÊËŠKÌÌ
+J‹ŒKXË˜‹œ›Ý][Û‹žŠJ‹ŒMNØË˜‹œ›Ý][Û‹ž
+ÏJXXÊ‹Œ‹XË˜‹œ›Ý][Û‹ž
+J‹ŒNÂ˜Ë˜›ÙSK˜ÛÛÜ‹˜ÛÜJË˜˜\ÙJK›][\TØØ[\ŠKSX]›Z[ŠËË™YËÌML
+JNÚYŠË˜˜\ŠXË˜˜\‹›X]\šX[˜ÛÛÜ‹œÙ]^
+
+ÛØÚÊŸ
+ILÌ™ŒŒŒŒŒŒ™Š_B›ZÐØ\Š	Ú]Ú	ËŒM‹KKÌŠNÛZÐØ\Š	ÜÜÜÉËÌM‹KKÌŠNÛZÐØ\Š	Ý˜[‰ËM‹KKÌŠNÛZÐØ\Š	Ø\ÉËMŒ
+Í‹KŒ
+NÛZÐØ\Š	ÜÙY[‰ËLM‹KKÌŠNÛZÐØ\Š	ÜÝ]‰ËŒM‹KKÌŠNÛZÐØ\Š	Ý^IËÌM‹KKÌŠNÛZÐØ\Š	ØÛÝ\šY\‰ËM‹KKÌŠNÛZÐØ\Š	ØÛÝ\IËLM‹KKÌŠNÛZÐØ\Š	ÜXÚÝ\	ËLM‹KKÌŠNÂ˜ÛÛœÝ’ÏVÉÚ]Ú	Ë	ÜÙY[‰Ë	Ý˜[‰Ë	ÜÜÜÉË	Ø\ÉË	ÜÝ]‰Ë	Ý^IË	ØÛÝ\šY\‰Ë	ØÛÝ\IË	ÜXÚÝ\	×NÂ™›ÜŠ]OLÚOŽÚJÊÊ^ØÛÛœÝ^TŠ
+OOÉÞ	Î‰Þ‰ËÙÏTŠ
+OOËLNŒKÏJŠ
+Jß
+KLËOTŠ
+JŒÍLMÌÂ˜ÛÛœÝÏ[ZÐØ\Š’ÖÚI]’Ë›[™ÝK^OIÞ	ÏÝNšÊ”\ÙÊ^OIÞ	ÏÚÊ”
+ÜÙÊK^OIÞ	ÏÜÙÊ”KÌŽŠÙÏŒÌ”JKØ^ÙßJNØË˜ÜZ\ÙOLLJÔŠ
+JßB˜ÛÛœÝYÏV×NÙ›ÜŠ]OLÚOÚJÊÊ^ØÛÛœÝÚ\[™]ÈÛÛÜŠ
+KœÙ]Ó
+Š
+KKJK™Ù]^
+
+K[Ï[™]ÈÛÛÜŠ
+KœÙ]Ó
+Š
+KŒËŒŠK™Ù]^
+
+KÏZ[X[ŠÚ\[ÊKÙZ[X[“]JÚ\[ÊNÙËš\ÚX›OY˜[ÙNÛÙš\ÚX›OY˜[ÙNÜYËœ\Ú
+ÜÝ[™”Š
+OŒKËÙ^”Š
+OOÉÞ	Î‰Þ‰ËÎŠŠ
+Jß
+KLËÙ”Š
+OOËLNŒKÙÎ”Š
+OOËLNŒKN”Š
+JŒÍLMÌXYŒ”Š
+JŽ_J_B˜ÛÛœÝYOZ[X[ŠÖÌKXÌYŒ˜KYJK^ÞŒL‹NŒŽŒL‹ŒK^ÞŒŽŒNÛ]žOLL[\]Y]YYY˜[ÙNÂ˜ÛÛœÝÝ]ØÙ[™Q\™XÝÜ[™]ÈÝ]ØÙ[™Q\™XÝÜŠØ[K	
+	ØÚ[‰ÊK	
+	ØÚ[•^	ÊK
+
+OO›™]È•™XÝÜŒÊžžJÌKžŠJNÂ˜ÛÛœÝÝÜžT[ÜOPÐTÕ›X\
+ÏOžØÛÛœÝÏZ[X[ŠËœÚ\Ëœ[ÊNÙËœÜÚ][Û‹œÙ]
+ËžËžŠNÙËœ›Ý][Û‹žOXËšÙËš\ÚX›OY˜[ÙNÜ™]\›žË‹‹˜ËËš\Ú]ÎŒ_JNÂ›]ÝÜžPÚÚXÙ\Ï^ßK[Ù\[[Â˜ÛÛœÝ[™]È”ÜÝYÚ
+™™ŒØËÌMKŠNÚ\™Ù][™]È“Øš™XÝÑ
+
+NÜØÙ[™K˜Y
+\™Ù]
+NÂ‹ÊˆKKKKKKKKKHÕUHKKKKKKKKKH
+‹Â˜ÛÛœÝTÏSRTÔÒSÓ”ÎÂ›]Ý]OIÛY[IË[Û™^OLÌZOLÝYÙOL]LÝ\ÙT™\Z\LÛÛ›Û™\Ù]LLLØ[YLX]LÝLMËÛØÚÏLLÞOLÜKŒÍKœY˜[ÙKÞL˜Z[OL™KŒÍKÜ[[\LÙž\\™‹œ]X[]KÚOLKX\Ü[Y˜[ÙKØÚÙYY˜[ÙKYØÚÏY˜[ÙK˜ÏLÝ]Ï^ÚÚ[ÎŒ\ÝŒNÂ˜ÛÛœÝÓVÉÓÝÉË	ÓYY][IË	ÒYÚ	Ë	Õ[˜I×KÓVÉÔÛÝÉË	Ó›Ü›X[	Ë	Ñ˜\Ý	×KÔÏVËŒMKŒKŒKÖVÉÐÛX\‰Ë	ÐÛÝYIË	Ô˜Z[‰Ë	Ñ›ÙÉ×KÑVËŒÍKŒKŒËŒ—KÔVÌKKÒÏIØ™\›[›Y™KŒ‰ÎÂ‹ÊˆKKKKKKKKKHÐU‘HKKKKKKKKKH
+‹Â™[˜Ý[ÛˆØ]™J
+^Ýž^ÛØØ[ÝÜ˜YÙKœÙ]][JÒË”ÓÓ‹œÝš[™ÚYžJÝŽŒ‹N›[Û™^KZKÝœÝYÙK]ŽšÝ\ÙT™\Z\‹œžŽœž‹˜ËÝÎœÝ]ËšÚ[ËÎ›ÝÛ‹š›Ú[Š	ÉÊKNœÝÜžPÚÚXÙ\ßJJ_XØ]Ú
+J^ß_B™[˜Ý[ÛˆØY
+
+^Ýž^Û]ÏR”ÓÓ‹œ\œÙJØØ[ÝÜ˜YÙK™Ù]][JÒÊ_ØØ[ÝÜ˜YÙK™Ù]][J	Ø™\›[›Y™KŒIÊJNÚYŠÉ‰œËOOLJ^ÜËœÝLÜË›]LÜËLŸZYŠÉ‰œËOOL‰‰–ÜË›KË›ZKËžËž‹Ëš˜ËË™ÝK™]™\žJ[X™\‹š\Ñš[š]JI‰œË›ZOL	‰œË›ZOSTË›[™Ý	‰“X]˜XœÊËž
+OÊÌL	‰“X]˜XœÊËžŠOÊÌL	‰œËš˜ÏL	‰œËš˜ÏË›[™Ý
+\™]\›ˆßXØ]Ú
+J^ß\™]\›ˆ[B‹ÊˆKKKKKKKKKHRHKKKKKKKKKH
+‹Â›]ÎÙ[˜Ý[ÛˆØ\Ý
+
+^É
+	Ý	ÊK^ÛÛ[]ØÛX\•[Y[Ý]
+ÊNÝÏ\Ù][Y[Ý]
+
+
+OO‰
+	Ý	ÊK^ÛÛ[IÉËŽ
+_B™[˜Ý[ÛˆY[JÚ[™
+^ÜÝ]OZÚ[™OOIÜ]\ÙIÏÉÜ]\ÙIÎ‰ÛY[IÎÉ
+	ÛÝ‰ÊKœÝ[K™\Ü^OIÙ›^	ÎØÛÛœÝV×KXI
+	ÛX‰ÊNÂšYŠÚ[™OOIÛXZ[‰Ê^Ø‹œ\Ú
+ÉÓ™]ÈØ[YIË
+
+OOœÝ\
+[
+WJNØÛÛœÝÏ[ØY
+
+NÚYŠÊX‹œ\Ú
+ÉÐÛÛ[YIË
+
+OOœÝ\
+ÊWJ_B™[ÙH‹œ\Ú
+ÉÔ™\Ý[YIË™\Ý[YWKÉÔØ]™HØ[YIË
+
+OOžÜØ]™J
+NÝØ\Ý
+	ÑØ[YHØ]™Y	Ê_WKÉÑÜ˜\XÜÎˆ	ÊÜ\™‹›˜[YJ
+K
+
+OOžÜ\™‹˜ÞXÛJ
+NÙÙž\\™‹œ]X[]NØ\QÙž
+
+NÛY[J	Ü]\ÙIÊ_WKÉÕÙX]\Žˆ	ÊÕÖ–ÝÞK
+
+OOžÝÞJÞ
+ÌJIUÖ‹›[™ÝÛY[J	Ü]\ÙIÊ_WKÉÓ[Ý™[Y[Ù^\Îˆ	ÊÊÛÛ›Û™\Ù]ÉÐ\œ›ÝÜÉÎ‰ÕÐTÑ	ÊK
+
+OOžØÛÛ›Û™\Ù]LNÛY[J	Ü]\ÙIÊ_WKÉÓ[Ý\ÙHÜYYˆ	ÊÔÓ–ÜÚWK
+
+OOžÜÚOJÚJÌJILÎÛY[J	Ü]\ÙIÊ_WKÉÓXZ[ˆY[IË
+
+OOžÜØ]™J
+NÛY[J	ÛXZ[‰Ê_WJNÂ›X‹š[›™\’SIÉÎØ‹™›Ü‘XXÚ
+
+Ý—JOOžØÛÛœÝOYØÝ[Y[˜Ü™X]Q[[Y[
+	Ø]Û‰ÊNÙK^ÛÛ[]ÙK›Û˜ÛXÚÏYŽÛX‹˜\[™Ú[
+J_J_B™[˜Ý[ÛˆØÚÊ
+^ËÊˆÚ[\ˆØÚÈ\ÈÜ[Û˜[È˜YË[ÛÚÈ\È]˜Z[X›HÚ]Ý]œ›ÝÜÙ\ˆ\›Z\ÜÚ[Û‹ˆ
+‹ßB™[˜Ý[Ûˆ™\Ý[YJ
+^ÜÝ]OIÜ^IÎÉ
+	ÛÝ‰ÊKœÝ[K™\Ü^OIÛ›Û™IÎÛØÚÊ
+_B™[˜Ý[ÛˆÝ]ØÙ[™JÚXÚ\ÙOIÚ[›ÉÊ^Û]™X]ÎÚYŠ\[ÙˆÚXÚOOIÛ[X™\‰ÊX™X]ÏPÐSTRQÓ—ÐÕUÐÑS‘TÖÝÚXÚOË–Ü\ÙWNÙ[ÙH™X]ÏVÞÜÜXZÙ\Ž‰Ó’RÓÉË[™N”Ýš[™ÊÚXÚ
+KØ[Y\˜N–ÌNLŒ—KÛÚÎ–ÌKK\˜][ÛŽŒËŒŸWNØÝ]ØÙ[™Q\™XÝÜ‹œ^J™X]Ê_B™[˜Ý[ÛˆÙYYÜ›ÝÙ
+
+^Ù›ÜŠÛÛœÝÙˆYÊ^ØÛÛœÝ\˜^OOIÞ	ÏÜNœšÊ”
+ÜœÙ
+ŒLK\˜^OOIÞ	ÏÜšÊ”
+ÜœÙ
+ŒLNœKSX]š\Ý
+\ž‹\žŠNÜ™ËœÜÚ][Û‹œÙ]
+ŠNÜ›ÙœÜÚ][Û‹œÙ]
+ŠNÜ™Ëš\ÚX›OYŽÜ›Ùš\ÚX›OYM‰‰™MLY›ÜŠÛÛœÝHÙˆÝÜžT[ÜJXK™Ëš\ÚX›OSX]š\Ý
+Kž\žKž‹\žŠOL_B™[˜Ý[ÛˆÝ\
+Ê^Ø]Y[Ê
+NÛ[Û™^OLÌÛZOLÜÝYÙOLÛ]LÚÝ\ÙT™\Z\LÚLLÝØ[YLÚ˜ÏLÙÝLMÎÜžLLŽÜžLLŽÜÝ]Ï^ÚÚ[ÎŒ\ÝŒNÜÝÜžPÚÚXÙ\Ï^ßNÝ[Ù\[[ØÝ]ØÙ[™Q\™XÝÜ‹œÚÚ\
+
+NÉ
+	Ý[ÉÊKšY[]YNÂšYŠÊ^Û[Û™^O\Ë›NÛZO\Ë›ZNÜÝYÙO\ËœÝÛ]\Ë›]ÚÝ\ÙT™\Z\\ËšŸÜž\ËžÜž\ËžŽÚ˜Ï\Ëš˜ÎÙÝ\Ë™ÝÜÝ]ËšÚ[Ï\ËšßÜÝÜžPÚÚXÙ\Ï\ËœI‰\[ÙˆËœOOOIÛØš™XÝ	ÏÜËœNžß_B˜Ý\[[Ù™\ÜÊYKÖÚ˜×JNÜ™\Ù]ÙX\ÛœÊÊNØØ\œË™š[\ŠÏO˜Ë˜ZI‰˜Ë˜ZKœÛ
+K™›Ü‘XXÚ
+›PØ\ŠNÜÙYYÜ›ÝÙ
+
+NÜ™\Ý[YJ
+NÚYŠÉ‰›ZOSTË›[™Ý	‰œÝÜžPÚÚXÙ\Ë™[™[™ÏOO][™Yš[™Y
+Y[™[™ÐÚÚXÙJ
+_B™[˜Ý[Ûˆ\QÙž
+
+^ÙÙž\\™‹œ]X[]NÜ™\Ú^™J
+_B™[˜Ý[Ûˆ™\Ú^™J
+^Ü›‹œÙ]Ú^™J[›™\•ÚY[›™\’ZYÚ˜[ÙJNØØ[K˜\ÜXÝZ[›™\•ÚYÚ[›™\’ZYÚØØ[K\]T›Ú™XÝ[Û“X]š^
+
+_B˜Y]™[\Ý[™\Š	Ü™\Ú^™IË™\Ú^™JNÂ›]XË[ËYËÛËÙÎÙ[˜Ý[Ûˆ]Y[Ê
+^ÚYŠXÊ\™]\›ŽÝž^ØXÏ[™]ÊÚ[™ÝË]Y[ÐÛÛ^Ú[™ÝËÙXšÚ]]Y[ÐÛÛ^
+J
+NÙ[ÏXXË˜Ü™X]SÜØÚ[]ÜŠ
+NÙ[Ë\OIÜØ]ÝÛÝ	ÎÙYÏXXË˜Ü™X]QØZ[Š
+NÙYË™ØZ[‹˜[YOLÙ[Ë˜ÛÛ›™XÝ
+YÊNÙYË˜ÛÛ›™XÝ
+XË™\Ý[˜][ÛŠNÙ[ËœÝ\
+
+NÜÛÏXXË˜Ü™X]SÜØÚ[]ÜŠ
+NÜÛË\OIÜÜ]X\™IÎÜÙÏXXË˜Ü™X]QØZ[Š
+NÜÙË™ØZ[‹˜[YOLÜÛË˜ÛÛ›™XÝ
+ÙÊNÜÙË˜ÛÛ›™XÝ
+XË™\Ý[˜][ÛŠNÜÛËœÝ\
+
+_XØ]Ú
+J^ß_B™[˜Ý[Ûˆ˜]ÓX\Û
+ËØË[
+^ØÛÛœÝÏXË™Ù]ÛÛ^
+	Ì™	ÊKÏXËÚYXËšZYÚÞY[ÌœžÞY[Ìœž‹XÝ\ØÝ\‹šœšÏ]ÜØšŠ
+NÂ™Ë™š[Ý[OIÈÌLLÌMÉÎÙË™š[™XÝ
+Ë
+NÙËœØ]™J
+NÙË˜[œÛ]JËÌ‹[Þ
+œØËÌ‹[ÞŠœØÊNÂ™Ë™š[Ý[OIÈÌ˜ŒÌÎ	ÎÙ›ÜŠ]ÏKLÎÚÏLÎÚÊÊÊ^ÙË™š[™XÝ
+
+UËN
+JœØË
+Ê”N
+JœØË
+Š•ÊÌMŠJœØËMŠœØÊNÙË™š[™XÝ
+
+Ê”N
+JœØË
+UËN
+JœØËMŠœØË
+Š•ÊÌMŠJœØÊ_B™›ÜŠ]OKLÎÚOÎÚJÊÊY›ÜŠ]KLÎÚÎÚŠÊÊ^ÙË™š[Ý[OJOOKLI‰šOL
+OÉÈÌ™XLÍ	Î‰ÈÍMIÎÙË™š[™XÝ
+
+
+JËJJ”LN
+JœØË
+
+ŠËJJ”LN
+JœØËÍŠœØËÍŠœØÊ_BšYŠ[
+^ÙË™š[Ý[OIÈÙNNYXIÎÙË™›ÛIØ›ÛM\Ø[œË\Ù\šY‰ÎÖÖÉÕˆÝÙ\‰ËÌÌKÉÐœ˜[™[˜\™ÈØ]IËLÌLÌKÉÕY\™Ø\[‰ËLÌÌKÉÑX\ÝÚYHØ[\žIËLMLKÉÔÝÙ[Y\ˆ]‰ËLLÌWK™›Ü‘XXÚ
+O™Ë™š[^
+ÌKÌWJœØËLÌÌ—JœØÊJ_B™ËœÝ›ÚÙTÝ[OIÈÙ™™L	ÎÙË›[™UÚYLÎÙË˜™YÚ[”]
+
+NÙË›[Ý™UÊž
+œØËžŠœØÊNÙË›[™UÊËž
+œØËžŠœØÊNÙË›[™UÊËž
+œØËËžŠœØÊNÙËœÝ›ÚÙJ
+NÂ˜ÛÛœÝÝJ‹ÊOOžÙË™š[Ý[OXÎÙË˜™YÚ[”]
+
+NÙË˜\˜Ê
+œØËŠœØËKÊNÙË™š[
+
+_NÂšYŠZOTË›[™Ý
+YÝ
+ØšŠ
+KžØšŠ
+Kž‹	ÈÙ™™L	ÊNÚYŠÜ
+YÝ
+ÜžÜž‹	ÈÌNYM™™‰ÊNØØ\œË™›Ü‘XXÚ
+ÏOžÚYŠË˜ZI‰˜Ë˜ZKœÛ
+YÝ
+ËžËž‹	ÈÙ™ŒÌÌ	Ê_JNÂ™Ë˜[œÛ]Jž
+œØËžŠœØÊNÙËœ›Ý]JKZ
+NÙË™š[Ý[OIÈÙ™™‰ÎÙË˜™YÚ[”]
+
+NÙË›[Ý™UÊN
+NÙË›[™UÊ‹ÊNÙË›[™UÊM‹ÊNÙË™š[
+
+NÙËœ™\ÝÜ™J
+_B‰
+	ÛXÉÊK›Û˜ÛXÚÏYOOžØÛÛœÝYK\™Ù]™Ù]›Ý[™[™ÐÛY[™XÝ
+
+KÏMÜ‹ÚYÝÜ^ÞŠ
+K˜ÛY[\‹›Y
+JšËLÌŒ
+KÊÊŠ•ÊÍ
+JKŽŠ
+K˜ÛY[K\‹Ü
+JšËLÌŒ
+KÊÊŠ•ÊÍ
+J_NÝØ\Ý
+	ÕØ^\Ú[Ù]	Ê_NÂ™[˜Ý[ÛˆØšŠ
+^ÚYŠZOSTË›[™Ý
+\™]\›žÞŒŽŒNØÛÛœÝOSTÖÛZWNÜ™]\›ˆÝYÙOÞÞ›VÍKŽ›VÍW_NžÞ›VÌ—KŽ›VÌ×__B‹ÊˆKKKKKKKKKHÐSQHÑÒPÈKKKKKKKKKH
+‹Â˜ÛÛœÝ[™ÙJKŠOOŠ
+‹XJÔJIJŠ”JJÌŠ”JIJŠ”JKTKŒO[™]È•™XÝÜŒÊ
+NÂ™[˜Ý[Ûˆ›PØ\ŠÊ^ÜØÙ[™Kœ™[[Ý™JË™ÊNØØ\œËœÜXÙJØ\œËš[™^ÙŠÊKJ_B™[˜Ý[ÛˆÜ]Û”Û
+
+^ØÛÛœÝOTŠ
+J‹ŒŽÛ]\ž
+ÓX]œÚ[ŠJJŒL\žŠÓX]˜ÛÜÊJJŒLÚYŠŠ
+OJ^SX]œ›Ý[™
+Ô
+J”Ù[ÙHSX]œ›Ý[™
+‹Ô
+J”ÞSX]›X^
+UËX]›Z[ŠË
+JNÞSX]›X^
+UËX]›Z[ŠËŠJNÛZÐØ\Š	ÜÛXÙIË‹ÜÛŒ_J_B™[˜Ý[ÛˆÜš[YJŠ^ÚYŠ]Ø[Y
+[\ÝÙY[[[ÝØ[YSX]›Z[ŠËØ[Y
+ÛŠNÚX]LNÝØ\Ý
+	ÕØ[Y]™[	ÊÝØ[Y
+_B™[˜Ý[Ûˆ\
+Š^ÚO[ŽÚYŠL
+^ÝØ\Ý
+	Ð\ÝY8 %8 «Lš[™IÊNÛ[Û™^OSX]›X^
+[Û™^KLL
+NÚLLÝØ[YLØÝ\[[ÜžLLŽÜžLLŽØØ\œË™š[\ŠÏO˜Ë˜ZI‰˜Ë˜ZKœÛ
+K™›Ü‘XXÚ
+›PØ\Š__B™[˜Ý[ÛˆÙÙÛPØ\Š
+^ÚYŠÝ\Š^ØÛÛœÝÏXÝ\ŽØÝ\[[ÜžXËž
+ÓX]˜ÛÜÊËš
+JŒ‹ŽÜžXËž‹SX]œÚ[ŠËš
+JŒ‹ŽÜžOLÜ‹ž\‹žLÝØ\Ý
+	Ö[ÝHÝ\YÝ]	ÊNÜ™]\›ŸB›][[™MŽÙ›ÜŠÛÛœÝÈÙˆØ\œÊ^ÚYŠÏOOXÝ\Ÿ
+Ë˜ZI‰˜Ë˜ZKœÛ
+JXÛÛ[YNØÛÛœÝSX]š\Ý
+Ëž\žËž‹\žŠNÚYŠ™
+^Ø™YØXß_ZYŠŠ^ÚYŠ‹˜ZI‰˜‹˜ZK˜^
+^Ø‹˜ZO[[Ø‹LXÝ\XŽÝØ\Ý
+	Ñš]š[™Îˆ	ÊØ‹œË›Š__B›][™[™Ô[™[™ÏY˜[ÙNÂ™[˜Ý[Ûˆš[š\Ú
+
+^ØÛÛœÝÛ™O[ZKOSTÖÙÛ™WKš[˜[YÛ™OOOSTË›[™ÝLNÛ[Û™^JÏ[VÎNÉ
+	Ü	ÊK^ÛÛ[Yš[˜[ÉÔÕÔ–HÓÓTUIÎ‰ÓRTÔÒSÓˆÓÓTUIÎÉ
+	Üž	ÊK^ÛÛ[[VÌJÉÈ0­È
+ø «	ÊÛVÎNÉ
+	Ü™\ÉÊKœÝ[K™\Ü^OIÙ›^	ÎÜÙ][Y[Ý]
+
+
+OO‰
+	Ü™\ÉÊKœÝ[K™\Ü^OIÛ›Û™IËš[˜[ÍLŒÍL
+NÚYŠš[˜[
+ZÝ\ÙT™\Z\LLÛZJÊÎÜÝYÙOLÛ]LÙ[™[™Ô[™[™ÏYš[˜[ÜØ]™J
+NØÝ]ØÙ[™JÛ™K	ÛÝ]›ÉÊ_B™[˜Ý[ÛˆZ\ÜÚ[ÛœÊ
+^Ø™X[Kš\ÚX›O[ZOTË›[™ÝÚYŠZOSTË›[™Ý
+\™]\›ŽØÛÛœÝOSTÖÛZWKÏ[ØšŠ
+KSX]š\Ý
+ž[Ëžž‹[ËžŠNØ™X[KœÜÚ][Û‹œÙ]
+ËžÍKËžŠNÂšYŠ\ÝYÙJ^ÚYŠ
+^ÜÝYÙOLNÛ][VÍ×NÚYŠZOOOMJYÝLŒÚYŠZOOOMÊ]ÞLŽÝØ\Ý
+	ÓZ\ÜÚ[ÛŽˆ	ÊÛVÌJNØÝ]ØÙ[™JZK	Ú[›ÉÊNÚYŠZOOOMŸZOOOLL
+XÜš[YJZOOOLLÌŽŒJNÜØ]™J
+__B™[Ù^ÚYŠVÍ×J^Û]OYÚYŠ]L
+^ÝØ\Ý
+	Õ[Yx &\È\8 %žHYØZ[‰ÊNÜÝYÙOLÛ]LÜØ]™J
+NÜ™]\›Ÿ_BšYŠ
+Ý\ÌLÊJ^ÚYŠVÍ—I‰ˆXÝ\ŠI
+	Ü‰ÊK^ÛÛ[IÐ\œš]™HžHØ\‰ÎÙ[ÙHYŠZOOOM‰‰Ø[YŒ
+I
+	Ü‰ÊK^ÛÛ[IÓÜÙHHÙX\˜Úš\œÝ	ÎÙ[ÙHYŠZOOOSTË›[™ÝLI‰šÝ\ÙT™\Z\L
+I
+	Ü‰ÊK^ÛÛ[IÑH8 %™\Z\ˆ[Ý\ˆÛYH
+8 «ŒXXÚ
+IÎÙ[ÙHYŠVÌLI‰ˆ\ÝÜžPÚÚXÙ\ÖÉÛZ\ÜÚ[Û‹IÊÛZWJ^É
+	Ü‰ÊK^ÛÛ[IÕ[ÈÈ	ÊÊÝÜžT[ÜK™š[™
+OO˜KšYOO[VÌLJOË›˜[Y_	ÝHÛÛXÝ	Ê_Y[ÙHš[š\Ú
+
+___B™[˜Ý[ÛˆØ[Ê
+^ØÛÛœÝ^JË’Ù^QÌNŒ
+KJË’Ù^POÌNŒ
+K^JË’Ù^UÏÌNŒ
+KJË’Ù^TÏÌNŒ
+KžKSX]œÚ[ŠÞJKžKSX]˜ÛÜÊÞJNÛ]^Yž
+š^‹YžŠš^^YžŠš^ŠÙž
+š^ØÛÛœÝ[SX]š\Ý
+^^ŠKÜRËÛÛ›ÛYÜXÜÌŽŠË”ÚYYË”ÚYšYÚ
+OÎNŽÂšYŠ[Œ
+^Û^[^Û[
+œÜÛ^[^‹Û[
+œÜY[Ù^Û^[^LB˜ÛÛœÝÏSX]›Z[ŠK
+ŒL
+NÜ‹ž
+ÏJ^\‹ž
+JšÎÜ‹žŠÏJ^‹\‹žŠJšÎÜž
+Ï\‹ž
+™ÜžŠÏ\‹žŠ™ÂšYŠ[\]Y]YY	‰œžOL
+^ÝžOM‹NÚ[\]Y]YYY˜[Ù_]žKOLN
+™ÜžJÏ]žJ™ÚYŠžOL
+^ÜžOLÝžOLBœ\Ú
+JNÙ›ÜŠÛÛœÝÈÙˆØ\œÊ^ÚYŠÏOOXÝ\ŠXÛÛ[YNØÛÛœÝ\žXËž\ž‹XËž‹SX]š\Ý
+ŠKXËœŠ‹ÌŠËLŽÚYŠŠ^ØÛÛœÝžY‹ŒOÙÙŒKžY‹ŒOÙ‹ÙŒÝ™\›\\‹YÜž
+Ï[ž
+›Ý™\›\ÜžŠÏ[žŠ›Ý™\›\ØÛÛœÝ[Ï\‹ž
+›ž
+Ü‹žŠ›žŽÚYŠ[Ï
+^Ü‹žO[ž
+š[ÊŒKŒNÜ‹ž‹O[žŠš[ÊŒKŒ___\žSX]›X^
+UÊÌ‹X]›Z[ŠËL‹ž
+JNÜžSX]›X^
+UÊÌ‹X]›Z[ŠËL‹žŠJNÂ˜ÛÛœÝÏSX]š\Ý
+‹ž‹žŠNÚYŠÏ‹
+\š
+ÏX[™Ù
+šX]˜][ŒŠ‹ž‹žŠJJ“X]›Z[ŠK
+ŒLŠNÂœ
+Ï\Ê™
+Œ‹ŒŽØÛÛœÝ[YK“[\\Ï‹ŒOÓX]›Z[ŠKËÍ
+N‹ŒÍKOSX]œÚ[Š
+J˜[\
+‹ŽÐOLKSX]™^
+Y
+ŒLÊNÓ›œ›Ý][Û‹ž
+ÏJKS›œ›Ý][Û‹ž
+JšÐNÓœ›œ›Ý][Û‹ž
+ÏJXKSœ›œ›Ý][Û‹ž
+JšÐNÓ›Kœ›Ý][Û‹ž
+ÏJXKS›Kœ›Ý][Û‹ž
+JšÐNÓœ˜Kœ›Ý][Û‹ž
+ÏJKSœ˜Kœ›Ý][Û‹ž
+JšÐNÂ“œÜÚ][Û‹žOKŽN
+ÓX]œÚ[ŠÛØÚÊŒKŠJ‹ŒLŽÛYKœÜÚ][Û‹œÙ]
+žžKžŠNÛYKœ›Ý][Û‹žO\šÛYKœØØ[KžJÏJ
+ÜËÍNŒJK[YKœØØ[KžJJšÐ_B™[˜Ý[Ûˆ\]J
+^ØÛØÚÊÏYÙÝJÝ
+ÙÌÌ
+ILÛJ
+ÛØÚËÎ
+_
+ILŽÂœÚYÖ›X]\šX[˜ÛÛÜ‹œÙ]^
+Ì™ŒÌÌŒ™XØÍ
+NÜÚYÖ‹›X]\šX[˜ÛÛÜ‹œÙ]^
+Ì™XØÍŒ™ŒÌÌ
+NÂšYŠÝ\Š^ØÛÛœÝÏXÝ\ŽØØ\”\ÊË
+Ë’Ù^UÏÌNŒ
+KJË’Ù^TÏÌNŒ
+K
+Ë’Ù^POÌNŒ
+KJË’Ù^QÌNŒ
+KË”ÜXÙJNÝØ[
+ÊNØ[\
+ÊNÜžXËžÜžXËžŽÜšXËšÜÝ]Ë™\Ý
+ÏSX]˜XœÊËŠJ™ØÞJÏX[™Ù
+ÞKËš
+ÔJJ“X]›Z[ŠK
+ŒŠNØÜ
+ÏJŒKXÜ
+J™
+‹ŽY[ÙHØ[Ê
+NÂ›YKš\ÚX›OHXÝ\‰‰ˆYœÂ›]ÛL™X\LYNNÂ™›ÜŠÛÛœÝÈÙˆØ\œËœÛXÙJ
+J^ÚYŠÏOOXÝ\Š^Ýš\ÝX[
+Ë
+NØÛÛ[Y_XÛÛœÝSX]š\Ý
+Ëž\žËž‹\žŠNÂšYŠË˜ZI‰˜Ë˜ZKœÛ
+^ÜÛŠÊÎÛ™X\SX]›Z[Š™X\‹
+NÚYŠË˜ZK˜›ØÚÉ‰™JXË˜ZK˜›ØÚÏLØÛÛœÝÞÏYL[\ÝÙY[‹\ÞÏÜž›\ÝÙY[‹ž\ÞÏÜžŽ›\ÝÙY[‹ž‹OSX]˜][ŒŠXËž‹XËžŠKX[™Ù
+ËšJNÚYŠË˜ZK˜›ØÚÊXËLÙ[ÙHØ\”\ÊË
+Ž_\ÞÊOÌN‹Œ‹X]›X^
+LKX]›Z[ŠKŠŒŠJK˜[ÙJNÝØ[
+ÊNØ[\
+ÊNÂšYŠX]˜XœÊËŠOKI‰ˆXË˜ZK˜›ØÚÊXËœÝXÚÊÏYÙ[ÙHËœÝXÚÏLÚYŠËœÝXÚÏ
+^Ü›PØ\ŠÊNØÛÛ[Y_ZYŠË	‰ˆXÝ\ŠZ\
+MJ™
+NÙ[ÙHYŠËœŠÊÝ\ØÝ\‹œŽ‹JJËJZ\
+L
+™
+_B™[ÙHYŠË˜ZJ^ØÛÛœÝOXË˜ZNÛ]XË˜ÜZ\ÙNØÛÛœÝOJK˜^OIÞ	ÏØËž˜ËžŠJ˜KœÙËSX]˜ÙZ[
+KÔ
+J”]NÚYŠ
+
+K˜^OIÞ	ÊHOOJOL
+JI‰›MI‰›J]LÂ™›ÜŠÛÛœÝÈÙˆØ\œÊ^ÚYŠÏOOXÊXÛÛ[YNØÛÛœÝ[ËžXËž[Ëž‹XËžŽÚYŠ
+™
+ÙŠ™Œ
+Œ
+XÛÛ[YNØÛÛœÝY
+“X]œÚ[ŠËš
+JÙŠ“X]˜ÛÜÊËš
+KY
+“X]˜ÛÜÊËš
+KYŠ“X]œÚ[ŠËš
+NÚYŠŒ	‰™M	‰“X]˜XœÊ
+O‹Š]SX]›Z[Š‹X]›X^
+
+‹MŠJŒKŒŠJ_B˜ËŠÏJ‹XËŠJ“X]›Z[ŠK
+ŠËÌ‹N‹Ž
+JNØËž
+ÏSX]œÚ[ŠËš
+J˜ËŠ™ØËžŠÏSX]˜ÛÜÊËš
+J˜ËŠ™ÂšYŠK˜^OIÞ	É‰“X]˜XœÊËž
+O•ÊÍ
+XËžKSX]œÚYÛŠËž
+JŠÊÌÊNÚYŠK˜^OIÞ‰É‰“X]˜XœÊËžŠO•ÊÍ
+XËžKSX]œÚYÛŠËžŠJŠÊÌÊNÂšYŠXÝ\‰‰“X]˜XœÊËŠOI‰™ËœŠË‰‰š\L
+^Ú\
+Œ
+NÚ\KŽÜ‹žSX]œÚ[ŠËš
+JŽÜ‹žSX]˜ÛÜÊËš
+JŽ_B™[Ù^ØËŠSX]œÝÊŒK
+NØËž
+ÏSX]œÚ[ŠËš
+J˜ËŠ™ØËžŠÏSX]˜ÛÜÊËš
+J˜ËŠ™ÝØ[
+Ê_B˜Ë™Ëš\ÚX›OYMNÚYŠË™Ëš\ÚX›J]š\ÝX[
+Ë
+_Bš\OYØÛÛX˜]
+™X\‹ÛŠNÂ™›ÜŠÛÛœÝÙˆYÊ^ØÛÛœÝ\˜^OIÞ	ÏÜNœšÊ”
+ÜœÙ
+ŒLK\˜^OIÞ	ÏÜšÊ”
+ÜœÙ
+ŒLNœKSX]š\Ý
+\ž‹\žŠNÂšYŠŒML
+^Ü™Ëš\ÚX›OY˜[ÙNÜ›Ùš\ÚX›OY˜[ÙNØÛÛ[Y_BšYŠ™XYŒ
+^Ü™XYOYÜ™Ëš\ÚX›OYŽÜ›Ùš\ÚX›OYMŽÚYŠ™XYL
+^Ü™Ëœ›Ý][Û‹ž\›Ùœ›Ý][Û‹žLÜ™ËœÜÚ][Û‹žO\›ÙœÜÚ][Û‹žOLXÛÛ[Y_Bœ™›YOSX]›X^
+
+™›Y_
+KY
+NÚYŠLI‰Š\œÝ[™™›YOŒ
+J\JÏ\œÙÊŠ™›YOŒÍKŒŽŒK
+J™ÚYŠX]˜XœÊJO•ÊÌL
+\OKSX]œÚYÛŠJJŠÊÎJNÂ˜ÛÛœÝ\˜^OIÞ	ÏÜNœšÊ”
+ÜœÙ
+ŒLK\˜^OIÞ	ÏÜšÊ”
+ÜœÙ
+ŒLNœKXY[™ÏSX]˜][ŒŠ˜^OIÞ	ÏÜœÙÎŒ˜^OIÞ‰ÏÜœÙÎŒ
+K]Z[Y‹XÝÜY]Z[Ü™Îœ›ÙÂœ™Ëš\ÚX›OY]Z[Ü›Ùš\ÚX›OHY]Z[Ü™ËœÜÚ][Û‹œÙ]
+ŠNÜ›ÙœÜÚ][Û‹œÙ]
+ŠNÜ™Ëœ›Ý][Û‹žO\›Ùœ›Ý][Û‹žOZXY[™ÎÂšYŠ\œÝ[™™›YOŒ
+^Üœ
+ÏY
+Š™›YOŒÌLNŠNØÛÛœÝOSX]œÚ[Šœ
+J‹‹XXÝÜ‹“Ó›œ›Ý][Û‹žXNÓœ›œ›Ý][Û‹žKXNÓ›Kœ›Ý][Û‹žKXNÓœ˜Kœ›Ý][Û‹žX_BšYŠÝ\‰‰“X]˜XœÊÝ\‹ŠOI‰“X]š\Ý
+XÝ\‹ž‹XÝ\‹žŠOÝ\‹œŠËŠ^Ü™XYMŽÜ™Ëœ›Ý][Û‹ž\›Ùœ›Ý][Û‹žKLKNÜ™ËœÜÚ][Û‹žO\›ÙœÜÚ][Û‹žOKŒÎÜÝ]ËšÚ[ÊÊÎØÜš[YJJ__B™›ÜŠÛÛœÝHÙˆÝÜžT[ÜJ^ØÛÛœÝSX]š\Ý
+Kž\žKž‹\žŠNØK™Ëš\ÚX›OYLNÚYŠK™Ëš\ÚX›J^ØK™Ë“›Kœ›Ý][Û‹žSX]œÚ[ŠÛØÚÊŒK
+ØK›Z\ÜÚ[ÛŠJ‹ŒØK™Ë“œ˜Kœ›Ý][Û‹žSX]œÚ[ŠÛØÚÊŒKŒJØK›Z\ÜÚ[ÛŠÌJJ‹Œ__BšYŠØ[YŒ
+^ÚX]OY
+Š™X\ŒLŒÌÎŒJNÚYŠX]L
+^ÝØ[YKNÚX]LNÚYŠ]Ø[Y
+^ÝØ\Ý
+	ÕØ[Y]™[ÛX\™Y	ÊNØØ\œË™š[\ŠÏO˜Ë˜ZI‰˜Ë˜ZKœÛ
+K™›Ü‘XXÚ
+›PØ\Š__ZYŠÛØ[Y
+ÌJ\Ü]Û”Û
+
+_B›Z\ÜÚ[ÛœÊ
+NÚYŠØÛÜ™PXÝ[ÛŠ^ÜØÛÜ™PXÝ[Û‹
+ÏYÚYŠX]š\Ý
+ž\ØÛÜ™PXÝ[Û‹œÚYKžž‹\ØÛÜ™PXÝ[Û‹œÚYKžŠOŽ_Ý\Š^ÝØ\Ý
+	Ð›Û\ÈØÙ[™HØ[˜Ù[Y	ÊNÜØÛÜ™PXÝ[Û[[Y[ÙHYŠØÛÜ™PXÝ[Û‹M
+^Û[Û™^JÏ\ØÛÜ™PXÝ[Û‹œÚYKœ™]Ø\™ÜØÛÜ™PXÝ[Û‹œÚYK˜ÛÛÛLNÝØ\Ý
+ØÛÜ™PXÝ[Û‹œÚYK›X™[
+ÉÈ›Û\È0­È
+ø «	ÊÜØÛÜ™PXÝ[Û‹œÚYKœ™]Ø\™
+NÜ˜Y[Ê	ÓšZÛÎˆH[HÝ\™HH™XÙZ\›Üˆ]\ÈÛÛY]Ú\™K‰ÊNÜØÛÜ™PXÝ[Û[[ÜØ]™J
+__B‹ËÈØ[Y\˜B˜ÛÛœÝÙXÝ\ÍŠØÝ\‹œË›
+‹ŽNKŒ‹OXÝ\ÌKNŒKŠÜžKÞSX]œÚ[ŠÞJJ“X]˜ÛÜÊÜ
+KÞOSX]œÚ[ŠÜ
+KÞSX]˜ÛÜÊÞJJ“X]˜ÛÜÊÜ
+NÂšYŠœ	‰ˆXÝ\Š^ØØ[KœÜÚ][Û‹œÙ]
+žžJÌKKžŠNØØ[K›ÛÚÐ]
+ž[ÞžJÌKK[ÞKž‹[ÞŠ_B™[Ù^ØÛÛœÝÚJÚI‰ˆXÝ\ŠOÌKŒNŒÞ[ÞŠœÚÞK[Þ
+œÚÕŒKœÙ]
+ž
+ÛÞ
+˜Ù
+ÜÞJÛÞJ˜Ù
+ÊÝ\ÌKŒŽŒ
+KžŠÛÞŠ˜Ù
+ÜÞŠNØØ[KœÜÚ][Û‹›\œ
+ŒKKSX]œÝÊYKM
+JNØØ[K›ÛÚÐ]
+ž
+ÜÞKžŠÜÞŠ_B™[ŠžžŠNÂœ˜Z[‹œÜÚ][Û‹œÙ]
+žžŠNÚYŠ˜Z[‹š\ÚX›J^Ù›ÜŠ]OLÚO“ŽÚJÊÊ^ÜžVÚWKOM
+™ÚYŠžVÚWO
+\žVÚWOLÌØÛÛœÝZJŽÜœÚ—O\žÚWNÜœÚŠÌWO\žVÚWNÜœÚŠÌ—O\ž–ÚWNÜœÚŠÌ×O\žÚWNÜœÚŠÍO\žVÚWJËŽÜœÚŠÍWO\ž–ÚW_\˜Z[‘Ë˜]šX]\ËœÜÚ][Û‹›™YYÕ\]O]Y_BšYŠYÊ^ÙYË™ØZ[‹œÙ]\™Ù]][YJÝ\ËŒÍNŒXË˜Ý\œ™[[YKŒJNÙ[Ë™œ™\]Y[˜ÞKœÙ]\™Ù]][YJ
+ÊÝ\ÓX]˜XœÊÝ\‹ŠJNŒ
+KXË˜Ý\œ™[[YKŒJNÜÛË™œ™\]Y[˜ÞKœÙ]\™Ù]][YJ
+ÛØÚÊŒŸ
+ILÍÌŽMLXË˜Ý\œ™[[YKŒŠNÜÙË™ØZ[‹œÙ]\™Ù]][YJ™X\LÊK[™X\‹ÎL
+J‹ŒLŽŒXË˜Ý\œ™[[YKŒJ__B˜ÛÛœÝ’QÒ[™]ÈÛÛÜŠÌŒN
+KVPÏVÌ˜˜™M‹XXLØY™Î‹XXŒK›X\
+ÏO›™]ÈÛÛÜŠÊJKÔ‘Ï[™]ÈÛÛÜŠNLXJKÚÏ[™]ÈÛÛÜŠ
+NÂ™[˜Ý[Ûˆ[ŠžžŠ^ØÛÛœÝOJÝMŠKÌLŠ”KOSX]œÚ[ŠJK^OSX]›X^
+X]›Z[ŠKJŒŠËŒJJKÏSX]›Z[ŠK
+‹JNÂœ˜Z[JÏJÔ–ÝÞK\˜Z[JJšÎÙ™
+ÏJÑ–ÝÞKY™
+JšÎÜÚË˜ÛÜJ’QÒ
+K›\œ
+VPÖÝÞK^JK›\œ
+Ô‘ËX]›X^
+KSX]˜XœÊJKËŒÍJJ‹JNÂœÚÞUKšÜ‹˜[YK˜ÛÜJÚÊNÜÚÞUKÜ˜[YK˜ÛÜJÚÊK›\œ
+QT
+ÞËŒMN‹MJJ™^JNÜÚÞUK›˜[YOLKY^NÜÚÞUKœÙ˜[YKœÙ]
+X]˜ÛÜÊJKX]œÚ[ŠJK
+NÜØÙ[™K™›ÙË˜ÛÛÜ‹˜ÛÜJÚÊNÜØÙ[™K™›ÙË™[œÚ]OY™Â˜ÛÛœÝÝ[œÙ]SX]›X^
+KSX]˜XœÊJKËŒŠNÜÝ[‹˜ÛÛÜ‹œÙ]‘ÐŠKKKŒMŠœÝ[œÙ]KKŒÌŠœÝ[œÙ]
+NÜÝ[‹š[[œÚ]OSX]›X^
+JJŠÞËŽNŒKŒJNÜÝ[‹œÜÚ][Û‹œÙ]
+ž
+ÓX]˜ÛÜÊJJŒLŒÌ
+ÓX]˜XœÊJJŒLŒžŠÍL
+NÜÝ[‹\™Ù]œÜÚ][Û‹œÙ]
+žžŠNÚ[ZKš[[œÚ]OKŒÊËŽ
+™^NÜ›‹Û™SX\[™Ñ^ÜÝ\™OLKŒN
+ËŒM
+œÝ[œÙ]Â˜ÛÛœÝLKY^NÛšYÚ[ŽÜÚÜX]™[Z\ÜÚ]™R[[œÚ]O[Š‹ŽNØ›K™›Ü‘XXÚ
+OO›K™[Z\ÜÚ]™R[[œÚ]O[ŠNÛ[\X]˜ÛÛÜ‹œÙ]^
+‹OÌ™™NXLŒMMMMMJNÜ›ØYX]œ›ÝYÚ™\ÜÏKŽKKMJœ˜Z[NÂœ˜Z[‹š\ÚX›O\˜Z[O‹ŒNÜ˜Z[‹›X]\šX[›ÜXÚ]OKN
+œ˜Z[NÜ›ØYX]œ›ÝYÚ™\ÜÏKŽKKŽ
+œ˜Z[NÜ›ØYX]›Y][™\ÜÏKŒLŠœ˜Z[NÂšš[[œÚ]OXÝ\‰‰›‹ÌÎŒÚYŠÝ\Š^ÚœÜÚ][Û‹œÙ]
+Ý\‹ž
+ÓX]œÚ[ŠÝ\‹š
+JŒ‹ŒËKÝ\‹žŠÓX]˜ÛÜÊÝ\‹š
+JŒ‹ŒÊNÚ\™Ù]œÜÚ][Û‹œÙ]
+Ý\‹ž
+ÓX]œÚ[ŠÝ\‹š
+JŒŒÝ\‹žŠÓX]˜ÛÜÊÝ\‹š
+JŒŒ
+__B™[˜Ý[ÛˆY
+
+^ØÛÛœÝÏ[ØšŠ
+KÏ]ÜËOSTÖÛZWNÂšYŠÜ	‰“X]š\Ý
+ž]Üžž‹]ÜžŠOLŠ^ÝÜ[[ÝØ\Ý
+	ÕØ^\Ú[™XXÚY	Ê_BšYŠJ^É
+	Û]	ÊK^ÛÛ[TÝš[™ÊZJÌJKœYÝ\
+‹	Ì	ÊJÉÈÈ	ÊÓTË›[™Ý
+ÉÈ0­È	ÊÛVÌJÊÝ\ÙT™\Z\LLÉÈ0­ÈÓQH‘TÕÔ‘Q	Î‰ÉÊNÉ
+	Û]	ÊK^ÛÛ[\ÝYÙOÊVÌWJÊVÍ×OÉÈ8£ìH	ÊÓX]›X^
+]
+JÉÜÉÎ‰ÉÊJN‰ÑÛÈÈHY[ÝÈX\šÙ\ˆÈÝ\‰ßY[Ù^É
+	Û]	ÊK^ÛÛ[IÔÝÜžHÛÛ\]IÎÉ
+	Û]	ÊK^ÛÛ[IÑœ™YH›Ø[KˆÙ]Ø^\Ú[ÈÚ]K‰ßB‰
+	Û[‰ÊK^ÛÛ[Iø «	ÊÛ[Û™^KÓØØ[TÝš[™Ê	Ù[‹UTÉÊNÉ
+	ÜÝ	ÊK^ÛÛ[Iø¦!IËœ™\X]
+Ø[Y
+JÉø¦!‰Ëœ™\X]
+Ë]Ø[Y
+NÉ
+	ÚIÊKœÝ[KÚYSX]›X^
+
+JÉÉIÎÂ˜ÛÛœÝSX]™›ÛÜŠÝ
+K[OSX]™›ÛÜŠ
+Ý	LJJŒ
+NÉ
+	ÝIÊK^ÛÛ[JLÉÌ	Î‰ÉÊJÚ
+ÉÎ‰ÊÊ[OLÉÌ	Î‰ÉÊJÛ[JÉÈ0­È	ÊÕÖ–ÝÞNÂ‰
+	ÜÜ	ÊKš[›™\’SXÝ\ÓX]œ›Ý[™
+X]˜XœÊÝ\‹ŠJŒËŠJÉÏÛX[ˆÛKÚÜÛX[‰Î‰ÉÎÂ‰
+	Û˜]‰ÊK^ÛÛ[[˜]•Â›]\›Û\ÚYŠØÛÜ™PXÝ[ÛŠ\IÐ›Û\ÈØš™XÝ]™H0­ÈÝ^HÛÜÙH	ÊÓX]›X^
+\ØÛÜ™PXÝ[Û‹
+KÑš^Y
+JJÉÜÉÎÚYŠÝ\Š\IÑˆ8 %Ù]Ý]	ÎÙ[ÙHYŠZOOOSTË›[™ÝLI‰šÝ\ÙT™\Z\L	‰“X]š\Ý
+ž
+ÌMž‹LML
+OL
+\IÑH8 %™\Z\ˆ[Ý\ˆÛYH
+8 «ŒXXÚ
+IÎÙ[Ù^Û]\œÛÛ[[MNÙ›ÜŠÛÛœÝHÙˆÝÜžT[ÜJ^ØÛÛœÝSX]š\Ý
+Kž\žKž‹\žŠNÚYŠ
+^Ü\œÛÛXNÜY_ZYŠ\œÛÛŠ\IÑH8 %[ÈÈ	ÊÜ\œÛÛ‹›˜[YNÙ[ÙH›ÜŠÛÛœÝÈÙˆØ\œÊ^ØÛÛœÝSX]š\Ý
+Ëž\žËž‹\žŠNÚYŠJË˜ZI‰˜Ë˜ZKœÛ
+I‰™Ê^ÜYÉÑˆ8 %[\ˆ	ÊØËœË›Ž‰ÕØ[ÈÛÜÙ\ˆÈ	ÊØËœË›ŽØœ™XZß__BšYŠ	
+	Ü‰ÊK^ÛÛ[OOIÐ\œš]™HžHØ\‰ß\
+I
+	Ü‰ÊK^ÛÛ[\ÚYŠI‰œÝYÙI‰›VÌLI‰ˆ\ÝÜžPÚÚXÙ\ÖÉÛZ\ÜÚ[Û‹IÊÛZWI‰“X]š\Ý
+ž[Ëžž‹[ËžŠOÉ‰ˆJZOOOSTË›[™ÝLI‰šÝ\ÙT™\Z\L
+JI
+	Ü‰ÊK^ÛÛ[IÑH8 %[ÈÈ	ÊÊÝÜžT[ÜK™š[™
+OO˜KšYOO[VÌLJOË›˜[Y_	ÝHÛÛXÝ	ÊNÉ
+	Ü‰ÊKœÝ[K™\Ü^OI
+	Ü‰ÊK^ÛÛ[ÉØ›ØÚÉÎ‰Û›Û™IÎÂšYŠI‰œÝYÙI‰›VÍ—I‰ˆXÝ\‰‰“X]š\Ý
+ž[Ëžž‹[ËžŠOMÊI
+	Ü‰ÊKœÝ[K™\Ü^OI
+	Ü‰ÊK^ÛÛ[ÉØ›ØÚÉÎ‰Û›Û™IÎÂ™˜]ÓX\
+	
+	Û[IÊK‹˜[ÙJNÚYŠX\Ü[ŠY˜]ÓX\
+	
+	ÛXÉÊKÊŠ•ÊÍ
+J›^‹YJ_B‹ÊˆKKKKKKKKKHÕS”ËPT’ÑUÓPÑKUˆKKKKKKKKKH
+‹Â˜ÛÛœÝÔVÞÛŽ‰ÒÛÝ\™Y	Ë[ŽŒKÛŽ‰Ô\ÝÛ	ËŒKŒ‹˜]N‹ŒŽXYÎŒL‹ÜŽ‹Œ[ŒK[Ž‹ŒÍKŽŒKÛŽ‰ÔÓQÉË‹Ë˜]N‹ŒKXYÎŒÌÜŽ‹ŒË[ŒK[Ž‹KŽŒÌKÛŽ‰ÔÚÝÝ[‰ËŒKŽ˜]N‹ŽKXYÎ‹ÜŽ‹Œ‹[‹[Ž‹ÍKŽŒNWNÂ›]ÚOLÝÛVÌKKKXYÏVÌL‹Ì—K™\ÏVÌŒLŒÌKš\™UL™[ØYL[Ý\ÙQÝÛY˜[ÙK›\ÚL›Û\IÉË˜]•IÉË\ÝÙY[[[˜•L˜YLËÜ˜ÚY˜[ÙK^LNÂ˜ÛÛœÝÝ[“OUÔ›X\
+
+ËJOOžÚYŠZJ\™]\›ˆ[ØÛÛœÝÏ[™]È‘Ü›Ý\
+
+KO[™]È“Y\Ú
+™]È›ÞÙ[ÛY]žJŒËË›[‹ŒLJKÝ
+OOLÏÌXLØŒŒŽŒLÌ˜ËŠJNÛKœÜÚ][Û‹žOKKK]Ë›[‹ÌŽÙË˜Y
+JNÚYŠOŒJ^ØÛÛœÝ[™]È“Y\Ú
+™]È›ÞÙ[ÛY]žJŒ‹ŒM‹Œ
+KÝ
+LLLLLJJNØ‹œÜÚ][Û‹œÙ]
+KŒ‹KŒJNÙË˜Y
+Š_YËš\ÚX›OY˜[ÙNÛYK“œ˜K˜Y
+ÊNÜ™]\›ˆßJNÂ˜ÛÛœÝ˜Ï[™]È”˜^XØ\Ý\Š
+K[™]È•™XÝÜŒÊ
+KœÏV×KÜÏV×KÙ™œÏV×K›Ø^ÛÛŽŒŒKÚYTØÛÜ™\ÏVÞÞŒLŒŽ‹MŒX™[‰ÔÝÙ[Y\ˆÚ[ÜÚÉË™]Ø\™ŒLÛÛÛŒKÞ‹NLŽŒÌX™[‰Ü™XÛÜ™\ÚÜÛÝ[\‰Ë™]Ø\™ŒÍLÛÛÛŒWKØÛÜ™PXÝ[Û[[Û^ÞŽLŽŒË[]™NYKŒÛÛÛŒ[™ÎŒNÂ™›ÜŠ]OLÚOLÚJÊÊ^ØÛÛœÝ[™]È“[™J™]ÈY™™\‘Ù[ÛY]žJ
+KœÙ]œ›ÛTÚ[ÊÛ™]È•™XÝÜŒÊ
+K™]È•™XÝÜŒÊ
+WJK™]È“[™P˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™™NL˜[œÜ\™[Y_JJNÛš\ÚX›OY˜[ÙNÛ™œ\Ý[PÝ[YY˜[ÙNÛ›Y™OLÜØÙ[™K˜Y
+
+NÝœËœ\Ú
+
+NØÛÛœÝÏ[™]È“Y\Ú
+™]È”Ü\™QÙ[ÛY]žJŒL‹‹
+K™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™˜ÌŒJJNÜËš\ÚX›OY˜[ÙNÜË›Y™OLÜØÙ[™K˜Y
+ÊNÜÜËœ\Ú
+Ê_B˜ÛÛœÝY[™]È“Y\Ú
+™]È”Ü\™QÙ[ÛY]žJŒM‹
+K™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™™ÌJJKY“[™]È”Ú[YÚ
+™˜LM
+NÛY‹š\ÚX›OY˜[ÙNÜØÙ[™K˜Y
+Y‹Y“
+NÂ™[˜Ý[Ûˆ˜XÙ\ŠK‹Ê^ØÛÛœÝ]œË™š[™
+Ož›Y™OL
+_œÖÌK[™Ù[ÛY]žK˜]šX]\ËœÜÚ][ÛŽÜœÙ]VŠKžKžKKžŠNÜœÙ]VŠK‹ž‹žK‹žŠNÜ›™YYÕ\]O]YNÛ›X]\šX[˜ÛÛÜ‹œÙ]^
+ß™™NL
+NÛ›Y™OKŒÛš\ÚX›O]Y_B™[˜Ý[ÛˆÜ\šÊJ^ØÛÛœÝÏ\ÜË™š[™
+Ož›Y™OL
+_ÜÖÌNÜËœÜÚ][Û‹˜ÛÜJJNÜË›Y™OKŒMNÜËš\ÚX›O]Y_B™[˜Ý[ÛˆÛ™
+‹Š^ÚYŠXXÊ\™]\›ŽØÛÛœÝXXË˜Ý\œ™[[YKÏXXË˜Ü™X]SÜØÚ[]ÜŠ
+KÏXXË˜Ü™X]QØZ[Š
+NÛË\OIÜØ]ÝÛÝ	ÎÛË™œ™\]Y[˜ÞKœÙ]˜[YP][YJ‹
+NÛË™œ™\]Y[˜ÞK™^Û™[X[˜[\Õ˜[YP][YJ
+Ù
+NÙË™ØZ[‹œÙ]˜[YP][YJ‹
+NÙË™ØZ[‹™^Û™[X[˜[\Õ˜[YP][YJŒK
+Ù
+NÛË˜ÛÛ›™XÝ
+ÊNÙË˜ÛÛ›™XÝ
+XË™\Ý[˜][ÛŠNÛËœÝ\
+
+NÛËœÝÜ
+
+Ù
+_B™[˜Ý[Ûˆ˜Y[Ê
+^ØÛÛœÝOI
+	Ü˜Y	ÊNÙK^ÛÛ[Iü'äîÈ	ÊÝÙKœÝ[K™\Ü^OIØ›ØÚÉÎØÛX\•[Y[Ý]
+ÊNÜÏ\Ù][Y[Ý]
+
+
+OO™KœÝ[K™\Ü^OIÛ›Û™IËÍL
+_B™[˜Ý[ÛˆZÓÙ™ŠŠ^ÛÙ™œËœ\Ú
+ÙÎš[X[ŠYÙŽ‹MŒLÙ
+K‹Ý‹JÔŠ
+KŒJ_B™[˜Ý[ÛˆÚ[Ù™ŠŠ^ÜØÙ[™Kœ™[[Ý™J‹™ÊNÛÙ™œËœÜXÙJÙ™œËš[™^ÙŠŠKJNØÜš[YJJNÜ˜Y[Ê	ÓÙ™šXÙ\ˆÝÛˆH[[š]È™\ÜÛ™IÊ_B‹ÊˆHÜ0éHX\šÙ]
+‹ÂŠ[˜Ý[ÛŠ
+^ØÛÛœÝÛO\Ý
+YŽ
+KÛÏJKŒŒJOOžØ›Y\Úœ\Ú
+›Þ
+K^Œ‹ŒK^ŒÛK
+
+ÞJKÌ‹‹
+Œ
+ÞŒJKÌŠJNØYÊ
+
+ÞJKÌ‹
+Œ
+ÞŒJKÌ‹
+K^
+KÌ‹
+ŒK^Œ
+KÌŠ_NÂÛÊÎL‹ÌK‹Ì‹ŒŠNÝÛÊÍË‹ÎŒ‹M‹ÌŠNÝÛÊLKŽL‹M‹ÌŠNÝÛÊÎM‹M‹ŠNÝÛÊL‹L‹M‹M‹ŠNÂ˜›Þ
+M‹‹Ý
+™ØMJKLË
+NØ›Þ
+Œ‹M‹Ý
+Ù™Ù‹ŠKLŒÍ˜[ÙJNÂ™›ÜŠÛÛœÝÞ‹×HÙˆÖÎ‹ŒKKÎ‹KKÎLŒKWWJ^Ø›Þ
+ËKŽŽKÝ
+ØMXLØJKKŒ‹ŠNØYÊ‹ËÌ‹JNÙ›ÜŠ]OLÚOÎÚJÊÊX›Þ
+ËKK™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽ“‘SÓ–ÊŠ
+J
+__JK]ËÌŠËŠÚKKÍKŠ_B˜›Þ
+KŒKKŒ‹Ý
+MMYMŽ
+KM‹ŽKËŠNØYÊM‹Ë‹ŠNÂ˜ÛÛœÝÏYØÝ[Y[˜Ü™X]Q[[Y[
+	ØØ[˜\ÉÊNØËÚYMLLŽØËšZYÚLLŽØÛÛœÝÏXË™Ù]ÛÛ^
+	Ì™	ÊNÙË™š[Ý[OIÈÌŒÙYIÎÙË™š[™XÝ
+LL‹LŽ
+NÙË™š[Ý[OIÈÍÙ™˜IÎÙË™›ÛIØ›ÛØ[œË\Ù\šY‰ÎÙË^[YÛIØÙ[\‰ÎÙË™š[^
+	ÔÔ0áH	ËM‹N
+NÂ˜Y
+™]È”[™QÙ[ÛY]žJL‹JK™]È“Y\Ú˜\ÚXÓX]\šX[
+ÛX\›™]ÈØ[˜\Õ^\™JÊ_JKLK‹MKK˜[ÙJKœ›Ý][Û‹žOTNÂ˜ÛÛœÝ[™]È”Ú[YÚ
+™™ŒKŒ‹ŠNÛœÜÚ][Û‹œÙ]
+LËŽ
+NÜØÙ[™K˜Y
+
+_JJ
+NÂ˜›
+‹ËMŒŠNØ›
+NËMÌ
+NÂ˜Û™Ï\ÝÜžT[ÜK™š[™
+OO˜KšYOOIØÛ\šÉÊK™ÎØÛ™ËœÜÚ][Û‹œÙ]
+ÛžÛžŠNØÛ™Ëœ›Ý][Û‹žOTNÂ™[˜Ý[ÛˆÚÝÕ[Ê\œÛÛŠ^Ý[Ù\\\œÛÛŽÜÝ]OIÙX[ÙÝYIÎÉ
+	Ý[ÉÊKšY[Y˜[ÙNÉ
+	Ý[Ô›ÛIÊK^ÛÛ[\\œÛÛ‹œ›ÛNÉ
+	Ý[Ó˜[YIÊK^ÛÛ[\\œÛÛ‹›˜[YNÜšSX]˜][ŒŠ\œÛÛ‹ž\ž\œÛÛ‹ž‹\žŠNÛYKœ›Ý][Û‹žO\šÜ\œÛÛ‹™Ëœ›Ý][Û‹žOSX]˜][ŒŠž\\œÛÛ‹žž‹\\œÛÛ‹žŠNÂ˜ÛÛœÝ[™\ÏS”×ÓS‘TÖÜ\œÛÛ‹šY_ÉÑÛÛÙÈÙYH[ÝK‰×NÉ
+	Ý[Ó[™IÊK^ÛÛ[[[™\ÖÊ\œÛÛ‹š\Ú]ÊÊÝÜžPÚÚXÙ\ÖÜ\œÛÛ‹šY_
+JI[[™\Ë›[™ÝNÂ›YK“œ˜Kœ›Ý][Û‹žKKŽNÜ\œÛÛ‹™Ë“›Kœ›Ý][Û‹žKKMNÜ\œÛÛ‹™Ë“œ˜Kœ›Ý][Û‹žKKŒNÂ˜ÛÛœÝÜ[ÛœÏI
+	Ý[ÐÚÚXÙ\ÉÊNÛÜ[ÛœËš[›™\’SIÉÎÖÖÉÐ\ÚÈX›Ý]ÛÜšÉËKÉÐ\ÚÈÝÈ[™ÜÈ\™IËWWK™›Ü‘XXÚ
+
+ÛX™[—JOOžØÛÛœÝYØÝ[Y[˜Ü™X]Q[[Y[
+	Ø]Û‰ÊNØ‹^ÛÛ[[X™[Ø‹›Û˜ÛXÚÏJ
+OOžÜÝÜžPÚÚXÙ\ÖÜ\œÛÛ‹šYO[ŽÚYŠÝ]OOOIÙX[ÙÝYIÉ‰›ZOTË›[™Ý	‰“TÖÛZWVÌLOOO\\œÛÛ‹šY
+\ÝÜžPÚÚXÙ\ÖÉÛZ\ÜÚ[Û‹IÊÛZWO]YNÜ\œÛÛ‹š\Ú]ÊÊÎÉ
+	Ý[Ó[™IÊK^ÛÛ[[Ø	Ü\œÛÛ‹›˜[Y_Nˆ	Û[™\ÖÊ\œÛÛ‹š\Ú]ÊÌJI[[™\Ë›[™Ý_X˜	Ü\œÛÛ‹›˜[Y_Nˆ	Û[™\ÖÜ\œÛÛ‹š\Ú]É[[™\Ë›[™Ý_XÛÜ[ÛœËš[›™\’SIÉÎØÛÛœÝÛ™OYØÝ[Y[˜Ü™X]Q[[Y[
+	Ø]Û‰ÊNÙÛ™K^ÛÛ[IÑ[™ÛÛ™\œØ][Û‰ÎÙÛ™K›Û˜ÛXÚÏXÛÜÙU[ÎÛÜ[ÛœË˜\[™Ú[
+Û™JNÜØ]™J
+_NÛÜ[ÛœË˜\[™Ú[
+Š_J_B™[˜Ý[ÛˆÛÜÙU[Ê
+^ÚYŠ[Ù\Š^Ý[Ù\‹™Ë“›Kœ›Ý][Û‹ž][Ù\‹™Ë“œ˜Kœ›Ý][Û‹žL[YK“œ˜Kœ›Ý][Û‹žLÝ[Ù\[[É
+	Ý[ÉÊKšY[]YNÜÝ]OIÜ^IÎÜØ]™J
+_B™[˜Ý[Ûˆ[™[™ÐÚÚXÙJ
+^ÜÝ]OIÙX[ÙÝYIÎÉ
+	Ý[ÉÊKšY[Y˜[ÙNÉ
+	Ý[Ô›ÛIÊK^ÛÛ[IÐ‘T“SˆQ‘H0­È’SSIÎÉ
+	Ý[Ó˜[YIÊK^ÛÛ[IÕÚ]ÚÝ[[^È™^ÉÎÉ
+	Ý[Ó[™IÊK^ÛÛ[IÕHÚ]H\È]ZY]\ˆ›ÜˆH[ÛY[ˆÚÛÜÙHÝÈHÝÜžH[™Ë‰ÎØÛÛœÝÜ[ÛœÏI
+	Ý[ÐÚÚXÙ\ÉÊNÛÜ[ÛœËš[›™\’SIÉÎÖÖÉÐH™]ÈÝ\	Ë	Ð[^X]™\È›ÝX›H™Z[™[™Ý\ÈÝ™\‹‰×KÉÑ˜[Z[Hš\œÝ	Ë	Ð[^]È›Û˜\È[™\ÈœšY[™Èš\œÝ‰×KÉÕHÚ]H™[Y[X™\œÉË	Ð[^^ÜÙ\ÈšZÝÜˆ[™Ú[™Ù\ÈHÚ]K‰×WK™›Ü‘XXÚ
+
+Ý]K[™WKJOOžØÛÛœÝYØÝ[Y[˜Ü™X]Q[[Y[
+	Ø]Û‰ÊNØ‹^ÛÛ[]]NØ‹›Û˜ÛXÚÏJ
+OOžÜÝÜžPÚÚXÙ\Ë™[™[™ÏZNÜÝ]OIÜ^IÎÉ
+	Ý[ÉÊKšY[]YNÜØ]™J
+NØÛÛœÝÜXZÙ\VÉÐSV	Ë	Ò“ÓTÉË	ÓSI×VÚWNØÝ]ØÙ[™Q\™XÝÜ‹œ^JÞÜÜXZÙ\‹[™KØ[Y\˜N–ÌM‹NKÛÚÎ–ÌKK\˜][ÛŽŒËKÜÜXZÙ\Ž‰ÑS’V‰Ë[™N‰Ðœ™XZÙ˜\Ý\ÈÛˆYKˆHÛ›ÝÈHXÙH]\ÈÜ[‹‰ËØ[Y\˜N–ËNLKÛÚÎ–ÌKK\˜][ÛŽŒ‹ŽWJ_NÛÜ[ÛœË˜\[™Ú[
+Š_J_B™[˜Ý[Ûˆ[\˜XÝ
+
+^ÚYŠÝ]HOOIÜ^IßÝ\ŸXÛ˜[]™J\™]\›ŽÚYŠZOOOSTË›[™ÝLI‰“X]š\Ý
+ž
+ÌMž‹LML
+OL
+^ÚYŠÝ\ÙT™\Z\LL
+^ÜÚÝÕ[ÊÝÜžT[ÜK™š[™
+OO˜KšYOOIÛšZÛÉÊJNÜ™]\›ŸZYŠ[Û™^OŒ
+^ÝØ\Ý
+	Ö[ÝH™YY8 «Œ›ÜˆH™^™\Z\‰ÊNÜ™]\›Ÿ[[Û™^KOLŒÚÝ\ÙT™\Z\SX]›Z[ŠLÝ\ÙT™\Z\ŠÌJNÝØ\Ý
+	ÒÛYH™\Z\œÈ	ÊÚÝ\ÙT™\Z\ŠÉÉH0­È8¢$¸ «Œ	ÊNÚYŠÝ\ÙT™\Z\LL
+XÝ]ØÙ[™J	ÓšZÛÎˆ]\È›Ý˜[˜ÞK]]\ÈÝ\œË‰ÊNÜØ]™J
+NÜ™]\›Ÿ[]™X\[[™MNÙ›ÜŠÛÛœÝÙˆÝÜžT[ÜJ^ØÛÛœÝSX]š\Ý
+ž\žž‹\žŠNÚYŠ™
+^Û™X\\Û™Y_ZYŠ™X\‰‰ˆJ™X\‹šYOOIØÛ\šÉÉ‰ÚOŒ	‰ˆJZOTË›[™Ý	‰“TÖÛZWVÌLOOOIØÛ\šÉÊJJ^ÜÚÝÕ[Ê™X\ŠNÜ™]\›ŸXÛÛœÝÚYO\ÚYTØÛÜ™\Ë™š[™
+ÏO“X]š\Ý
+ž\Ëžž‹\ËžŠOÊNÚYŠÚYJ^ÚYŠÚYK˜ÛÛÛŒ
+]Ø\Ý
+	Õ]šXÝ[Û˜[ÚYH›Øˆ\ÈÛÛÛYÙ™‰ÊNÙ[ÙHYŠ]ÚJ]Ø\Ý
+	ÔÙ[XÝ[ˆ][HÚ]x $ÌÈÈÝ\\ÈšXÝ[Û˜[ÚYH›Ø‰ÊNÙ[Ù^ÜØÛÜ™PXÝ[Û^ÜÚYKŒNØÜš[YJJNÝØ\Ý
+	Ð›Û\ÈØÙ[™HÝ\YˆÝ^H™X\ˆHÛÝ[\ˆ›Üˆ›Ý\ˆÙXÛÛ™Ë‰Ê_\™]\›ŽßZYŠX]š\Ý
+žXÛžž‹XÛžŠOŠ\™]\›ŽÂšYŠÚOŒ
+^ÚYŠÛ˜ÛÛÛŒ›Ø‹›ÛŠ\™]\›ŽÜ›Ø‹›ÛLNÜ›Ø‹LØÛš[™ÏLNØÜš[YJŠNÜ˜Y[Ê	ÔÚ[[[\›H]HÜ0éHIÊNÝØ\Ý
+	ÒÛÜÚ][Ûˆ8 %[\Z[™ÈH™YÚ\Ý\‰Ê_B™[ÙHYŠ[Û™^OM	‰šL
+^Û[Û™^KOMÚSX]›Z[ŠL
+Í
+NÝØ\Ý
+	Ñš\œÝZY8¢$¸ «	Ê_Y[ÙHØ\Ý
+LLÉÐ[™XYHX[IÎ‰Ó›Ý[›ÝYÚ[Û™^IÊ_B™[˜Ý[Ûˆ^TÝY™Š
+^ÚYŠÝ\ŸX]š\Ý
+žXÛžž‹XÛžŠOŸÚOŒ
+\™]\›ŽÂšYŠ[ÝÛ–Ì—I‰›[Û™^OMŒ
+^Û[Û™^KOMŒÛÝÛ–Ì—OLNÛXYÖÌ—OLÌÜ™\ÖÌ—OLLŒÝØ\Ý
+	Ð›ÝYÚÓQÈ8¢$¸ «Œ	Ê_B™[ÙHYŠ[ÝÛ–Ì×I‰›[Û™^ONL
+^Û[Û™^KONLÛÝÛ–Ì×OLNÛXYÖÌ×OMŽÜ™\ÖÌ×OLÌÝØ\Ý
+	Ð›ÝYÚÚÝÝ[ˆ8¢$¸ «L	Ê_B™[ÙHYŠ[Û™^OML
+^Û[Û™^KOMLÖÌK‹×K™›Ü‘XXÚ
+OOžÚYŠÝÛ–ÚWJ\™\ÖÚWOVÌŒLŒÌVÚW_JNÝØ\Ý
+	Ð[[[È™Yš[Y8¢$¸ «L	Ê_Y[ÙHØ\Ý
+	Ó›Ý[›ÝYÚ[Û™^IÊ_B™[˜Ý[Ûˆ™\Ù]ÙX\ÛœÊÊ^ÛÝÛVÌKKNÛXYÏVÌL‹Ì—NÜ™\ÏVÌŒLŒÌNÝÚOLÚYŠÉ‰‹×–ÌW^ÍIË\Ý
+Ëß	ÉÊJ[ÝÛ\ËËœÜ]
+	ÉÊK›X\
+[X™\ŠNÛÙ™œË™›Ü‘XXÚ
+OœØÙ[™Kœ™[[Ý™J‹™ÊJNÛÙ™œË›[™ÝLÜ›Ø‹›ÛLÜÚÝÑÝ[Š
+NÝÜ\ÏÛ[žÞŽLŽŒLŸNÚYŠ\Ê]Ø\Ý
+	ÑÔÈÙ]ÈHÜ0éH8 %›ÛÝÈHY[ÝÈ\œ›ÝÜÉÊ_B™[˜Ý[ÛˆÚÝÑÝ[Š
+^ÙÝ[“K™›Ü‘XXÚ
+
+ËJOOžÚYŠÊYËš\ÚX›OZOO]Ú_JNÜ™[ØYLÉ
+	Þ	ÊKœÝ[K™\Ü^O]ÚOÉØ›ØÚÉÎ‰Û›Û™IßB™[˜Ý[Ûˆ™[ØY
+
+^ÚYŠ]Ú_™[ØYŒXYÖÝÚWOUÔÝÚWK›XYß™\ÖÝÚWOL
+\™]\›ŽÜ™[ØYLKŒNÝØ\Ý
+	Ô™[ØY[™ø )‰Ê_B™[˜Ý[Ûˆš\™J
+^ØÛÛœÝÏUÔÝÚWNÚYŠš\™UŒ™[ØYŒ
+\™]\›ŽÚYŠXYÖÝÚWOL
+^Ü™[ØY
+
+NÜ™]\›ŸB™š\™U]Ëœ˜]NÛXYÖÝÚWKKNÙ›\ÚKŒNÜÛ™
+Ë™‹ŒL‹ŒLŠNØØ[K™Ù]ÛÜ›\™XÝ[ÛŠ
+NØÛÛœÝÏXØ[KœÜÚ][Û‹˜ÛÛ™J
+K˜YØØ[Y™XÝÜŠKŒŠNÂ›YK\]SX]š^ÛÜ›
+YJNØÛÛœÝ^ŒYÝ[“VÝÚWK›ØØ[ÕÛÜ›
+™]È•™XÝÜŒÊKK]Ë›[‹
+JNÂ™›ÜŠ]OLÚOËœ[ÚJÊÊ^ØÛÛœÝQ˜ÛÛ™J
+NÙž
+ÏJŠ
+KKJJËœÜŠŒŽÙžJÏJŠ
+KKJJËœÜŠŒŽÙžŠÏJŠ
+KKJJËœÜŠŒŽÜÚÛÝ
+Ë››Ü›X[^™J
+K^Œ‹Ë™
+_B›Y‹œÜÚ][Û‹˜ÛÜJ^ŒŠNÛY“œÜÚ][Û‹˜ÛÜJ^ŒŠNÛ]LÂ™›ÜŠÛÛœÝÙˆYÊ^ØÛÛœÝ\™ËœÜÚ][Û‹ž\ž\™ËœÜÚ][Û‹ž‹\žŽÚYŠ
+™
+ÙŠ™L
+^ÛŠÊÎÜ™›YOMÎÜœÙÏJ˜^OIÞ	ÏÙ™ŠOLÌN‹L__BšYŠ‰‰ˆ]Ø[Y
+XÜš[YJJ_B™[˜Ý[ÛˆÚÛÝ
+Ë^Œ‹YÊ^Û]™\ÝLŒÏ[[Ü˜ËœÙ]
+Ë
+NÜ˜Ë™˜\LŒØÛÛœÝÏ\˜Ëš[\œÙXÝØš™XÝÊ›Y\Ú
+NÚYŠË›[™Ý
+X™\ÝZÖÌK™\Ý[˜ÙNÂ˜ÛÛœÝÜJK‹ŠOOžØÛÛœÝ^[ËžO^K[ËžK^‹[Ëž‹[
+™ž
+ÛJ™žJÛŠ™žŽÚYŠ
+\™]\›ˆYNNØÛÛœÝ[Yž
+O[KYžJ[‹YžŠÜ™]\›ˆ
+œ
+ÜJœJÜŠœŠœÝŒYN_NÂ™›ÜŠÛÛœÝÙˆYÊ^ÚYŠ™XYŒ\™Ëš\ÚX›JXÛÛ[YNØÛÛœÝ\Ü
+™ËœÜÚ][Û‹žK™ËœÜÚ][Û‹ž‹MJNÚYŠ™\Ý
+^Ø™\Ý]ÝÏ^Ü__B™›ÜŠÛÛœÝˆÙˆÙ™œÊ^ØÛÛœÝ\Ü
+‹žK‹ž‹MJNÚYŠ™\Ý
+^Ø™\Ý]ÝÏ^ÙŸ__BšYŠÛ˜[]™J^ØÛÛœÝ\Ü
+ÛžKÛž‹MJNÚYŠ™\Ý
+^Ø™\Ý]ÝÏ^ÚÎŒ___B™›ÜŠÛÛœÝÈÙˆØ\œÊ^ÚYŠÏOOXÝ\ŠXÛÛ[YNØÛÛœÝ\Ü
+ËžKËž‹ËœŠNÚYŠ™\Ý
+^Ø™\Ý]ÝÏ^Øß__B˜ÛÛœÝO[Ë˜ÛÛ™J
+K˜YØØ[Y™XÝÜŠ™\Ý
+NÝ˜XÙ\Š^Œ‹JNÜÜ\šÊJNÂšYŠÊ^ÚYŠËœ
+^ÝËœ™XYMŽÝËœ™Ëœ›Ý][Û‹žKLKNÝËœ™ËœÜÚ][Û‹žOKŒÎÜÝ]ËšÚ[ÊÊÎØÜš[YJJ_Y[ÙHYŠË™Š^ÝË™‹šOYYÎÚYŠË™‹šL
+ZÚ[Ù™ŠË™Š_Y[ÙHYŠËšÊ^ØÛ˜[]™OY˜[ÙNØÛœMŒÜ›Ø‹›ÛLØÛ™Ëœ›Ý][Û‹žKLKNØÛ™ËœÜÚ][Û‹žOKŒÎØÜš[YJŠ_Y[Ù^ÝË˜Ë™YÊÏYYÊŒLÚYŠË˜Ë˜ZI‰Ë˜Ë˜ZKœÛ
+XÜš[YJJ___B™[˜Ý[ÛˆÛÛX˜]
+™X\‹ÛŠ^Ùš\™UOYÙ›\ÚOYÂšYŠ™[ØYŒ
+^Ü™[ØYOYÚYŠ™[ØYL
+^ØÛÛœÝSX]›Z[ŠÔÝÚWK›XYË[XYÖÝÚWK™\ÖÝÚWJNÛXYÖÝÚWJÏ[ŽÜ™\ÖÝÚWKO[Ÿ_BšYŠÚI‰ˆXÝ\Š^Üš
+ÏX[™Ù
+šX]˜][ŒŠSX]œÚ[ŠÞJKSX]˜ÛÜÊÞJJJJ“X]›Z[ŠK
+ŒM
+NÛYKœ›Ý][Û‹žO\šÛYK“œ˜Kœ›Ý][Û‹žKLKNÛYK“›Kœ›Ý][Û‹žKKŒÎÚYŠ
+[Ý\ÙQÝÛ‰‰›ØÚÙY
+_Ë’Ù^V
+Yš\™J
+_B›Y‹š\ÚX›OY›\ÚŒÛY“š[[œÚ]OY›\ÚŒÌ‹NŒÂ™›ÜŠÛÛœÝÙˆœÊZYŠ›Y™OŒ
+^Û›Y™KOYÚYŠ›Y™OL
+[š\ÚX›OY˜[Ù_B™›ÜŠÛÛœÝÈÙˆÜÊZYŠË›Y™OŒ
+^ÜË›Y™KOYÜËœØØ[KœÙ]ØØ[\ŠJÊŒMK\Ë›Y™JJŽ
+NÚYŠË›Y™OL
+\Ëš\ÚX›OY˜[Ù_B˜Û˜ÛÛÛSX]›X^
+Û˜ÛÛÛY
+NÚYŠXÛ˜[]™J^ØÛœOYÚYŠÛœL
+^ØÛ˜[]™O]YNØÛ™Ëœ›Ý][Û‹žLØÛ™ËœÜÚ][Û‹žOL_B˜Û™Ë“›Kœ›Ý][Û‹žXÛ™Ë“œ˜Kœ›Ý][Û‹žXÛš[™ÏËL‹ŽŒØÛÛœÝÏSX]š\Ý
+žXÛžž‹XÛžŠNÂšYŠ›Ø‹›ÛŠ^Ü›Ø‹
+ÏYÚYŠXÛ˜[]™_ÏŽ_ÚOOLÝ\Š^Ü›Ø‹›ÛLØÛš[™ÏLÝØ\Ý
+	Ô›Ø˜™\žHX›ÜY	Ê_Y[ÙHYŠ›Ø‹MŠ^Ü›Ø‹›ÛLØÛš[™ÏLØÛÛœÝÏLÌ
+ÊŠ
+JŒ
+NÛ[Û™^JÏYÎØÛ˜ÛÛÛLMLÝØ\Ý
+	Ô›Ø˜™Y8 «	ÊÙÊÉÈ8 %Ù]Ý]IÊNÜ˜Y[Ê	ÔÝ\ÜXÝ›YZ[™ÈHÜ0éHIÊ__B‰
+	Ü›Ø‰ÊKœÝ[K™\Ü^O\›Ø‹›ÛÉØ›ØÚÉÎ‰Û›Û™IÎÉ
+	Ü›Ø‰ÊK™š\œÝÚ[œÝ[KÚYJ›Ø‹ÍŠŒL
+JÉÉIÎÂœ›Û\\›Ø‹›ÛÉÔ›Ø˜š[™ø )ˆÙY\[Ý\ˆÝ[ˆÛˆHÛ\šÉÎŠXÝ\‰‰˜Û˜[]™I‰™ÏŠOÊÚOÊÛ˜ÛÛÛŒÉÔ™YÚ\Ý\ˆ\È[\IÎ‰ÑH8 %›ØˆHÜ0éIÊN‰ÑH8 %š\œÝZY8 «0­Èˆ8 %X[\ˆ
+Ý[œË[[[ÊIÊN‰ÉÎÂ™›ÜŠÛÛœÝÈÙˆØ\œËœÛXÙJ
+J^ÚYŠË˜ZI‰˜Ë˜ZKœÛ
+^ÚYŠË™YÏŒŒŒ
+^Ü›PØ\ŠÊNØÛÛ[Y_ZYŠXË™\	‰ˆXË˜ZK˜›ØÚÉ‰Ø[YŒ	‰›Ù™œË›[™Ý	‰“X]š\Ý
+Ëž\žËž‹\žŠOÌŠ^ØË™\LNÛZÓÙ™ŠËž
+ÓX]˜ÛÜÊËš
+JŒ‹‹Ëž‹SX]œÚ[ŠËš
+JŒ‹ŠNÛZÓÙ™ŠËžSX]˜ÛÜÊËš
+JŒ‹‹ËžŠÓX]œÚ[ŠËš
+JŒ‹ŠNÜ˜Y[Ê	Õ[š]ÈÛˆ›ÛÝ8 %Ý\ÜXÝ[ˆÚYÚ	Ê___B™›ÜŠÛÛœÝˆÙˆÙ™œËœÛXÙJ
+J^ØÛÛœÝ\žY‹ž\ž‹Y‹ž‹SX]š\Ý
+ŠKÜYŒMÍŽŒÚYŠŒI‰œÜ
+^Ù‹ž
+ÏYÙ
+œÜ
+™Ù‹žŠÏY‹Ù
+œÜ
+™\\Ú
+‹JNÙ‹™ËœÜÚ][Û‹œÙ]
+‹ž‹žŠNÙ‹™Ëœ›Ý][Û‹žOSX]˜][ŒŠŠNÙ‹œ
+ÏY
+œÜ
+ŒŽØÛÛœÝOSX]œÚ[Š‹œ
+J‹ÊŠÜÌNŒ
+NÙ‹™Ë“›œ›Ý][Û‹žXNÙ‹™Ë“œ›œ›Ý][Û‹žKXNÂ™‹œÝOYÚYŠ	‰™‹œÝL	‰Ø[YŒ
+^Ù‹œÝKŽJÔŠ
+J‹ÎØÛÛœÝTŠ
+O
+Ý\ËŒN‹
+NÝ˜XÙ\Š™]È•™XÝÜŒÊ‹žKŒË‹žŠK™]È•™XÝÜŒÊž
+ÊÌŠŠ
+KKJJŒÊKKŒKžŠÊÌŠŠ
+KKJJŒÊJK™Ž
+NÜÛ™
+ŒŒKŒJNÚYŠ
+Z\
+Š_BšYŠŒMŒ]Ø[Y
+^ÜØÙ[™Kœ™[[Ý™J‹™ÊNÛÙ™œËœÜXÙJÙ™œËš[™^ÙŠŠKJ__BœÜ˜Ú]Ø[YŒ	‰›™X\ŽLÚYŠ™X\L
+[\ÝÙY[^ÞœžŽœžŸNÂœ˜•OYÚYŠØ[YLÉ‰˜Ý\‰‰“X]˜XœÊÝ\‹ŠOŽ	‰œ˜•L
+^Ü˜•MNØÛÛœÝOSX]˜XœÊX]œÚ[ŠÝ\‹š
+JO“X]˜XœÊX]˜ÛÜÊÝ\‹š
+JKžSX]›X^
+UËX]›Z[ŠËÝ\‹ž
+ÓX]œÚ[ŠÝ\‹š
+JŒLÌ
+JKžSX]›X^
+UËX]›Z[ŠËÝ\‹žŠÓX]˜ÛÜÊÝ\‹š
+JŒLÌ
+JKžSX]œ›Ý[™
+Ý\‹ž‹Ô
+J”žSX]œ›Ý[™
+Ý\‹žÔ
+J”Â™›ÜŠÛÛœÝÈÙ–ËLË×J^ÚYŠJ[ZÐØ\Š	ÜÛXÙIËžžŠÜËÜÛŒK›ØÚÎŒ_JNÙ[ÙHZÐØ\Š	ÜÛXÙIËž
+ÜËž‹KÌ‹ÜÛŒK›ØÚÎŒ_J_\˜Y[Ê	Ô›ØY›ØÚÈÙ]\ZXYIÊ_Bœ˜YOYÚYŠØ[Y	‰œ˜YL
+^Ü˜YN
+ÔŠ
+JNÜ˜Y[ÊÜ˜ÚÉÓÜÝš\ÝX[8 %ÝÙY\H\ÝÛ›ÝÛˆÜÚ][Û‹‰ÎØ[YŒÉÐ[[š]ÎˆÝ\ÜXÝ\›YY[™[™Ù\›Ý\ÈIÎ‰ÔÝ\ÜXÝÛˆH[‹\œÝYHIÊ_B‰
+	ÜÝ	ÊKœÝ[K›ÜXÚ]OJÜ˜Ú	‰ŠÛØÚÊŒß
+ILŠOËŒÎŒNÂ‰
+	ÝÜ‰ÊK^ÛÛ[]ÚOÕÔÝÚWK›ŠÉÈ	ÊÛXYÖÝÚWJÉÈÈ	ÊÜ™\ÖÝÚWJÊ™[ØYŒÉÈ8§ìÉÎ‰ÉÊN‰ÉÎÉ
+	ÜÝ‰ÊK^ÛÛ[\Ý™Y]˜[YJ
+NÛ˜]’Y
+
+NÛ[\Ê
+_B‹Êˆ˜]šYØ][Ûˆ
+‹Â˜ÛÛœÝÓ’VÉÐ™\›˜]Y\ˆÝ‹‰Ë	ÕÜœÝ˜pçÙIË	Õ[\ˆ[ˆ[™[‰Ë	ÒØ\›SX\žP[YIË	ÒØ[Ý˜pçÙIË	ÓÜ˜[šY[œÝ˜pçÙIË	ÕØ\œØÚ]Y\ˆÝ‹‰×KÓ•VÉÑœšYYšXÚÝ˜pçÙIË	Ò[˜[Y[œÝ‹‰Ë	ÓZ\šYÙ\ˆÝ‹‰Ë	Ð[^[™\œÝ‹‰Ë	ÒÝ\™°ïœÝ[™[[IË	Ò\›X[›œÝ˜pçÙIË	ÔÛÛ›™[˜[YI×KÚO]O“X]›X^
+X]›Z[Š‹X]œ›Ý[™
+‹Ô
+JÌÊJNÂ™[˜Ý[ÛˆÝ™Y]˜[YJ
+^Ù›ÜŠ]ÏKLÎÚÏLÎÚÊÊÊZYŠX]˜XœÊž‹ZÊ”
+OJ\™]\›ˆÓ’ÚÊÌ×NÙ›ÜŠ]ÏKLÎÚÏLÎÚÊÊÊZYŠX]˜XœÊžZÊ”
+OJ\™]\›ˆÓ•–ÚÊÌ×NÜ™]\›ˆX]š\Ý
+žNLž‹L
+OMÉÔÜ0éIÎ‰ÔÚY]Ø[ÉßB™[˜Ý[ÛˆÛ˜\
+Š^ØÛÛœÝžSX]›X^
+UËX]›Z[ŠËX]œ›Ý[™
+‹Ô
+J”
+JKžSX]›X^
+UËX]›Z[ŠËX]œ›Ý[™
+Ô
+J”
+JNÜ™]\›ˆX]˜XœÊ‹\žŠOX]˜XœÊ\ž
+OÞÞŽœž‹Œ_NžÞœž‹Œ_B™[˜Ý[Ûˆ›Ý]J
+^ØÛÛœÝO\Û˜\
+žžŠK\Û˜\
+žžŠKVÞÞœžŽœžŸKWKZYJ‹ÊOO“X]›X^
+UËX]›Z[ŠËX]œ›Ý[™
+
+ŠÝÊKÌ‹Ô
+J”
+JNÂšYŠKš	‰˜‹š
+^ÚYŠKžˆOOX‹žŠ^ØÛÛœÝÏ[ZY
+Kž‹ž
+NÜ‹œ\Ú
+Þ˜ËŽ˜KžŸKÞ˜ËŽ˜‹žŸJ__B™[ÙHYŠXKš	‰ˆX‹š
+^ÚYŠKžOOX‹ž
+^ØÛÛœÝÏ[ZY
+Kž‹‹žŠNÜ‹œ\Ú
+Þ˜KžŽ˜ßKÞ˜‹žŽ˜ßJ__B™[ÙHYŠKš
+\‹œ\Ú
+Þ˜‹žŽ˜KžŸJNÙ[ÙH‹œ\Ú
+Þ˜KžŽ˜‹žŸJNÂœ‹œ\Ú
+‹ÞžŽžŸJNÜ™]\›ˆŸB˜ÛÛœÝ\œV×NÙ›ÜŠ]OLÚOŽÚJÊÊX\œ‹œ\Ú
+Y
+™]È›ÞÙ[ÛY]žJKŒK‹ŠK™]È“Y\Ú˜\ÚXÓX]\šX[
+ØÛÛÜŽŒ™™LJKNK˜[ÙJJNÂ™[˜Ý[Ûˆ˜]’Y
+
+^Ø\œ‹™›Ü‘XXÚ
+OO˜Kš\ÚX›OY˜[ÙJNÚYŠZOSTË›[™Ý	‰ˆ]Ü
+^Û˜]•IÉÎÜ™]\›ŸXÛÛœÝ\›Ý]JÜØšŠ
+JKÜOV×NÂ™›ÜŠ]OLNÚO‹›[™ÝÚJÊÊ^ØÛÛœÝ\–ÚWKž\–ÚKLWKž\–ÚWKž‹\–ÚKLWKž‹SX]š\Ý
+ŠNÚYŠŒJ\ÜKœ\Ú
+Ù™ÛŽ™‹Ûœ–ÚWKžŽœ–ÚWKžŸJ_B›]ÝLÜÜK™›Ü‘XXÚ
+ÏOÝ
+Ï\Ë›
+NÛ]IÐ\œš]™Y	ÎÂšYŠÜK›[™Ý
+^Û]\ÜVÌK›OLNÝÚ[JOÜK›[™Ý	‰œÜVÚWK™
+œÜVÚKLWK™
+ÜÜVÚWK™ŠœÜVÚKLWK™‹ŽJ^Ù
+Ï\ÜVÚWK›ÚJÊßBšYŠOÜK›[™Ý
+^ØÛÛœÝÏ\ÜVÚKLWK™
+œÜVÚWK™‹\ÜVÚKLWK™ŠœÜVÚWK™›OSX]˜XœÊÜVÚWK™ŠOOÔÓ’ØÚJÜVÚWKžŠWN”Ó•–ØÚJÜVÚWKž
+WNÝSX]˜XœÊÊOŒÉÓXZÙHHK]\›‰Î‰Ò[ˆ	ÊÓX]œ›Ý[™
+
+JÉÈH\›ˆ	ÊÊÏÉÛY	Î‰ÜšYÚ	ÊJÉÈÛÈ	ÊÛ›_Y[ÙHIÐÛÛ[YH	ÊÓX]œ›Ý[™
+
+JÉÈHÈ\Ý[˜][Û‰ßB›˜]•]
+ÉÈ0­È	ÊÓX]œ›Ý[™
+Ý
+JÉÈHY	ÎÂ˜ÛÛœÝ]\‹œÛXÙJK‹›[™ÝLJNÛ]ÏLÌLŽÂ™›ÜŠ]OLNÚO]›[™Ý	‰šÏŽÚJÊÊ^ØÛÛœÝ\]ÚKLWKO\]ÚWK\Kž\ž\Kž‹\ž‹SX]š\Ý
+ŠNÚYŠJXÛÛ[YNÙ›ÜŠÜÌ	‰šÏŽÜÌ
+ÏMÊ^ØÛÛœÝOX\œ–ÚÊÊ×NØKš\ÚX›O]YNØKœÜÚ][Û‹œÙ]
+ž
+ÙÛ
+œÌŒM‹žŠÙ‹Û
+œÌ
+NØKœ›Ý][Û‹žOSX]˜][ŒŠŠ_\ÌO[_B˜ÛÛœÝVÌK—K›X\
+
+
+OOžØÛÛœÝ[™]È”Ú[YÚ
+™™XLÍ
+NÜØÙ[™K˜Y
+
+NÜ™]\›ˆJNÂ™[˜Ý[Ûˆ[\Ê
+^ØÛÛœÝÏV×K^SX]œ›Ý[™
+žÔ
+K^SX]œ›Ý[™
+ž‹Ô
+NÙ›ÜŠ]OX^LNØOX^
+ÌNØJÊÊY›ÜŠ]X^‹LNØX^ŠÌNØŠÊÊY›ÜŠÛÛœÝÞÙ–ËLLLJY›ÜŠÛÛœÝÞˆÙ–ËLLLJ^ØÛÛœÝXJ”
+ÜÞXŠ”
+ÜÞŽØËœ\Ú
+Ê\ž
+JŠŒŠÊ‹\žŠJŠŒ‹—J_B˜ËœÛÜ
+
+KŠOOVÌK]–ÌJNÓ™›Ü‘XXÚ
+
+JOOžÛœÜÚ][Û‹œÙ]
+ÖÚWVÌWKËKÖÚWVÌ—JNÛš[[œÚ]O[šYÚ‹OÌKŽŒJ_B™[˜Ý[Ûˆ˜]ÓX\
+ËØË[
+^ØÛÛœÝÏXË™Ù]ÛÛ^
+	Ì™	ÊKÏXËÚYXËšZYÚXÝ\ØÝ\‹šœšÞY[Ê^ŒOÜžŒ
+NœžÞY[Ê^ŒOÜžŽŒ
+NœžŽÂ™Ë™š[Ý[OIÈÌLLÌMÉÎÙË™š[™XÝ
+Ë
+NÙËœØ]™J
+NÙË˜[œÛ]JËÌ‹ÌŠNÚYŠY[
+YËœ›Ý]JTJNÙË˜[œÛ]JXÞ
+œØËXÞŠœØÊNÂ™Ë™š[Ý[OIÈÌ˜ŒÌÎ	ÎÙ›ÜŠ]ÏKLÎÚÏLÎÚÊÊÊ^ÙË™š[™XÝ
+
+UËN
+JœØË
+Ê”N
+JœØË
+Š•ÊÌMŠJœØËMŠœØÊNÙË™š[™XÝ
+
+Ê”N
+JœØË
+UËN
+JœØËMŠœØË
+Š•ÊÌMŠJœØÊ_B™›ÜŠ]OKLÎÚOÎÚJÊÊY›ÜŠ]KLÎÚÎÚŠÊÊ^ÙË™š[Ý[OJOOKLI‰šOL
+OÉÈÌ™XLÍ	Î‰ÈÍMIÎÙË™š[™XÝ
+
+
+JËJJ”LN
+JœØË
+
+ŠËJJ”LN
+JœØËÍŠœØËÍŠœØÊ_B˜ÛÛœÝ\›Ý]JÜØšŠ
+JNÙËœÝ›ÚÙTÝ[OIÈÙ™™L	ÎÙË›[™UÚYY[ÍŒÎÙË›[™R›Ú[IÜ›Ý[™	ÎÙË˜™YÚ[”]
+
+NÜ‹™›Ü‘XXÚ
+
+JOOšOÙË›[™UÊž
+œØËžŠœØÊN™Ë›[Ý™UÊž
+œØËžŠœØÊJNÙËœÝ›ÚÙJ
+NÂ˜ÛÛœÝÝJ‹ÛÛÜJOOžÙË™š[Ý[OXÛÛÚYŠÜJYË™š[™XÝ
+
+œØËMKŠœØËMKLL
+NÙ[Ù^ÙË˜™YÚ[”]
+
+NÙË˜\˜Ê
+œØËŠœØËKÊNÙË™š[
+
+__NÂ™Ý
+LÛ˜ÛÛÛŒÉÈÍÍÍÉÎ‰ÈÌÙÍMÉËJNÚYŠZOTË›[™Ý
+^ØÛÛœÝÏ[ØšŠ
+NÙÝ
+ËžËž‹	ÈÙ™™L	Ê_\ÚYTØÛÜ™\Ë™›Ü‘XXÚ
+OO™Ý
+KžKž‹K˜ÛÛÛŒÉÈÍŽ˜ÉÎ‰ÈÙ™ŽX	ËJJNÚYŠÜ
+YÝ
+ÜžÜž‹	ÈÌNYM™™‰ÊNÂšYŠØ[Y
+XØ\œË™›Ü‘XXÚ
+OOžÚYŠK˜ZI‰œK˜ZKœÛ
+YÝ
+KžKž‹
+ÛØÚÊ
+ILÉÈÙ™ŒÌÌ	Î‰ÈÌÌŒ™‰Ê_JNÛÙ™œË™›Ü‘XXÚ
+O™Ý
+‹ž‹ž‹	ÈÙ™ŒÌÌ	ÊJNÂšYŠ[
+^ÙË™š[Ý[OIÈÙNNYXIÎÙË™›ÛIØ›ÛMØ[œË\Ù\šY‰ÎÖÖÉÕˆÝÙ\‰ËÌÌKÉÐœ˜[™[˜\™ÈØ]IËLÌLÌKÉÕY\™Ø\[‰ËLÌÌKÉÑX\ÝÚYHØ[\žIËLMLKÉÔÝÙ[Y\ˆ]‰ËLLÌKÉÔÜ0éIËLWK™›Ü‘XXÚ
+O™Ë™š[^
+ÌKÌWJœØËLÌÌ—JœØËN
+JNÂ™Ë˜[œÛ]Jž
+œØËžŠœØÊNÙËœ›Ý]JKZ
+NÙË™š[Ý[OIÈÙ™™‰ÎÙË˜™YÚ[”]
+
+NÙË›[Ý™UÊN
+NÙË›[™UÊ‹ÊNÙË›[™UÊM‹ÊNÙË™š[
+
+_B™Ëœ™\ÝÜ™J
+NÚYŠY[
+^ÙË™š[Ý[OIÈÙ™™‰ÎÙË˜™YÚ[”]
+
+NÙË›[Ý™UÊËÌ‹Ì‹LL
+NÙË›[™UÊËÌŠÍËÌŠÎ
+NÙË›[™UÊËÌ‹MËÌŠÎ
+NÙË™š[
+
+__B‰
+	ÛXÉÊK›ÛÚY[YOOžÙKœ™]™[Y˜][
+
+NÛ^SX]›X^
+KX]›Z[Š^ŠŠK™[VOÌKŒŽ‹ŽÊJJ_NÂ‰
+	ÛXÉÊK›Û˜ÛXÚÏYOOžØÛÛœÝYK\™Ù]™Ù]›Ý[™[™ÐÛY[™XÝ
+
+KÏMÜ‹ÚYØÏMÊŠ•ÊÍ
+J›^‹Þ[^ŒOÜžŒÞ[^ŒOÜžŽŒÝÜ^Þ˜Þ
+Ê
+K˜ÛY[\‹›Y
+JšËLÌŒ
+KÜØËŽ˜ÞŠÊ
+K˜ÛY[K\‹Ü
+JšËLÌŒ
+KÜØßNÝØ\Ý
+	ÕØ^\Ú[Ù]	Ê_NÂ‹ÊˆKKKKKKKKKHS”U	ˆÓÔKKKKKKKKKH
+‹Â˜ÛÛœÝÏ^ßNØY]™[\Ý[™\Š	ÚÙ^YÝÛ‰ËOOžÚYŠK˜ÛÙOOOIÑŒÉÊ^È	
+	ÙXYÉÊKšY[HI
+	ÙXYÉÊKšY[ŽÙKœ™]™[Y˜][
+
+NÜ™]\›ŸZYŠÝ]ØÙ[™Q\™XÝÜ‹˜XÝ]™I‰ŠK˜ÛÙOOOIÔÜXÙIßK˜ÛÙOOOIÑ\ØØ\IÊJ^ØÝ]ØÙ[™Q\™XÝÜ‹œÚÚ\
+
+NÙKœ™]™[Y˜][
+
+NÜ™]\›ŸZYŠÝ]OOOIÙX[ÙÝYIÊ^ÚYŠK˜ÛÙOOOIÑ\ØØ\IÊ^ÚYŠ[Ù\ŠXÛÜÙU[Ê
+NÙ[Ù^É
+	Ý[ÉÊKšY[]YNÜÝ]OIÜ^Iß_\™]\›Ÿ[]ÛÙOYK˜ÛÙNÚYŠÛÛ›Û™\Ù]	‰˜ÛÙKœÝ\ÕÚ]
+	Ð\œ›ÝÉÊJXÛÙOJÐ\œ›ÝÕ\‰ÒÙ^UÉË\œ›ÝÑÝÛŽ‰ÒÙ^TÉË\œ›ÝÓY‰ÒÙ^PIË\œ›ÝÔšYÚ‰ÒÙ^Q	ßJVØÛÙW_ÛÙNÚYŠÛÙOOOIÔÜXÙIÉ‰ˆRË”ÜXÙJZ[\]Y]YY]YNÒÖØÛÙWOLNÚYŠK˜ÛÙOOIÔÜXÙIßK˜ÛÙKœÝ\ÕÚ]
+	Ð\œ›ÝÉÊJYKœ™]™[Y˜][
+
+NÚYŠKœ™\X]Ý]HOOIÜ^IÊ\™]\›ŽÂšYŠK˜ÛÙOOIÒÙ^Q‰Ê]ÙÙÛPØ\Š
+NÙ[ÙHYŠK˜ÛÙOOIÒÙ^SIÊ^ÛX\Ü[H[X\Ü[ŽÉ
+	Û]ÉÊKœÝ[K™\Ü^O[X\Ü[ÉÙ›^	Î‰Û›Û™IÎÚYŠX\Ü[ŠYØÝ[Y[™^]Ú[\“ØÚÊ
+NÙ[ÙHØÚÊ
+_B™[ÙHYŠK˜ÛÙOOIÒÙ^PÉÊ^ÚYŠ[Û™^OML
+^Û[Û™^KOMLÚ˜ÏJ˜ÊÌJIRË›[™ÝÙ™\ÜÊYKÖÚ˜×JNÝØ\Ý
+	Ó™]È˜XÚÙ]8¢$¸ «L	Ê_Y[ÙHØ\Ý
+	Ó›Ý[›ÝYÚ[Û™^IÊ_B™[ÙHYŠK˜ÛÙOOIÒÙ^VIÊ^ÝÞJÞ
+ÌJIMÝØ\Ý
+	ÕÙX]\Žˆ	ÊÕÖ–ÝÞJ_Y[ÙHYŠK˜ÛÙOOIÒÙ^T‰Ê\™[ØY
+
+NÙ[ÙHYŠK˜ÛÙOOIÒÙ^QIÊZ[\˜XÝ
+
+NÙ[ÙHYŠK˜ÛÙOOIÒÙ^P‰ÊX^TÝY™Š
+NÙ[ÙHYŠK˜ÛÙKœÝ\ÕÚ]
+	ÑYÚ]	ÊJ^ØÛÛœÝJÙK˜ÛÙVÍWNÚYŠ	‰›ÝÛ–Û—I‰ˆXÝ\Š^ÝÚO[ŽÜÚÝÑÝ[Š
+__Y[ÙHYŠK˜ÛÙOOIÒÙ^S‰Ê^ÙÝJÝ
+ÌÊILÝØ\Ý
+	Õ[YHÚÚ\Y	Ê_B™[ÙHYŠK˜ÛÙOOIÒÙ^U‰ÊYœHYœÙ[ÙHYŠK˜ÛÙOOIÒÙ^RÉÊ^ÜØ]™J
+NÝØ\Ý
+	ÑØ[YHØ]™Y	Ê_Y[ÙHYŠK˜ÛÙOOIÒÙ^T	Ê^ÙØÝ[Y[™^]Ú[\“ØÚÊ
+NÚYŠZYØÚß[ØÚÙY
+[Y[J	Ü]\ÙIÊ__JNÂ˜Y]™[\Ý[™\Š	ÚÙ^]\	ËOOžÛ]ÛÙOYK˜ÛÙNÚYŠÛÛ›Û™\Ù]	‰˜ÛÙKœÝ\ÕÚ]
+	Ð\œ›ÝÉÊJXÛÙOJÐ\œ›ÝÕ\‰ÒÙ^UÉË\œ›ÝÑÝÛŽ‰ÒÙ^TÉË\œ›ÝÓY‰ÒÙ^PIË\œ›ÝÔšYÚ‰ÒÙ^Q	ßJVØÛÙW_ÛÙNÒÖØÛÙWOLJNØY]™[\Ý[™\Š	Ø›\‰Ë
+
+OOžÙ›ÜŠÛÛœÝÈ[ˆÊRÖÚ×OLJNÂ˜Y]™[\Ý[™\Š	Û[Ý\Ù[[Ý™IËOOžÚYŠÝ]HOOIÜ^IßX\Ü[Š\™]\›ŽÚYŠØÚÙY
+K˜]ÛœÉŒJJ^ØÞKOYK›[Ý™[Y[
+”ÔÖÜÚWNØÜSX]›X^
+KŒ‹X]›Z[ŠKŒ‹Ü
+ÙK›[Ý™[Y[J”ÔÖÜÚWJJ__JNÂ˜Ý‹˜Y]™[\Ý[™\Š	Û[Ý\ÙYÝÛ‰ËOOžÚYŠÝ]OOOIÜ^IÉ‰ˆ[ØÚÙY	‰ˆ[X\Ü[Š[ØÚÊ
+NÚYŠK˜]ÛOOL
+[[Ý\ÙQÝÛ]Y_JNØY]™[\Ý[™\Š	Û[Ý\Ù]\	Ë
+
+OO›[Ý\ÙQÝÛY˜[ÙJNÂ™ØÝ[Y[˜Y]™[\Ý[™\Š	ÜÚ[\›ØÚØÚ[™ÙIË
+
+OOžÛØÚÙYYØÝ[Y[œÚ[\“ØÚÑ[[Y[OOXÝŽÚYŠØÚÙY
+ZYØÚÏ]YNÙ[ÙHYŠÝ]OOOIÜ^IÉ‰šYØÚÉ‰ˆ[X\Ü[Š[Y[J	Ü]\ÙIÊ_JNÂœÙ][\˜[
+
+
+OOžÚYŠÝ]OOOIÜ^IÊ\Ø]™J
+_KML
+NÂ›]\Ý\\™›Ü›X[˜ÙK››ÝÊ
+K\ÝYLÂ™[˜Ý[Ûˆœ˜[YJ›ÝÊ^Ü™\]Y\Ý[š[X][Û‘œ˜[YJœ˜[YJNØÛÛœÝ˜]ÑSX]›X^
+
+›ÝË[\Ý
+KÌL
+KSX]›Z[ŠŒK˜]Ñ
+NÛ\Ý[›ÝÎÂšYŠÝ]OOOIÜ^IÉ‰ˆ[X\Ü[Š^ÚYŠÝ]ØÙ[™Q\™XÝÜ‹˜XÝ]™J^ØÛÛœÝXÝ]™OXÝ]ØÙ[™Q\™XÝÜ‹\]J
+NÚYŠXXÝ]™I‰™[™[™Ô[™[™Ê^Ù[™[™Ô[™[™ÏY˜[ÙNÙ[™[™ÐÚÚXÙJ
+__Y[ÙH\]J
+_Y[ÙHYŠÝ]OOOIÛY[IÊ^ÙÝJÝ
+ÙÍŒ
+ILÙ[Š
+NØÛÛœÝO[›ÝËÎLØØ[KœÜÚ][Û‹œÙ]
+X]œÚ[ŠJJŒMLÌX]˜ÛÜÊJJŒML
+NØØ[K›ÛÚÐ]
+K
+_BšYŠÝ]OOOIÜ^IÉ‰››ÝË[\ÝYŒLJ^ÚY
+
+NÛ\ÝY[›ÝßBœ\™‹œØ[\J˜]Ñ›ÝË
+
+OOŠÛœÜÎœYË™š[\ŠOœ™Ëš\ÚX›_›Ùš\ÚX›JK›[™Ý
+ÜÝÜžT[ÜK™š[\ŠOœ™Ëš\ÚX›JK›[™ÝØ\œÎ˜Ø\œË™š[\ŠÏO˜Ë™Ëš\ÚX›JK›[™ÝJJNÜÚÞKœÜÚ][Û‹˜ÛÜJØ[KœÜÚ][ÛŠNÜ›‹œ™[™\ŠØÙ[™KØ[J_B˜\QÙž
+
+NÙ™\ÜÊYKÖÌJNÛY[J	ÛXZ[‰ÊNÜ™\]Y\Ý[š[X][Û‘œ˜[YJœ˜[YJNÂ
