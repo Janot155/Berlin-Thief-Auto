@@ -37,9 +37,8 @@ const CORN=std(0x8f8a80,.9),shopMat=new T.MeshStandardMaterial({color:0x1b2733,r
 {const ms=[],d=new T.Object3D();for(let a=-3;a<=3;a++)for(let b=-3;b<=3;b++)for(const s of[-11,11])for(let q=-7;q<=7;q+=2){d.position.set(a*P+s,.12,b*P+q);d.scale.set(3.4,1,1);d.updateMatrix();ms.push(d.matrix.clone());d.position.set(a*P+q,.12,b*P+s);d.scale.set(1,1,3.4);d.updateMatrix();ms.push(d.matrix.clone())}
 const im=new T.InstancedMesh(new T.BoxGeometry(1,.05,1),new T.MeshBasicMaterial({color:0xd8d8d8}),ms.length);ms.forEach((m,i)=>im.setMatrixAt(i,m));scene.add(im)}
 const T1=wt(0),T2=wt(1),bm=[],TINT=[0xd9cdb8,0xc4b5a0,0xb7bcc4,0xcfa88a,0xa8b5a2,0xd0d0d0],NEON=[0xff2d95,0x19e6ff,0xfff03a,0x7dff6a];
-const BAL=[];function bld(x,z,w,h){const a=T1.clone(),b=T2.clone();a.repeat.set(w/16,h/32);b.repeat.copy(a.repeat);a.needsUpdate=b.needsUpdate=true;
-const m=new T.MeshStandardMaterial({map:a,emissiveMap:b,emissive:0xffffff,emissiveIntensity:0,color:TINT[(R()*6)|0],roughness:.85});bm.push(m);
-bmesh.push(box(w,h,w,m,x,h/2,z));addC(x,z,w/2,w/2);box(w+.8,.7,w+.8,CORN,x,h+.35,z);box(w+.3,3.4,w+.3,shopMat,x,2,z,false);box(3,1.6,3,CORN,x+R()*5-2.5,h+1.5,z+R()*5-2.5);box(6,1.2,.2,new T.MeshBasicMaterial({color:NEON[(R()*4)|0]}),x,4.5,z+(R()<.5?-1:1)*(w/2+.1),false);if(w>14&&h>16){const step=h>38?10:12;for(let y=6;y<h-3;y+=step){const o=new T.Object3D();o.position.set(x-w*.23,y,z+w/2+.72);o.updateMatrix();BAL.push(o.matrix.clone())}}}
+const BAL=[],BUILDINGS=[];
+function bld(x,z,w,h){const side=R()<.5?-1:1;BUILDINGS.push({x,z,w,h,tint:TINT[(R()*6)|0],neon:NEON[(R()*4)|0],side,roofX:x+R()*5-2.5,roofZ:z+R()*5-2.5});addC(x,z,w/2,w/2);if(w>14&&h>16){const step=h>38?10:12;for(let y=6;y<h-3;y+=step){const o=new T.Object3D();o.position.set(x-w*.23,y,z+w/2+.72);o.updateMatrix();BAL.push(o.matrix.clone())}}}
 function tower(x,z){add(cyl(1.6,3.2,100,14),std(0xc9ced4,.5,.3),x,50,z);add(new T.SphereGeometry(8.5,20,14),std(0xdfe3e8,.25,.8),x,92,z);add(cyl(.15,.7,34,8),std(0xd22222),x,125,z);addC(x,z,3.2,3.2)}
 function gate(x,z){const s=std(0xc9b88a);for(let c=0;c<6;c++)for(let r=0;r<2;r++){const px=x-15+c*6,pz=z+(r?3.5:-3.5);add(cyl(1.1,1.1,14,12),s,px,7,pz);addC(px,pz,1.2,1.2)}box(36,3.5,10,s,x,15.75,z);box(32,3,7,s,x,19,z);box(8,2.2,3,std(0x8a9055),x,21.6,z);box(5,2,1.6,std(0xb8a040,.4,.7),x,23.7,z)}
 function park(x,z){const n=45,cr=new T.InstancedMesh(new T.ConeGeometry(3,7,8),std(0x2f6b34),n),tr=new T.InstancedMesh(cyl(.35,.45,3,6),std(0x5a4030),n),d=new T.Object3D();
@@ -49,6 +48,13 @@ for(let i=-3;i<3;i++)for(let j=-3;j<3;j++){const cx=(i+.5)*P,cz=(j+.5)*P,sp=(i==
 box(44,.3,44,std(sp==3?0x3f6b3a:0x8d9096,.95),cx,.15,cz,false);
 if(sp==1)tower(cx,cz);else if(sp==2)gate(cx,cz);else if(sp==3)park(cx,cz);
 else if(i!=1||j!=0)for(let a=0;a<2;a++)for(let b=0;b<2;b++)bld(cx+(a?9.5:-9.5),cz+(b?9.5:-9.5),17,(i==1&&j==-1)?60+R()*45:(j>=1?10+R()*16:14+R()*26))}
+function putInstances(records,geometry,material,place,colorKey){if(!records.length)return null;const inst=new T.InstancedMesh(geometry,material,records.length),d=new T.Object3D();records.forEach((r,i)=>{place(d,r);d.updateMatrix();inst.setMatrixAt(i,d.matrix);if(colorKey)inst.setColorAt(i,new T.Color(r[colorKey]))});inst.instanceMatrix.needsUpdate=true;if(inst.instanceColor)inst.instanceColor.needsUpdate=true;inst.castShadow=false;inst.receiveShadow=false;scene.add(inst);return inst}
+const unitBox=new T.BoxGeometry(1,1,1),facadeMat=new T.MeshStandardMaterial({map:T1,emissiveMap:T2,emissive:0xffffff,emissiveIntensity:0,roughness:.85});
+const facade=putInstances(BUILDINGS,unitBox,facadeMat,(d,b)=>{d.position.set(b.x,b.h/2,b.z);d.scale.set(b.w,b.h,b.w)} ,'tint');if(facade)bmesh.push(facade);bm.push(facadeMat);
+putInstances(BUILDINGS,unitBox,CORN,(d,b)=>{d.position.set(b.x,b.h+.35,b.z);d.scale.set(b.w+.8,.7,b.w+.8)});
+putInstances(BUILDINGS,unitBox,shopMat,(d,b)=>{d.position.set(b.x,2,b.z);d.scale.set(b.w+.3,3.4,b.w+.3)});
+putInstances(BUILDINGS,unitBox,CORN,(d,b)=>{d.position.set(b.roofX,b.h+1.5,b.roofZ);d.scale.set(3,1.6,3)});
+putInstances(BUILDINGS,unitBox,new T.MeshBasicMaterial({color:0xffffff}),(d,b)=>{d.position.set(b.x,4.5,b.z+b.side*(b.w/2+.1));d.scale.set(6,1.2,.2)},'neon');
 for(let i=0;i<12;i++){const z=-165+i*30;box(1,4.5,26,std(new T.Color().setHSL(R(),.7,.5),.7),-187,2.25,z);addC(-187,z,.6,13)}
 const lampMat=new T.MeshBasicMaterial({color:0x555555}),sigX=new T.InstancedMesh(new T.BoxGeometry(.5,.5,.5),new T.MeshBasicMaterial(),49),sigZ=new T.InstancedMesh(new T.BoxGeometry(.5,.5,.5),new T.MeshBasicMaterial(),49);
 {const pm=new T.InstancedMesh(cyl(.12,.15,8,6),std(0x333840),196),lm=new T.InstancedMesh(new T.SphereGeometry(.5,8,6),lampMat,196),d=new T.Object3D();let n=0,q=0;
@@ -82,18 +88,17 @@ mesh(liteGeo.body,top,g,0,1.2,0);mesh(liteGeo.head,skin,g,0,1.72,.01,1,1.15,1);
 const limb=(x,y,mat)=>{const p=new T.Group();p.position.set(x,y,0);g.add(p);mesh(liteGeo.limb,mat,p,0,-.34,0);return p};
 L.ll=limb(-.12,.92,bottom);L.rl=limb(.12,.92,bottom);L.la=limb(-.29,1.42,top);L.ra=limb(.29,1.42,top);g.L=L;scene.add(g);return g}
 const SP={hatch:{n:'Hatchback',col:0x3b6ea8,w:1.8,h:.75,l:4,max:36,acc:13,brk:30,turn:2.2},sports:{n:'Sports car',col:0xe2231a,w:1.9,h:.6,l:4.4,max:58,acc:24,brk:40,turn:2.6},van:{n:'Van',col:0xe4e4e0,w:2,h:1.5,l:5.2,max:30,acc:9,brk:24,turn:1.7},bus:{n:'Bus',col:0xffd900,w:2.5,h:2.8,l:10,max:24,acc:6,brk:18,turn:1.2,bus:1},sedan:{n:'Executive sedan',col:0x596271,w:1.9,h:.9,l:4.8,max:42,acc:14,brk:33,turn:2},suv:{n:'City SUV',col:0x52634d,w:2.1,h:1.25,l:4.9,max:38,acc:12,brk:28,turn:1.8},taxi:{n:'Berlin taxi',col:0xe2c642,w:1.9,h:.9,l:4.7,max:40,acc:13,brk:32,turn:2,taxi:1},courier:{n:'Courier van',col:0x397b76,w:2,h:1.8,l:5.4,max:32,acc:10,brk:26,turn:1.7},coupe:{n:'Street coupe',col:0x773e68,w:1.85,h:.58,l:4.25,max:54,acc:21,brk:38,turn:2.5},pickup:{n:'Utility pickup',col:0xa76535,w:2.05,h:1.15,l:5.3,max:35,acc:11,brk:26,turn:1.7},police:{n:'Police car',col:0x2043a0,w:1.9,h:.8,l:4.5,max:46,acc:20,brk:34,turn:2.4,pol:1}};
-const cars=[];let cur=null;const shellCache=new Map();
+const cars=[];let cur=null;const shellCache=new Map(),wheelGeometry=cyl(.38,.38,.26,12),tireMat=std(0x111315,.92),glassMat=new T.MeshStandardMaterial({color:0x293d49,metalness:.38,roughness:.28}),lightMat=new T.MeshBasicMaterial({color:0xffffff});
 function mkCar(k,x,z,h,ai){const s=SP[k],g=new T.Group(),b=new T.Group(),bodyM=std(s.col,.35,.5).clone();g.add(b);
-const part=(w,hh,l,m,y,zz)=>{const o=new T.Mesh(boxGeometry(w,hh,l),m);o.position.set(0,y,zz);o.castShadow=false;b.add(o);return o};
-let shell=shellCache.get(k);if(!shell){const profile=new T.Shape();profile.moveTo(-s.l*.5,0);profile.lineTo(s.l*.5,0);profile.lineTo(s.l*.5,s.h*.58);profile.lineTo(s.l*.3,s.h*.67);profile.lineTo(s.l*.17,s.h+.22);profile.lineTo(-s.l*.2,s.h+.22);profile.lineTo(-s.l*.4,s.h*.62);profile.lineTo(-s.l*.5,s.h*.58);profile.closePath();shell=new T.ExtrudeGeometry(profile,{depth:s.w,bevelEnabled:true,bevelSegments:2,steps:1,bevelSize:.055,bevelThickness:.055});shell.translate(0,0,-s.w/2);shell.rotateY(-Math.PI/2);shell.translate(0,.35,0);shellCache.set(k,shell)}const shellMesh=new T.Mesh(shell,bodyM);shellMesh.castShadow=false;shellMesh.receiveShadow=false;b.add(shellMesh);const dk=std(0x141a24,.2,.6);
-if(s.bus)part(s.w+.04,1,s.l*.92,dk,2.3,0);else{const cabinW=s.w*.86,cabinH=s.h*.7,cabinL=s.l*(s.taxi?.54:.5),cabinY=s.h+.35+s.h*.35,cabinZ=-s.l*.05;part(cabinW,cabinH,cabinL,dk,cabinY,cabinZ);const glass=new T.MeshStandardMaterial({color:0x80a1b3,metalness:.55,roughness:.18,transparent:true,opacity:.84});const front=part(cabinW*.82,cabinH*.72,.07,glass,cabinY,cabinZ+cabinL*.49);front.rotation.x=-.22;const rear=part(cabinW*.78,cabinH*.68,.06,glass,cabinY,cabinZ-cabinL*.49);rear.rotation.x=.22;for(const side of[-1,1]){const pane=part(.055,cabinH*.62,cabinL*.67,glass,cabinY,cabinZ);pane.position.x=side*(cabinW/2+.012)}}if(s.taxi)part(.65,.18,.55,std(0xf5e6a6,.5),s.h+1.05,0);if(s.n==='Utility pickup'){for(const x of[-1,1]){const rail=part(.08,.45,s.l*.28,bodyM,.95,-s.l*.26);rail.position.x=x*s.w*.45}}
-const hm=new T.MeshBasicMaterial({color:0xfff2c0}),tl=new T.MeshBasicMaterial({color:0xaa1111});
-for(const sx of[-1,1]){part(.4,.2,.1,hm,.65,s.l/2).position.x=sx*s.w*.32;part(.4,.2,.1,tl,.65,-s.l/2).position.x=sx*s.w*.32}
-part(s.w*1.03,.25,.3,dk,.5,s.l/2);part(s.w*1.03,.25,.3,dk,.5,-s.l/2);part(s.w*.48,.22,.06,dk,.55,s.l/2+.16);for(const sx of[-1,1]){const lamp=part(.34,.16,.07,hm,.68,s.l/2+.19);lamp.position.x=sx*s.w*.32;const brake=part(.3,.13,.07,tl,.68,-s.l/2-.16);brake.position.x=sx*s.w*.32;part(.12,.12,.25,dk,s.h+.5,s.l*.12).position.x=sx*(s.w/2+.08)}
-const wh=[];for(const sx of[-1,1])for(const sz of[-1,1]){const p=new T.Group();p.position.set(sx*s.w/2,.38,sz*s.l*.32);const m=new T.Mesh(cyl(.38,.38,.26,16),std(0x111111));m.rotation.z=PI/2;p.add(m);const hub=new T.Mesh(new T.CylinderGeometry(.19,.19,.275,16),std(0x9ba2a7,.35,.75));hub.rotation.z=PI/2;p.add(hub);g.add(p);wh.push(p)}
-const bar=s.pol?part(.9,.2,.3,new T.MeshBasicMaterial({color:0xff0000}),s.h+1.1,0):null;
+let shell=shellCache.get(k);if(!shell){const profile=new T.Shape();profile.moveTo(-s.l*.5,0);profile.lineTo(s.l*.5,0);profile.lineTo(s.l*.5,s.h*.58);profile.lineTo(s.l*.3,s.h*.67);profile.lineTo(s.l*.17,s.h+.22);profile.lineTo(-s.l*.2,s.h+.22);profile.lineTo(-s.l*.4,s.h*.62);profile.lineTo(-s.l*.5,s.h*.58);profile.closePath();profile.closePath();shell=new T.ExtrudeGeometry(profile,{depth:s.w,bevelEnabled:false,steps:1});shell.translate(0,0,-s.w/2);shell.rotateY(-Math.PI/2);shell.translate(0,.35,0);shellCache.set(k,shell)}
+const shellMesh=new T.Mesh(shell,bodyM);b.add(shellMesh);
+const cabinW=s.w*.84,cabinH=s.bus?1.8:Math.max(.34,s.h*.66),cabinL=s.bus?s.l*.44:s.l*(s.taxi?.5:.46),cabinY=s.bus?2.25:s.h+.35+s.h*.32,cabinZ=s.bus?s.l*.22:-s.l*.05;
+const cabin=new T.Mesh(boxGeometry(cabinW,cabinH,cabinL),glassMat);cabin.position.set(0,cabinY,cabinZ);b.add(cabin);
+const wheels=new T.InstancedMesh(wheelGeometry,tireMat,4),d=new T.Object3D();let wi=0;for(const sx of[-1,1])for(const sz of[-1,1]){d.position.set(sx*s.w/2,.38,sz*s.l*.32);d.rotation.set(0,0,PI/2);d.updateMatrix();wheels.setMatrixAt(wi++,d.matrix)}wheels.instanceMatrix.needsUpdate=true;b.add(wheels);
+const lights=new T.InstancedMesh(boxGeometry(.28,.13,.08),lightMat,4);wi=0;for(const sx of[-1,1])for(const front of[true,false]){d.position.set(sx*s.w*.32,.72,front?s.l/2:-s.l/2);d.rotation.set(0,0,0);d.scale.set(1,1,1);d.updateMatrix();lights.setMatrixAt(wi,d.matrix);lights.setColorAt(wi,new T.Color(front?0xfff2c0:0xaa1111));wi++}lights.instanceMatrix.needsUpdate=true;lights.instanceColor.needsUpdate=true;b.add(lights);
+let bar=null;if(s.pol){bar=new T.Mesh(boxGeometry(.9,.2,.3),new T.MeshBasicMaterial({color:0xff2020}));bar.position.set(0,s.h+1.1,0);b.add(bar)}
 g.position.set(x,0,z);g.rotation.y=h;scene.add(g);
-const c={s,g,b,bodyM,base:new T.Color(s.col),wh,bar,x,z,h,v:0,sv:0,pv:0,dmg:0,ai,tv:0,stuck:0,r:.8+s.l*.17};cars.push(c);return c}
+const c={s,g,b,bodyM,base:new T.Color(s.col),wh:[],bar,x,z,h,v:0,sv:0,pv:0,dmg:0,ai,tv:0,stuck:0,r:.8+s.l*.17};cars.push(c);return c}
 function carPhys(c,dt,thr,str,hb){const s=c.s;
 if(thr>0)c.v+=thr*s.acc*(1-Math.max(0,c.v)/s.max)*dt;
 else if(thr<0){if(c.v>1)c.v-=s.brk*dt;else c.v-=s.acc*.5*(1-Math.max(0,-c.v)/(s.max*.3))*dt}
@@ -109,9 +114,9 @@ c.b.rotation.z+=(-c.sv*Math.min(1,Math.abs(c.v)/30)*.1-c.b.rotation.z)*.15;c.b.r
 c.bodyM.color.copy(c.base).multiplyScalar(1-Math.min(.7,c.dmg/150));if(c.bar)c.bar.material.color.setHex((clock*6|0)%2?0xff2020:0x2060ff)}
 mkCar('hatch',20,-6.5,PI/2);mkCar('sports',30,-6.5,PI/2);mkCar('van',40,-6.5,PI/2);mkCar('bus',-60+6.5,20,0);mkCar('sedan',50,-6.5,PI/2);mkCar('suv',60,-6.5,PI/2);mkCar('taxi',70,-6.5,PI/2);mkCar('courier',80,-6.5,PI/2);mkCar('coupe',90,-6.5,PI/2);mkCar('pickup',100,-6.5,PI/2);
 const trK=['hatch','sedan','van','sports','bus','suv','taxi','courier','coupe','pickup'];
-for(let i=0;i<26;i++){const ax=R()<.5?'x':'z',sg=R()<.5?-1:1,k=(R()*7|0)-3,u=R()*340-170;
+for(let i=0;i<14;i++){const ax=R()<.5?'x':'z',sg=R()<.5?-1:1,k=(R()*7|0)-3,u=R()*340-170;
 const c=mkCar(trK[i%trK.length],ax=='x'?u:k*P-sg*4,ax=='x'?k*P+sg*4:u,ax=='x'?sg*PI/2:(sg>0?0:PI),{ax,sg});c.cruise=11+R()*7}
-const peds=[];for(let i=0;i<64;i++){const shirt=new T.Color().setHSL(R(),.5,.45).getHex(),pants=new T.Color().setHSL(R(),.3,.2).getHex(),g=human(shirt,pants),lod=humanLite(shirt,pants);g.visible=false;lod.visible=false;peds.push({stand:R()<.25,g,lod,ax:R()<.5?'x':'z',k:(R()*7|0)-3,sd:R()<.5?-1:1,sg:R()<.5?-1:1,u:R()*340-170,dead:0,ph:R()*9})}
+const peds=[];for(let i=0;i<40;i++){const shirt=new T.Color().setHSL(R(),.5,.45).getHex(),pants=new T.Color().setHSL(R(),.3,.2).getHex(),g=human(shirt,pants),lod=humanLite(shirt,pants);g.visible=false;lod.visible=false;peds.push({stand:R()<.25,g,lod,ax:R()<.5?'x':'z',k:(R()*7|0)-3,sd:R()<.5?-1:1,sg:R()<.5?-1:1,u:R()*340-170,dead:0,ph:R()*9})}
 const me=human(JC[0],0x1c1f2a,true),pl={x:12,y:0,z:12,h:0},pv={x:0,z:0};let vy=0,ph=0,jumpQueued=false;
 const cutsceneDirector=new CutsceneDirector(cam,$('cin'),$('cinText'),()=>new T.Vector3(pl.x,pl.y+1,pl.z));
 const storyPeople=CAST.map(c=>{const g=human(c.shirt,c.pants);g.position.set(c.x,0,c.z);g.rotation.y=c.h;g.visible=false;return{...c,g,visits:0}});
@@ -133,7 +138,7 @@ mb.innerHTML='';b.forEach(([t,f])=>{const e=document.createElement('button');e.t
 function lock(){/* Pointer lock is optional; drag-look is available without browser permission. */}
 function resume(){state='play';$('ov').style.display='none';lock()}
 function cutscene(which,phase='intro'){let beats;if(typeof which==='number')beats=CAMPAIGN_CUTSCENES[which]?.[phase];else beats=[{speaker:'NIKO',line:String(which),camera:[18,10,22],look:[0,1,0],duration:3.2}];cutsceneDirector.play(beats)}
-function seedCrowd(){for(const p of peds){const x=p.ax==='x'?p.u:p.k*P+p.sd*10.5,z=p.ax==='x'?p.k*P+p.sd*10.5:p.u,d=Math.hypot(x-pl.x,z-pl.z);p.g.position.set(x,0,z);p.lod.position.set(x,0,z);p.g.visible=d<42;p.lod.visible=d>=42&&d<150}for(const a of storyPeople)a.g.visible=Math.hypot(a.x-pl.x,a.z-pl.z)<125}
+function seedCrowd(){for(const p of peds){const x=p.ax==='x'?p.u:p.k*P+p.sd*10.5,z=p.ax==='x'?p.k*P+p.sd*10.5:p.u,d=Math.hypot(x-pl.x,z-pl.z);p.g.position.set(x,0,z);p.lod.position.set(x,0,z);p.g.visible=d<24;p.lod.visible=d>=24&&d<110}for(const a of storyPeople)a.g.visible=Math.hypot(a.x-pl.x,a.z-pl.z)<95}
 function start(s){audio();money=300;mi=0;stage=0;mt=0;houseRepair=0;hp=100;wanted=0;jc=0;gt=17;pl.x=12;pl.z=12;stats={kills:0,dist:0};storyChoices={};talker=null;cutsceneDirector.skip();$('talk').hidden=true;
 if(s){money=s.m;mi=s.mi;stage=s.st||0;mt=s.mt||0;houseRepair=s.hr||0;pl.x=s.x;pl.z=s.z;jc=s.jc;gt=s.gt;stats.kills=s.k||0;storyChoices=s.q&&typeof s.q==='object'?s.q:{}}
 cur=null;dress(me,JC[jc]);resetWeapons(s);cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar);seedCrowd();resume();if(s&&mi>=MS.length&&storyChoices.ending===undefined)endingChoice()}
@@ -188,13 +193,13 @@ c.v+=(tv-c.v)*Math.min(1,dt*(tv<c.v?2.5:.8));c.x+=Math.sin(c.h)*c.v*dt;c.z+=Math
 if(a.ax=='x'&&Math.abs(c.x)>W+4)c.x=-Math.sign(c.x)*(W+3);if(a.ax=='z'&&Math.abs(c.z)>W+4)c.z=-Math.sign(c.z)*(W+3);
 if(!cur&&Math.abs(c.v)>5&&d<c.r+.6&&hurtT<=0){hurt(20);hurtT=.8;pv.x=Math.sin(c.h)*8;pv.z=Math.cos(c.h)*8}}
 else{c.v*=Math.pow(.05,dt);c.x+=Math.sin(c.h)*c.v*dt;c.z+=Math.cos(c.h)*c.v*dt;wall(c)}
-c.g.visible=d<145;if(c.g.visible)visual(c,dt)}
+c.g.visible=d<88;if(c.g.visible)visual(c,dt)}
 hurtT-=dt;combat(dt,near,polN);
 for(const p of peds){const x=p.ax=='x'?p.u:p.k*P+p.sd*10.5,z=p.ax=='x'?p.k*P+p.sd*10.5:p.u,d=Math.hypot(x-pl.x,z-pl.z);
-if(d>150){p.g.visible=false;p.lod.visible=false;continue}
-if(p.dead>0){p.dead-=dt;p.g.visible=d<42;p.lod.visible=d>=42;if(p.dead<=0){p.g.rotation.x=p.lod.rotation.x=0;p.g.position.y=p.lod.position.y=0}continue}
+if(d>115){p.g.visible=false;p.lod.visible=false;continue}
+if(p.dead>0){p.dead-=dt;p.g.visible=d<24;p.lod.visible=d>=24;if(p.dead<=0){p.g.rotation.x=p.lod.rotation.x=0;p.g.position.y=p.lod.position.y=0}continue}
 p.flee=Math.max(0,(p.flee||0)-dt);if(d<125&&(!p.stand||p.flee>0))p.u+=p.sg*(p.flee>0?5.2:1.4)*dt;if(Math.abs(p.u)>W+10)p.u=-Math.sign(p.u)*(W+9);
-const px=p.ax=='x'?p.u:p.k*P+p.sd*10.5,pz=p.ax=='x'?p.k*P+p.sd*10.5:p.u,heading=Math.atan2(p.ax=='x'?p.sg:0,p.ax=='z'?p.sg:0),detail=d<42,actor=detail?p.g:p.lod;
+const px=p.ax=='x'?p.u:p.k*P+p.sd*10.5,pz=p.ax=='x'?p.k*P+p.sd*10.5:p.u,heading=Math.atan2(p.ax=='x'?p.sg:0,p.ax=='z'?p.sg:0),detail=d<24,actor=detail?p.g:p.lod;
 p.g.visible=detail;p.lod.visible=!detail;p.g.position.set(px,0,pz);p.lod.position.set(px,0,pz);p.g.rotation.y=p.lod.rotation.y=heading;
 if(!p.stand||p.flee>0){p.ph+=dt*(p.flee>0?11:6);const a=Math.sin(p.ph)*.6,L=actor.L;L.ll.rotation.x=a;L.rl.rotation.x=-a;L.la.rotation.x=-a;L.ra.rotation.x=a}
 if(cur&&Math.abs(cur.v)>5&&Math.hypot(px-cur.x,pz-cur.z)<cur.r+.6){p.dead=6;p.g.rotation.x=p.lod.rotation.x=-1.5;p.g.position.y=p.lod.position.y=.3;stats.kills++;crime(1)}}
