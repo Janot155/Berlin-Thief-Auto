@@ -1,12 +1,17 @@
-export const MISSIONS = [['Lena’s tip','Meet Lena at the Brandenburg Gate. On foot is fine.',30,14,-30,-12,0,0,150, 'Lena: You made it. I had a speech ready, but the bus ate my notes.'],
-['Dead drop','Run the package from the Gate to Tiergarten.',-30,-12,-30,30,0,45,250, 'Lena: Take this package to the park. If it starts talking, do not talk back.'],
-['Gallery run','Grab a car and reach the East Side Gallery.',-30,30,-178,60,1,75,400, 'Mika: The car is blue. The map is yellow. Somehow I am still the confusing one.'],
-['Alexanderplatz delivery','Drive back to the TV tower plaza.',-178,60,30,12,1,70,400, 'Mika: Alexanderplatz. Try not to let the sat-nav become the third person in this relationship.'],
-['Potsdamer rush','Race the clock to Potsdamer Platz.',30,12,120,-60,1,50,700, 'Lena: Potsdamer Platz. The clock is ticking, and Mika has an extremely cheap watch.'],
-['Night shift','Meet the crew by the Späti, then drive to the canal yard.',96,30,-90,-90,1,120,600, 'Mika: Canal yard. I brought a thermos. It contains coffee or a very ambitious soup.'],
-['Blue lights','Drive across town and lose the search before reaching the rendezvous.',-90,-90,90,90,1,150,850, 'Lena: Lose the search. Niko says he has a plan. Niko also thinks turn signals are optional.'],
-['First light','Get back to the Brandenburg Gate to close the night.',90,90,0,0,0,100,1200, 'Lena: Meet me at the Gate. I will be the one pretending this was all very organized.'],
-['A new face','Meet Niko, a mechanic with a plan and a place to stay.',96,30,-90,90,0,0,300, 'Niko: I am the mechanic. The flat is mostly sound. One wall is load-bearing emotionally.'],
-['The night shift','Meet Niko at the bank district and keep the fictional job moving.',-90,90,120,-120,1,140,650, 'Niko: The bank job is a fictional crew caper. Follow the glowing objectives; I made them very obvious.'],
-['Get clear','Drive away from the bank district and reach the safe flat.',120,-120,-140,150,1,160,900, 'Niko: Plan B is still a plan. Drive to the flat before the city notices our parking.'],
-['A place of your own','Meet Niko outside the flat, then repair it in four €200 steps.',-140,150,-140,150,0,0,500, 'Niko: Welcome home. The ceiling leaks in exactly four places. I counted.']];
+// Mission tuple: title, objective, trigger X/Z, destination X/Z, car required,
+// time limit (seconds; 0 = relaxed), reward, legacy subtitle, required conversation id.
+// Each objective is a reachable city landmark, so missions remain completable on foot.
+export const MISSIONS = [
+  ['Welcome to Berlin','Find Deniz at the station and talk to him.',12,12,12,12,0,0,150,'Deniz: Berlin traffic missed you. Parking signs did not.','deniz'],
+  ['The garage','Visit Mila at her garage and hear what has changed.',12,12,-53,6,0,0,250,'Mila: The garage is standing. The gearbox is still negotiating.','mila'],
+  ['Easy money','Take the delivery across town before the timer runs out.',-45,20,-30,30,1,105,400,'Deniz: One small delivery. Almost suspiciously ordinary.'],
+  ['Trouble at the kiosk','Reach the Späti and help Rafi with a staged safety drill.',-30,30,90,24,0,0,450,'Rafi: Please tell me this is some kind of rehearsal.','clerk'],
+  ['Brother’s call','Go to Jonas’s neighborhood and hear him out.',90,24,120,8,0,0,500,'Jonas: I needed time. That is not the same as not caring.','jonas'],
+  ['Night in the city','Meet the crew at Alexanderplatz for one evening off.',120,4,30,12,0,0,500,'Mila: No errands. No garage. No arguments with parking meters.'],
+  ['The wrong address','Follow the lead to the canal yard and get out safely.',30,12,-90,-90,1,170,700,'Contact: You were told to meet me alone.'],
+  ['Rain and consequences','Drive through the storm to the rendezvous.',-90,-90,90,90,1,160,800,'Mila: Rain, a warning light, and a car behind us. Normal.'],
+  ['The missing witness','Meet Lena and compare the clues.',90,90,-30,-30,0,0,650,'Lena: Four places, four stories. Let’s find the facts.','lena'],
+  ['The long ride','Pick up Deniz and make it back across town.',-30,-30,12,12,1,180,750,'Deniz: I know every shortcut. Half of them are roads.','deniz'],
+  ['The final deal','Reach Brandt’s district, then talk to him.',12,12,120,-120,1,190,1000,'Mila: We have the team, the evidence and a route.','viktor'],
+  ['Everything changes','Reach the safe flat, finish the repairs and speak with Niko.',120,-120,-140,150,0,0,1500,'Niko: Welcome home. The ceiling leaks in exactly four places.','niko']
+];
