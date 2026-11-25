@@ -18,6 +18,7 @@ export class PerformanceMonitor {
     this.frameMs = 0;
     this.lastPanel = 0;
     this.lastAdapt = 0;
+    this.cinematic = false;
     this.maxPixel = 0.4;
     this.pixelScale = 0.4;
     this.set(this.quality);
@@ -40,6 +41,23 @@ export class PerformanceMonitor {
   cycle() { return this.set((this.quality + 1) % QUALITY.length); }
   name() { return QUALITY[this.quality].name; }
 
+  beginCinematic() {
+    if (this.cinematic) return;
+    this.cinematic = true;
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 0.4));
+    this.renderer.shadowMap.enabled = false;
+    this.light.castShadow = false;
+  }
+
+  endCinematic() {
+    if (!this.cinematic) return;
+    this.cinematic = false;
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, this.pixelScale));
+    const q = QUALITY[this.quality];
+    this.renderer.shadowMap.enabled = !!q.shadow;
+    this.light.castShadow = !!q.shadow;
+  }
+
   sample(dt, now, counts = {}) {
     this.frames++;
     this.total += dt;
@@ -53,7 +71,7 @@ export class PerformanceMonitor {
       const before = this.pixelScale;
       if (this.fps < 24) this.pixelScale = Math.max(0.3, before * 0.72);
       else if (this.fps < 38) this.pixelScale = Math.max(0.35, before - 0.08);
-      else if (this.fps > 52) this.pixelScale = Math.min(this.maxPixel, before + 0.04);
+      else if (this.fps > 52) this.pixelScale = Math.min(this.cinematic ? 0.4 : this.maxPixel, before + 0.04);
       if (Math.abs(before - this.pixelScale) >= 0.035) this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, this.pixelScale));
       this.lastAdapt = now;
     }

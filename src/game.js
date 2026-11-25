@@ -118,7 +118,7 @@ for(let i=0;i<8;i++){const ax=R()<.5?'x':'z',sg=R()<.5?-1:1,k=(R()*7|0)-3,u=R()*
 const c=mkCar(trK[i%trK.length],ax=='x'?u:k*P-sg*4,ax=='x'?k*P+sg*4:u,ax=='x'?sg*PI/2:(sg>0?0:PI),{ax,sg});c.cruise=11+R()*7}
 const peds=[];for(let i=0;i<22;i++){const shirt=new T.Color().setHSL(R(),.5,.45).getHex(),pants=new T.Color().setHSL(R(),.3,.2).getHex(),g=human(shirt,pants),lod=humanLite(shirt,pants);g.visible=false;lod.visible=false;peds.push({stand:R()<.25,g,lod,ax:R()<.5?'x':'z',k:(R()*7|0)-3,sd:R()<.5?-1:1,sg:R()<.5?-1:1,u:R()*340-170,dead:0,ph:R()*9})}
 const me=human(JC[0],0x1c1f2a,true),pl={x:12,y:0,z:12,h:0},pv={x:0,z:0};let vy=0,ph=0,jumpQueued=false;
-const cutsceneDirector=new CutsceneDirector(cam,$('cin'),$('cinText'),()=>new T.Vector3(pl.x,pl.y+1,pl.z));
+const cutsceneDirector=new CutsceneDirector(cam,$('cin'),$('cinText'),()=>new T.Vector3(pl.x,pl.y+1,pl.z),perf);
 const storyPeople=CAST.map(c=>{const g=human(c.shirt,c.pants);g.position.set(c.x,0,c.z);g.rotation.y=c.h;g.visible=false;return{...c,g,visits:0}});
 let storyChoices={},talker=null;
 const hl=new T.SpotLight(0xfff0cc,0,70,.55,.6);hl.target=new T.Object3D();scene.add(hl,hl.target);
