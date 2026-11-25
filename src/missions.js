@@ -1,0 +1,12 @@
+export const MISSIONS = [['Lena’s tip','Meet Lena at the Brandenburg Gate. On foot is fine.',30,14,-30,-12,0,0,150, 'Lena: You made it. I had a speech ready, but the bus ate my notes.'],
+['Dead drop','Run the package from the Gate to Tiergarten.',-30,-12,-30,30,0,45,250, 'Lena: Take this package to the park. If it starts talking, do not talk back.'],
+['Gallery run','Grab a car and reach the East Side Gallery.',-30,30,-178,60,1,75,400, 'Mika: The car is blue. The map is yellow. Somehow I am still the confusing one.'],
+['Alexanderplatz delivery','Drive back to the TV tower plaza.',-178,60,30,12,1,70,400, 'Mika: Alexanderplatz. Try not to let the sat-nav become the third person in this relationship.'],
+['Potsdamer rush','Race the clock to Potsdamer Platz.',30,12,120,-60,1,50,700, 'Lena: Potsdamer Platz. The clock is ticking, and Mika has an extremely cheap watch.'],
+['Night shift','Meet the crew by the Späti, then drive to the canal yard.',96,30,-90,-90,1,120,600, 'Mika: Canal yard. I brought a thermos. It contains coffee or a very ambitious soup.'],
+['Blue lights','Drive across town and lose the search before reaching the rendezvous.',-90,-90,90,90,1,150,850, 'Lena: Lose the search. Niko says he has a plan. Niko also thinks turn signals are optional.'],
+['First light','Get back to the Brandenburg Gate to close the night.',90,90,0,0,0,100,1200, 'Lena: Meet me at the Gate. I will be the one pretending this was all very organized.'],
+['A new face','Meet Niko, a mechanic with a plan and a place to stay.',96,30,-90,90,0,0,300, 'Niko: I am the mechanic. The flat is mostly sound. One wall is load-bearing emotionally.'],
+['The night shift','Meet Niko at the bank district and keep the fictional job moving.',-90,90,120,-120,1,140,650, 'Niko: The bank job is a fictional crew caper. Follow the glowing objectives; I made them very obvious.'],
+['Get clear','Drive away from the bank district and reach the safe flat.',120,-120,-140,150,1,160,900, 'Niko: Plan B is still a plan. Drive to the flat before the city notices our parking.'],
+['A place of your own','Meet Niko outside the flat, then repair it in four €200 steps.',-140,150,-140,150,0,0,500, 'Niko: Welcome home. The ceiling leaks in exactly four places. I counted.']];
