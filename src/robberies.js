@@ -1,1 +1,9 @@
-Û^š›bh¥êß¢¹­…â'ŠØš–,ŞçÚº[C®+Ş²Š^­«b¢z'¶…ŠW’ÊË^ššè¾'^­ö¢•çKËÈšXİ[Û˜[\˜ØYK\İ[HÜ[Û˜[Ø\ÚÚ[[™Ù\ÈÜ™XYXÜ›ÜÜÈH^[™YÚ]K‚™^ÜÛÛœİĞTÒÒ“Ğ”ÈHÂˆÈˆLŒˆMŒX™[ˆ	ÔİÙ[Y\ˆÚ[ÜÚÉË™]Ø\™ˆÛÛÛˆKˆÈˆLLŒˆŒX™[ˆ	Ô™XÛÜ™ÚÜÛİ[\‰Ë™]Ø\™ˆÍŒÛÛÛˆKˆÈˆÍŒˆX™[ˆ	ĞØ[˜[\˜ØYIË™]Ø\™ˆŒÛÛÛˆKˆÈˆMŒˆLÌX™[ˆ	ÕÙ\İX\šÙ]İ[™	Ë™]Ø\™ˆÛÛÛˆKˆÈˆMˆMMX™[ˆ	Ôš]™\™œ›Û^Ú[™ÙIË™]Ø\™ˆŒŒÛÛÛˆKˆÈˆMŒˆMX™[ˆ	Ó›Ü˜[šÈšYÚ\ÚÉË™]Ø\™ˆÌÛÛÛˆB—NÂ
+// Fictional arcade-style optional cash challenges spread across the expanded city.
+export const CASH_JOBS = [
+  { x: 120, z: -60, label: 'Potsdamer kiosk', reward: 280, cool: 0 },
+  { x: -120, z: 60, label: 'Record shop counter', reward: 360, cool: 0 },
+  { x: 360, z: 240, label: 'Canal arcade', reward: 420, cool: 0 },
+  { x: -420, z: -300, label: 'West market stand', reward: 480, cool: 0 },
+  { x: 540, z: -540, label: 'Riverfront exchange', reward: 620, cool: 0 },
+  { x: -660, z: 540, label: 'Northbank night desk', reward: 700, cool: 0 }
+];

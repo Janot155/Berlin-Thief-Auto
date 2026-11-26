@@ -1,65 +1,39 @@
-Û^š›bžh¥êß¢¹­…â'ŠØš–,ÞçÚº[C®+Þ²Š^­«b¢z'¶…ŠW’ÊË^ššè¾'^­ö¢•çKËÈÜšYÚ[˜[ÚÜY›Ü›HØ[Y\˜KÙX[ÙÝYH™X]È›Üˆ[Ù[™HZ\ÜÚ[ÛœË‚‹ËÈØ[Y\˜HÙ™œÙ]È\™H™[]]™HÈ[^ÙY\[™ÈXXÚØÙ[™H›Ø\Ý][žHÜ]ÛˆÚ[‚˜ÛÛœÝ™X]H
-ÜXZÙ\‹[™KØ[Y\˜K\˜][ÛˆH‹‹ÛÚÈHÌKŒKJHOˆ
-ÈÜXZÙ\‹[™KØ[Y\˜K\˜][Û‹ÛÚÈJNÂ˜ÛÛœÝØÙ[™HH
-[›ËÝ]›ÊHOˆ
-È[›ËÝ]›ÈJNÂ‚™^ÜÛÛœÝÐSTRQÓ—ÐÕUÐÑS‘TÈHÂˆØÙ[™JØ™X]
-	ÑS’V‰Ë	ÕÙ[ÛÛYH˜XÚÈÈ™\›[‹ˆH˜Y™šXÈZ\ÜÙY[ÝKˆH\šÚ[™ÈÚYÛœÈY›Ý‰ËÌŒ‹L‹JK™X]
-	ÐSV	Ë	ÒHØ\ÈÜ[™ÈHÚ]HYX\›™YÈ™Z]™HÚ[HHØ\ÈÛÛ™K‰ËÍËLJK™X]
-	ÓRSIË	Ñš[™HØ\˜YÙKˆH]™HHØ\ˆ]Û›HXZÙ\È™YHÛÜœžZ[™È›Ú\Ù\È›ÝË‰ËËNËWJWKØ™X]
-	ÑS’V‰Ë	ÐÚ]HÝ\ˆÛÛ\]KˆHÚ\™ÙH^˜H›Üˆ[[Ý[Û˜[Ý\Ü‰ËÌL‹KMWJK™X]
-	ÐSV	Ë	Ô]]ÛˆHY]\‹‰ËËM‹ËJWJKˆØÙ[™JØ™X]
-	ÓRSIË	Ö[ÝH\™H˜XÚËˆHØ\˜YÙH\ÈÝ[Ý[™[™ËÚXÚ\È[Ü™H[ˆHØ[ˆØ^H›Üˆ\ÈÙX\˜›Þ‰ËÌMKM×JK™X]
-	ÐSV	Ë	ÓšXÙHXÙKˆÛY[È^[œÚ]™K‰ËÍKËJK™X]
-	ÓRSIË	Õ]\ÈHÛÝ[™Ùˆ™YHÝ™\™YH[›ÚXÙ\Ë‰ËËMËËJWKØ™X]
-	ÓRSIË	ÕZÙHH›YH]Ú˜XÚËˆ]\ÈHX\ÝZÙ[HÈ™XÛÛYHHÛÛ™\œØ][ÛˆYXÙK‰ËÎKL—JK™X]
-	ÐSV	Ë	ÒHÚ[žHÈÙY\][ˆÛ™HYXÙK‰ËËMËË×JWJKˆØÙ[™JØ™X]
-	ÑS’V‰Ë	ÓÛ™HÛX[[]™\žKˆ™\žHÜ™[˜\žKˆ[[ÜÝÝ\ÜXÚ[Ý\ÛHÜ™[˜\žK‰ËÌNŒJK™X]
-	ÐSV	Ë	Ö[ÝHØ^H]™Y›Ü™H]™\žH[\™\Ý[™È^K‰ËÍ‹ËWJK™X]
-	ÑS’V‰Ë	Õ]\È™XØ]\ÙH^H^\È\™H›Ù™\ÜÚ[Û˜[H[\™\Ý[™Ë‰ËËNLJWKØ™X]
-	Ô‘PÒTQS•	Ë	Ö[ÝH\™H[^›Ý˜ZÏÈHÛ™]È[Ý\ˆœ›Ý\‹‰ËÍËËJK™X]
-	ÐSV	Ë	Õ[ˆ[ÝHÛ›ÝÈH]™H]Y\Ý[ÛœË‰ËËMËËJWJKˆØÙ[™JØ™X]
-	ÓRSIË	ÕHÚ[ÜÚÈÝÛ™\ˆ™YYÈH[™Ú]HÝYÙY[œÝ\˜[˜ÙHš[ˆÙY\]Ø[KÙY\]šXÝ[Û˜[‰ËÌMKNJK™X]
-	ÐSV	Ë	ÐH™ZX\œØ[Ú]HÚ[[[\›KˆÚ]ÛÝ[ÜÜÚX›H™H]ÚÝØ\™ÉËÍ‹ËWJK™X]
-	ÐÓT’ÉË	ÒH]™HHØ[™ÚXÚ[]™\žH\œš]š[™È[ˆÛÈZ[]\ËˆX\ÙH™H]ZXÚË‰ËËMËËJWKØ™X]
-	ÐÓT’ÉË	ÕH[\›HØ\ÈH\ÝˆH\\ÛÜšÈ\È[™›Ü[˜][H™X[‰ËÍ‹ËJK™X]
-	ÐSV	Ë	ÒHÚ[Ø[[ÝH˜XÚÈY\ˆHš[™Ý]ÚÈÙ]\È\‰ËËNKLJWJKˆØÙ[™JØ™X]
-	Ò“ÓTÉË	Ö[ÝHØ[YH[\ÈØ^H\ÝÈ\ÚÈÚ\™HH]™H™Y[ÉËÌMËM—JK™X]
-	ÐSV	Ë	ÒHØ[YH™XØ]\ÙH[ÝHÝÜY[œÝÙ\š[™Ë‰ËÍKËJK™X]
-	Ò“ÓTÉË	Õ[ˆÚ]ÝÛ‹ˆ\™H\ÈÛÛY][™È[ÝHÚÝ[Û›ÝË‰ËËM‹ËJWKØ™X]
-	Ò“ÓTÉË	Ðœ˜[™\È^Z[™È\]™\žH\ÙY[ÛÛXÝ[ˆH\ÝšXÝ‰ËÍ‹ËJK™X]
-	ÐSV	Ë	Õ[ˆÙHš[™Ý]Ú]H\ÈY[™Ë‰ËËNLJWJKˆØÙ[™JØ™X]
-	ÓRSIË	ÓÛ™H]™[š[™ÈÙ™‹ˆ›ÈØ\˜YÙK›È\œ˜[™Ë›È\™ÝZ[™ÈÚ]\šÚ[™ÈY]\œË‰ËÌNKŒJK™X]
-	ÐSV	Ë	ÒHÛ›H\™ÝYY™XØ]\ÙHHY]\ˆÝ\Y]‰ËÍKËJK™X]
-	ÓRSIË	ÕHY]\ˆ\ÈH™]\ˆY™[œÙH]ÞY\‹‰ËËMËËWJWKØ™X]
-	ÓRSIË	Õ]Y\ÜØYÙHØ\È›ÝH›ÚÙKˆÙHÚÝ[ÛË‰ËÌL‹KMJK™X]
-	ÐSV	Ë	Õ\™HÛÙ\È^H]™[š[™ÈÙˆ›Ý]š[™È[ˆ]™[š[™Ë‰ËËMËËJWJKˆØÙ[™JØ™X]
-	ÐÓÓ•PÕ	Ë	Ö[ÝHÙ\™HÛÈYY]YH[Û™K‰ËÌMM×JK™X]
-	ÐSV	Ë	ÒHØ\ÈÛHY™\ÜËˆ[ÝHYYH˜[XK‰ËÍKËWJK™X]
-	ÐÓÓ•PÕ	Ë	ÔÛÛY[Û™H[ÙH\È[Ýš[™ÈHYXÙ\Ëˆš[™H›Ü[™X]™K‰ËËNËWJWKØ™X]
-	ÐSV	Ë	Ðœ˜[™\È™Z[™\Ë‰ËÌLKL×JK™X]
-	ÓRSIË	Õ[ˆÙHÝÜÝY\ÜÚ[™È[™Ý\ÛÛXÝ[™È›ÛÙ‹‰ËËMËËJWJKˆØÙ[™JØ™X]
-	ÓRSIË	Ô˜Z[‹HØ\›š[™ÈYÚ[™H^\Ý\š[Ý\ÈØ\ˆ™Z[™\Ëˆ™\žH›Ü›X[]™[š[™Ë‰ËÌNŒJK™X]
-	ÐSV	Ë	Ð]X\ÝHÚ\\œÈÛÜšË‰ËÍKËJK™X]
-	ÓRSIË	Õ]\ÈHÝ[™\™HØ[Ûˆ^HÛXœÝÛ™K‰ËËMËËWJWKØ™X]
-	ÓRSIË	ÕÙHÜÝ[KˆH[HÛÝ[[™È]\ÈHÚ[‹‰ËÌL‹KMJK™X]
-	ÐSV	Ë	Ó]\ÈÙY\HÚ[ˆ[™ÚÚ\H[˜ÛÜ™K‰ËËNËWJWJKˆØÙ[™JØ™X]
-	ÓSIË	Ñ›Ý\ˆXÙ\Ë›Ý\ˆÝÜšY\ËˆÛ™HÙˆ[H\ÈÛÚ[™ÈÈ[H]‰ËÌNKŒJK™X]
-	ÐSV	Ë	Ð[™Yˆ›Ø›ÙHÙ\ÏÉËÍKËWJK™X]
-	ÓSIË	Õ[ˆÙH\ÚÈ™]\ˆ]Y\Ý[ÛœË‰ËËMËËJWKØ™X]
-	ÕÒU‘TÔÉË	Ðœ˜[™\ÈHYY][™ÈÛšYÚˆH]šY[˜ÙH\È\™K‰ËÍ‹ËJK™X]
-	ÐSV	Ë	Õ]\È[›ÝYÚÈÙ]\È›ÝYÚHÛÜ‹‰ËËNLJWJKˆØÙ[™JØ™X]
-	ÑS’V‰Ë	ÕÛÈ\ÜÙ[™Ù\œËÛ™H\Ý[˜][Û‹[™Û›HÛ™HÙˆ[H\È™XYHX\‰ËÌNKŒJK™X]
-	ÔTÔÑS‘ÑT‰Ë	ÕHX\\È\ÚYHÝÛ‹‰ËÍKËWJK™X]
-	ÑS’V‰Ë	Ò]\ÈH\œÜXÝ]™H^\˜Ú\ÙK‰ËËMËËJWKØ™X]
-	ÑS’V‰Ë	ÒH›Ý[™[ÝHHYY][™ÈÚ]œ˜[™ˆ›È˜\™H\È[YK‰ËÌL‹KMJK™X]
-	ÐSV	Ë	ÒHÚ[^H[ÝH˜XÚË‰ËËNËWJWJKˆØÙ[™JØ™X]
-	ÓRSIË	ÕÙH]™HHX[KH]šY[˜ÙH[™H›Ý]H]]›ÚYÈH›ØYÛÜšÜË‰ËÌNKŒJK™X]
-	Ò“ÓTÉË	ÕH›ØYÛÜšÜÈ[Ý™H˜\Ý\ˆ[ˆÝ\ˆ[‹‰ËÍKËWJK™X]
-	ÑS’V‰Ë	ÒHÛ›ÝÈHÚÜÝ]ˆ]Û›HYÈÙ[™HZ[]\Ë‰ËËMËËJWKØ™X]
-	Õ’RÕÔ‰Ë	Ö[ÝH\™H[™\žH\œÚ\Ý[‰ËÌL‹‹MWJK™X]
-	ÐSV	Ë	Ö[ÝH\™H[™\žH™YXÝX›K‰ËËNËWJWJKˆØÙ[™JØ™X]
-	Õ’RÕÔ‰Ë	Ö[ÝHÛÝ[Ý[Ø[È]Ø^K[^‰ËÌM‹NJK™X]
-	ÐSV	Ë	ÒHšYY]ˆHÚ]HÙ\Ø[[™Ë‰ËÍKËWJK™X]
-	ÓRSIË	Ö[Ý\ˆ[Ý™KˆÙH\™HÚ][ÝHZ]\ˆØ^K‰ËËMËËJWKØ™X]
-	ÐSV	Ë	ÕÛ[Üœ›ÝÈ\ÈÝ\œÈÈšYÝ\™HÝ]‰ËÌL‹M—JK™X]
-	ÑS’V‰Ë	ÑÛÛÙˆHÛ›ÝÈHXÙH]Ù\™\Èœ™XZÙ˜\Ý[šYÚ‰ËËNËWJWJB—NÂ‚™^ÜÛÛœÝÐTÕHÂˆÈYˆ	ÛZ[IË˜[YNˆ	ÓZ[HÙZ\ÜÉË›ÛNˆ	ÓYXÚ[šXÈ[™[^8 &\ÈœšY[™	ËÚ\ˆLÍ‹[ÎˆL˜LÌ‹ˆMLŽˆLˆX]”HÈ‹Z\ÜÚ[ÛŽˆHKˆÈYˆ	Ù[š^‰Ë˜[YNˆ	Ñ[š^ˆØ^XIË›ÛNˆ	Õ^Hš]™\‰ËÚ\ˆ˜NØË[ÎˆL˜LÌ‹ˆLŽˆˆZ\ÜÚ[ÛŽˆKˆÈYˆ	Ú›Û˜\ÉË˜[YNˆ	Ò›Û˜\È›Ý˜ZÉË›ÛNˆ	Ð[^8 &\Èœ›Ý\‰ËÚ\ˆÍYÍK[ÎˆÌ˜KˆŽˆLˆX]”KZ\ÜÚ[ÛŽˆKˆÈYˆ	ÝšZÝÜ‰Ë˜[YNˆ	ÕšZÝÜˆœ˜[™	Ë›ÛNˆ	Ð\Ú[™\ÜÛX[‰ËÚ\ˆŽL™Î[ÎˆMLMÌX‹ˆŒŽˆMNLˆX]”HÈ‹Z\ÜÚ[ÛŽˆLKˆÈYˆ	Û[˜IË˜[YNˆ	Ó[˜H\X[›‰Ë›ÛNˆ	Ò[™\ÝYØ]Ü‰ËÚ\ˆLÍ˜ÍË[ÎˆÌ˜KˆLŽˆLˆZ\ÜÚ[ÛŽˆKˆÈYˆ	ØÛ\šÉË˜[YNˆ	Ô˜YšHZ[X^‰Ë›ÛNˆ	ÔÜ0éHÚÜÙY\\‰ËÚ\ˆØÍN[ÎˆL˜LÌ‹ˆLŽˆËˆX]”KZ\ÜÚ[ÛŽˆÈKˆÈYˆ	ÛšZÛÉË˜[YNˆ	ÓšZÛÈ]›Ý‰Ë›ÛNˆ	ÓYXÚ[šXÈ[™›]X]IËÚ\ˆÌ˜ÌÎK[ÎˆŒÌ˜‹ˆMMLŽˆNLˆX]”HÈ‹Z\ÜÚ[ÛŽˆLHB—NÂ‚™^ÜÛÛœÝ”×ÓS‘TÈHÂˆZ[NˆÉÕHØ\ˆ\È™XYKˆH[›ÚXÙH\È[[Ý[Û˜[H™XYK‰Ë	ÒH[™YH[™Ú[™Kˆ]›ÝÈÛÛ\Z[œÈ[ˆHYÚ\ˆÙ^K‰×Kˆ[š^ŽˆÉÒHÛ›ÝÈ]™\žHÚÜÝ]ˆ[ˆÙˆ[H\™H›ØYË‰Ë	ÕÙ[ÛÛYHX›Ø\™ˆÙX]™[È\™H˜\Ý\ˆ[ˆ^HYšXÙK‰×Kˆ›Û˜\ÎˆÉÒH[HžZ[™ÈÈš^[™ÜËˆÝ\[™ÈÚ]\ÈÛÜ‹‰Ë	ÒHÚÝ[]™HØ[YˆHÛ›ÝÈ]›ÝË‰×KˆšZÝÜŽˆÉÐ™\›[ˆ™]Ø\™È[ÜHÚÈ[™\œÝ[™[Z[™Ë‰Ë	Ö[ÝH]™HH[[›Üˆ\›š[™È\Ú\™HHX\Ý^XÝ[ÝK‰×Kˆ[˜NˆÉÒH[HØ]Ú[™ÈH˜XÝË›ÝH[[ÜœË‰Ë	ÒYˆ[ÝHš[™]šY[˜ÙKœš[™È]ÈYK‰×KˆÛ\šÎˆÉÕHØY™]Hš[\ÈÝ™\‹ˆH[HÝ[ÛÝ[[™ÈHØ[™ÚXÚ\Ë‰Ë	Õ[šÜÈ›ÜˆÙY\[™È]™ZX\œØ[Ø[KˆHÝÙH[ÝHHÛÙ™™YK‰×KˆšZÛÎˆÉÕH›]\È[[ÜÝš^YˆHÙZ[[™È[™H]™H™XXÚYHXÙK‰Ë	ÐHÛYH\È[ÜÝHÛÛÙ[ÜH[™HÛÛ›Þ][ÝHØ[ˆš[™‰×BŸNÂ
+// Original short-form camera/dialogue beats for all twelve missions.
+// Camera offsets are relative to Alex, keeping each scene robust at any spawn point.
+const beat = (speaker, line, camera, duration = 2.6, look = [0, 1.1, 0]) => ({ speaker, line, camera, duration, look });
+const scene = (intro, outro) => ({ intro, outro });
+
+export const CAMPAIGN_CUTSCENES = [
+  scene([beat('DENIZ', 'Welcome back to Berlin. The traffic missed you. The parking signs did not.', [22, 12, 24]), beat('ALEX', 'I was hoping the city had learned to behave while I was gone.', [7, 4, 10]), beat('MILA', 'Find the garage. I have a car that only makes three worrying noises now.', [-8, 3, 9])], [beat('DENIZ', 'City tour complete. I charge extra for emotional support.', [12, 5, 15]), beat('ALEX', 'Put it on the meter.', [-6, 3, 8])]),
+  scene([beat('MILA', 'You are back. The garage is still standing, which is more than I can say for this gearbox.', [15, 8, 17]), beat('ALEX', 'Nice place. Smells expensive.', [5, 3, 8]), beat('MILA', 'That is the sound of three overdue invoices.', [-7, 3, 8])], [beat('MILA', 'Take the blue hatchback. It is the least likely to become a conversation piece.', [9, 4, 12]), beat('ALEX', 'I will try to keep it in one piece.', [-7, 3, 7])]),
+  scene([beat('DENIZ', 'One small delivery. Very ordinary. Almost suspiciously ordinary.', [18, 8, 20]), beat('ALEX', 'You say that before every interesting day.', [6, 3, 9]), beat('DENIZ', 'That is because my days are professionally interesting.', [-8, 4, 10])], [beat('RECIPIENT', 'You are Alex Novak? I knew your brother.', [7, 3, 8]), beat('ALEX', 'Then you know I have questions.', [-7, 3, 8])]),
+  scene([beat('MILA', 'The kiosk owner needs a hand with a staged insurance drill. Keep it calm, keep it fictional.', [15, 8, 18]), beat('ALEX', 'A rehearsal with a silent alarm. What could possibly be awkward?', [6, 3, 9]), beat('CLERK', 'I have a sandwich delivery arriving in two minutes. Please be quick.', [-7, 3, 8])], [beat('CLERK', 'The alarm was a test. The paperwork is unfortunately real.', [6, 3, 8]), beat('ALEX', 'I will call you back after I find out who set this up.', [-9, 4, 10])]),
+  scene([beat('JONAS', 'You came all this way just to ask where I have been?', [14, 7, 16]), beat('ALEX', 'I came because you stopped answering.', [5, 3, 8]), beat('JONAS', 'Then sit down. There is something you should know.', [-6, 3, 8])], [beat('JONAS', 'Brandt is buying up every useful contact in the district.', [6, 3, 8]), beat('ALEX', 'Then we find out what he is hiding.', [-8, 4, 10])]),
+  scene([beat('MILA', 'One evening off. No garage, no errands, no arguing with parking meters.', [18, 9, 20]), beat('ALEX', 'I only argued because the meter started it.', [5, 3, 8]), beat('MILA', 'The meter has a better defense lawyer.', [-7, 3, 9])], [beat('MILA', 'That message was not a joke. We should go.', [12, 5, 14]), beat('ALEX', 'There goes my evening of not having an evening.', [-7, 3, 8])]),
+  scene([beat('CONTACT', 'You were told to meet me alone.', [14, 8, 17]), beat('ALEX', 'I was told the address. You added the drama.', [5, 3, 9]), beat('CONTACT', 'Someone else is moving the pieces. Find the drop and leave.', [-8, 3, 9])], [beat('ALEX', 'Brandt is behind this.', [10, 5, 13]), beat('MILA', 'Then we stop guessing and start collecting proof.', [-7, 3, 8])]),
+  scene([beat('MILA', 'Rain, a warning light, and a mysterious car behind us. Very normal evening.', [18, 8, 20]), beat('ALEX', 'At least the wipers work.', [5, 3, 8]), beat('MILA', 'That is the standard I want on my tombstone.', [-7, 3, 9])], [beat('MILA', 'We lost them. I am counting that as a win.', [12, 5, 14]), beat('ALEX', 'Let us keep the win and skip the encore.', [-8, 3, 9])]),
+  scene([beat('LENA', 'Four places, four stories. One of them is going to tell the truth.', [18, 9, 20]), beat('ALEX', 'And if nobody does?', [5, 3, 9]), beat('LENA', 'Then we ask better questions.', [-7, 3, 8])], [beat('WITNESS', 'Brandt has a meeting tonight. The evidence is there.', [6, 3, 8]), beat('ALEX', 'That is enough to get us through the door.', [-8, 4, 10])]),
+  scene([beat('DENIZ', 'Two passengers, one destination, and only one of them has read the map.', [18, 9, 20]), beat('PASSENGER', 'The map is upside down.', [5, 3, 9]), beat('DENIZ', 'It is a perspective exercise.', [-7, 3, 8])], [beat('DENIZ', 'I found you a meeting with Brandt. No fare this time.', [12, 5, 14]), beat('ALEX', 'I will pay you back.', [-8, 3, 9])]),
+  scene([beat('MILA', 'We have the team, the evidence and a route that avoids the roadworks.', [18, 9, 20]), beat('JONAS', 'The roadworks move faster than our plan.', [5, 3, 9]), beat('DENIZ', 'I know a shortcut. It only adds twelve minutes.', [-7, 3, 8])], [beat('VIKTOR', 'You are all very persistent.', [12, 6, 15]), beat('ALEX', 'You are all very predictable.', [-8, 3, 9])]),
+  scene([beat('VIKTOR', 'You could still walk away, Alex.', [16, 8, 18]), beat('ALEX', 'I tried that. The city kept calling.', [5, 3, 9]), beat('MILA', 'Your move. We are with you either way.', [-7, 3, 8])], [beat('ALEX', 'Tomorrow is ours to figure out.', [12, 8, 16]), beat('DENIZ', 'Good. I know a place that serves breakfast all night.', [-8, 3, 9])])
+];
+
+export const CAST = [
+  { id: 'mila', name: 'Mila Weiss', role: 'Mechanic and Alexâ€™s friend', shirt: 0xb44a36, pants: 0x252a32, x: -50, z: 10, h: Math.PI / 2, mission: 1 },
+  { id: 'deniz', name: 'Deniz Kaya', role: 'Taxi driver', shirt: 0xd2a83c, pants: 0x252a32, x: 10, z: 0, h: 0, mission: 0 },
+  { id: 'jonas', name: 'Jonas Novak', role: 'Alexâ€™s brother', shirt: 0x365d75, pants: 0x24272a, x: 480, z: 10, h: Math.PI, mission: 4 },
+  { id: 'viktor', name: 'Viktor Brandt', role: 'Businessman', shirt: 0x292d38, pants: 0x15171b, x: 660, z: -590, h: Math.PI / 2, mission: 10 },
+  { id: 'lena', name: 'Lena Hartmann', role: 'Investigator', shirt: 0x536c4c, pants: 0x24272a, x: -240, z: -240, h: 0, mission: 8 },
+  { id: 'clerk', name: 'Rafi Yilmaz', role: 'SpÃ¤ti shopkeeper', shirt: 0x3b7658, pants: 0x252a32, x: 90, z: 27, h: Math.PI, mission: 3 },
+  { id: 'niko', name: 'Niko Petrov', role: 'Mechanic and flatmate', shirt: 0xc06c39, pants: 0x26272b, x: -550, z: 590, h: Math.PI / 2, mission: 11 }
+];
+
+export const NPC_LINES = {
+  mila: ['The car is ready. The invoice is emotionally ready.', 'I tuned the engine. It now complains in a higher key.'],
+  deniz: ['I know every shortcut. Half of them are roads.', 'Welcome aboard. Seatbelts are faster than my advice.'],
+  jonas: ['I am trying to fix things. Starting with this door.', 'I should have called. I know that now.'],
+  viktor: ['Berlin rewards people who understand timing.', 'You have a talent for turning up where I least expect you.'],
+  lena: ['I am watching the facts, not the rumors.', 'If you find evidence, bring it to me.'],
+  clerk: ['The safety drill is over. I am still counting the sandwiches.', 'Thanks for keeping that rehearsal calm. I owe you a coffee.'],
+  niko: ['The flat is almost fixed. The ceiling and I have reached a truce.', 'A home is mostly good people and a toolbox that you can find.']
+};

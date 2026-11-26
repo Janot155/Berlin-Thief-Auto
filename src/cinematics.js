@@ -1,63 +1,97 @@
-Û^š›bh¥êß¢¹­…â'ŠØš–,ŞçÚº[C®+Ş²Š^­«b¢z'¶…ŠW’ÊË^ššè¾'^­ö¢•çKËÈHÛX[Ø[Y\˜HšYÈÙY\ÈİÜHØÙ[™\È™XYX›NˆÙ]H]ZXÚÛKÛÛˆB‹ËÈÜXZÙ\œÈÚ[HHX[ÙİYH^\Ë[™\ÙHHZ\ÜÚ[ÛˆÛÛXİÚ[ˆ™X\˜K‚™^ÜÛ\ÜÈİ]ØÙ[™Q\™XİÜˆÂˆÛÛœİXİÜŠØ[Y\˜Kİ™\›^KØ\[Û‹Ù]^Y\‹\™›Ü›X[˜ÙS[ÙKÙ]›Øİ\ÊHÂˆ\Ë˜Ø[Y\˜HHØ[Y\˜NÂˆ\Ë›İ™\›^HHİ™\›^NÂˆ\Ë˜Ø\[ÛˆHØ\[ÛÂˆ\Ë™Ù]^Y\ˆHÙ]^Y\Âˆ\Ë™Ù]›Øİ\ÈHÙ]›Øİ\ÎÂˆ\Ëœ\™›Ü›X[˜ÙS[ÙHH\™›Ü›X[˜ÙS[ÙNÂˆ\Ë›ÛÚÔšYÈH™]È‘QK“Øš™XİÑ
+// A small camera rig keeps story scenes readable: settle quickly, hold on the
+// speakers while the dialogue plays, and use the mission contact when nearby.
+export class CutsceneDirector {
+  constructor(camera, overlay, caption, getPlayer, performanceMode, getFocus) {
+    this.camera = camera;
+    this.overlay = overlay;
+    this.caption = caption;
+    this.getPlayer = getPlayer;
+    this.getFocus = getFocus;
+    this.performanceMode = performanceMode;
+    this.lookRig = new THREE.Object3D();
+    this.fromRotation = new THREE.Quaternion();
+    this.toRotation = new THREE.Quaternion();
+    this.gameFar = camera.far;
+    this.active = false;
+    this.beats = [];
+    this.index = 0;
+    this.elapsed = 0;
+    this.focusId = null;
+  }
 
-NÂˆ\Ë™œ›ÛT›İ][ÛˆH™]È‘QK”]X]\›š[ÛŠ
-NÂˆ\ËÔ›İ][ÛˆH™]È‘QK”]X]\›š[ÛŠ
-NÂˆ\Ë™Ø[YQ˜\ˆHØ[Y\˜K™˜\Âˆ\Ë˜Xİ]™HH˜[ÙNÂˆ\Ë˜™X]ÈH×NÂˆ\Ëš[™^HÂˆ\Ë™[\ÙYHÂˆ\Ë™›Øİ\ÒYH[ÂˆB‚ˆ^J™X]Ë›Øİ\ÒYH[
-HÂˆYˆ
-P\œ˜^Kš\Ğ\œ˜^J™X]ÊHX™X]Ë›[™İ
-H™]\›Âˆ\Ë˜™X]ÈH™X]ÎÂˆ\Ë™›Øİ\ÒYH›Øİ\ÒYÂˆ\Ëš[™^HÂˆ\Ë™[\ÙYHÂˆ\Ë˜Xİ]™HHYNÂˆ\Ë™Ø[YQ˜\ˆH\Ë˜Ø[Y\˜K™˜\Âˆ\Ë˜Ø[Y\˜K™˜\ˆHX]›Z[Š\Ë™Ø[YQ˜\‹
-NÂˆ\Ë˜Ø[Y\˜K\]T›Ú™Xİ[Û“X]š^
+  play(beats, focusId = null) {
+    if (!Array.isArray(beats) || !beats.length) return;
+    this.beats = beats;
+    this.focusId = focusId;
+    this.index = 0;
+    this.elapsed = 0;
+    this.active = true;
+    this.gameFar = this.camera.far;
+    this.camera.far = Math.min(this.gameFar, 240);
+    this.camera.updateProjectionMatrix();
+    this.performanceMode?.beginCinematic();
+    document.body.classList.add('cinematic');
+    this.setBeat();
+  }
 
-NÂˆ\Ëœ\™›Ü›X[˜ÙS[ÙOË˜™YÚ[Ú[™[X]XÊ
-NÂˆØİ[Y[˜›ÙK˜Û\ÜÓ\İ˜Y
-	ØÚ[™[X]XÉÊNÂˆ\ËœÙ]™X]
+  setBeat() {
+    const beat = this.beats[this.index];
+    const player = this.getPlayer();
+    const focus = this.focusId ? this.getFocus?.(this.focusId) : null;
+    const closeFocus = focus && player.distanceTo(focus) < 28 ? focus : player;
+    const center = player.clone().add(closeFocus).multiplyScalar(.5);
+    const [x, , z] = beat.camera || [1, 0, 1];
+    const length = Math.hypot(x, z) || 1;
+    // Scripted offsets previously sent the camera tens of metres through the
+    // city. Keep it nearby so buildings cannot fill the whole shot.
+    const side = Math.min(8.5, Math.max(6.5, closeFocus.distanceTo(player) * .8));
+    this.from = this.camera.position.clone();
+    this.fromRotation.copy(this.camera.quaternion);
+    this.to = center.clone().add(new THREE.Vector3(x / length * side, 3.3, z / length * side));
+    this.target = center.clone().add(new THREE.Vector3(0, 1.05, 0));
+    this.lookRig.position.copy(this.to);
+    this.lookRig.lookAt(this.target);
+    this.toRotation.copy(this.lookRig.quaternion);
+    this.duration = beat.duration || 2.4;
+    this.moveDuration = Math.min(.55, Math.max(.28, this.duration * .2));
+    this.elapsed = 0;
+    this.caption.textContent = beat.speaker ? `${beat.speaker}: ${beat.line}` : beat.line;
+    this.overlay.classList.add('on');
+  }
 
-NÂˆB‚ˆÙ]™X]
+  update(dt) {
+    if (!this.active) return false;
+    this.elapsed += dt;
+    const q = Math.max(0, Math.min(1, this.elapsed / this.moveDuration));
+    const smooth = q * q * (3 - 2 * q);
+    this.camera.position.lerpVectors(this.from, this.to, smooth);
+    this.camera.quaternion.slerpQuaternions(this.fromRotation, this.toRotation, smooth);
+    if (this.elapsed >= this.duration) {
+      this.index++;
+      if (this.index >= this.beats.length) {
+        this.active = false;
+        this.overlay.classList.remove('on');
+        document.body.classList.remove('cinematic');
+        this.restoreView();
+        return false;
+      }
+      this.setBeat();
+    }
+    return true;
+  }
 
-HÂˆÛÛœİ™X]H\Ë˜™X]Öİ\Ëš[™^NÂˆÛÛœİ^Y\ˆH\Ë™Ù]^Y\Š
-NÂˆÛÛœİ›Øİ\ÈH\Ë™›Øİ\ÒYÈ\Ë™Ù]›Øİ\ÏËŠ\Ë™›Øİ\ÒY
-Hˆ[ÂˆÛÛœİÛÜÙQ›Øİ\ÈH›Øİ\È	‰ˆ^Y\‹™\İ[˜ÙUÊ›Øİ\ÊHÈ›Øİ\Èˆ^Y\ÂˆÛÛœİÙ[\ˆH^Y\‹˜ÛÛ™J
-K˜Y
-ÛÜÙQ›Øİ\ÊK›][\TØØ[\ŠJNÂˆÛÛœİŞ—HH™X]˜Ø[Y\˜HÌKWNÂˆÛÛœİ[™İHX]š\İ
-ŠHNÂˆËÈØÜš\YÙ™œÙ]È™]š[İ\ÛHÙ[HØ[Y\˜H[œÈÙˆY]™\È›İYÚBˆËÈÚ]KˆÙY\]™X\˜HÛÈZ[[™ÜÈØ[››İš[HÚÛHÚİ‚ˆÛÛœİÚYHHX]›Z[ŠKX]›X^
-‹KÛÜÙQ›Øİ\Ë™\İ[˜ÙUÊ^Y\ŠH
-ˆ
-JNÂˆ\Ë™œ›ÛHH\Ë˜Ø[Y\˜KœÜÚ][Û‹˜ÛÛ™J
-NÂˆ\Ë™œ›ÛT›İ][Û‹˜ÛÜJ\Ë˜Ø[Y\˜Kœ]X]\›š[ÛŠNÂˆ\ËÈHÙ[\‹˜ÛÛ™J
-K˜Y
-™]È‘QK•™XİÜŒÊÈ[™İ
-ˆÚYKËŒËˆÈ[™İ
-ˆÚYJJNÂˆ\Ë\™Ù]HÙ[\‹˜ÛÛ™J
-K˜Y
-™]È‘QK•™XİÜŒÊKŒK
-JNÂˆ\Ë›ÛÚÔšYËœÜÚ][Û‹˜ÛÜJ\ËÊNÂˆ\Ë›ÛÚÔšYË›ÛÚĞ]
-\Ë\™Ù]
-NÂˆ\ËÔ›İ][Û‹˜ÛÜJ\Ë›ÛÚÔšYËœ]X]\›š[ÛŠNÂˆ\Ë™\˜][ÛˆH™X]™\˜][Ûˆ‹Âˆ\Ë›[İ™Q\˜][ÛˆHX]›Z[ŠMKX]›X^
-Œ\Ë™\˜][Ûˆ
-ˆŒŠJNÂˆ\Ë™[\ÙYHÂˆ\Ë˜Ø\[Û‹^ÛÛ[H™X]œÜXZÙ\ˆÈ	Ø™X]œÜXZÙ\ŸNˆ	Ø™X]›[™_Xˆ™X]›[™NÂˆ\Ë›İ™\›^K˜Û\ÜÓ\İ˜Y
-	ÛÛ‰ÊNÂˆB‚ˆ\]J
-HÂˆYˆ
-]\Ë˜Xİ]™JH™]\›ˆ˜[ÙNÂˆ\Ë™[\ÙY
-ÏHÂˆÛÛœİHHX]›X^
-X]›Z[ŠK\Ë™[\ÙYÈ\Ë›[İ™Q\˜][ÛŠJNÂˆÛÛœİÛ[ÛİHH
-ˆH
-ˆ
-ÈHˆ
-ˆJNÂˆ\Ë˜Ø[Y\˜KœÜÚ][Û‹›\œ™XİÜœÊ\Ë™œ›ÛK\ËËÛ[Ûİ
-NÂˆ\Ë˜Ø[Y\˜Kœ]X]\›š[Û‹œÛ\œ]X]\›š[ÛœÊ\Ë™œ›ÛT›İ][Û‹\ËÔ›İ][Û‹Û[Ûİ
-NÂˆYˆ
-\Ë™[\ÙYH\Ë™\˜][ÛŠHÂˆ\Ëš[™^
-ÊÎÂˆYˆ
-\Ëš[™^H\Ë˜™X]Ë›[™İ
-HÂˆ\Ë˜Xİ]™HH˜[ÙNÂˆ\Ë›İ™\›^K˜Û\ÜÓ\İœ™[[İ™J	ÛÛ‰ÊNÂˆØİ[Y[˜›ÙK˜Û\ÜÓ\İœ™[[İ™J	ØÚ[™[X]XÉÊNÂˆ\Ëœ™\İÜ™UšY]Ê
-NÂˆ™]\›ˆ˜[ÙNÂˆBˆ\ËœÙ]™X]
+  skip() {
+    if (!this.active) return;
+    this.active = false;
+    this.overlay.classList.remove('on');
+    document.body.classList.remove('cinematic');
+    this.restoreView();
+  }
 
-NÂˆBˆ™]\›ˆYNÂˆB‚ˆÚÚ\
-
-HÂˆYˆ
-]\Ë˜Xİ]™JH™]\›Âˆ\Ë˜Xİ]™HH˜[ÙNÂˆ\Ë›İ™\›^K˜Û\ÜÓ\İœ™[[İ™J	ÛÛ‰ÊNÂˆØİ[Y[˜›ÙK˜Û\ÜÓ\İœ™[[İ™J	ØÚ[™[X]XÉÊNÂˆ\Ëœ™\İÜ™UšY]Ê
-NÂˆB‚ˆ™\İÜ™UšY]Ê
-HÂˆ\Ë™›Øİ\ÒYH[Âˆ\Ë˜Ø[Y\˜K™˜\ˆH\Ë™Ø[YQ˜\Âˆ\Ë˜Ø[Y\˜K\]T›Ú™Xİ[Û“X]š^
-
-NÂˆ\Ëœ\™›Ü›X[˜ÙS[ÙOË™[™Ú[™[X]XÊ
-NÂˆBŸB
+  restoreView() {
+    this.focusId = null;
+    this.camera.far = this.gameFar;
+    this.camera.updateProjectionMatrix();
+    this.performanceMode?.endCinematic();
+  }
+}
