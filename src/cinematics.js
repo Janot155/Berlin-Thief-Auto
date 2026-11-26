@@ -46,14 +46,14 @@ export class CutsceneDirector {
     if(closeFocus!==player&&gap>1){
       // Put the camera beside the line between the two speakers, over the
       // open street, rather than on a diagonal that lands inside a building.
-      const sign=x>=0?-1:1;dirX=-gapZ/gap*sign;dirZ=gapX/gap*sign;
+      const sign=x>=0?1:-1;dirX=-gapZ/gap*sign;dirZ=gapX/gap*sign;
     }else if(Math.abs(x)>=Math.abs(z)){dirX=Math.sign(x)||1;dirZ=0}
     else{dirX=0;dirZ=Math.sign(z)||1}
-    const side = gap>1?Math.min(6.5,Math.max(4.5,gap*1.05)):5.5;
+    const side = gap>1?Math.min(3.8,Math.max(2.8,gap*.65)):3.5;
     this.from = this.camera.position.clone();
     this.fromRotation.copy(this.camera.quaternion);
-    this.to = center.clone().add(new THREE.Vector3(dirX * side, 2.35, dirZ * side));
-    this.target = center.clone().add(new THREE.Vector3(0, 1.15, 0));
+    this.to = center.clone().add(new THREE.Vector3(dirX * side, 2.45, dirZ * side));
+    this.target = center.clone().add(new THREE.Vector3(0, 1.2, 0));
     this.lookRig.position.copy(this.to);
     this.lookRig.lookAt(this.target);
     this.toRotation.copy(this.lookRig.quaternion);
