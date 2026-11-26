@@ -20,7 +20,7 @@ export const CAMPAIGN_CUTSCENES = [
 
 export const CAST = [
   { id: 'mila', name: 'Mila Weiss', role: 'Mechanic and Alex’s friend', shirt: 0xb44a36, pants: 0x252a32, x: -50, z: 10, h: Math.PI / 2, mission: 1 },
-  { id: 'deniz', name: 'Deniz Kaya', role: 'Taxi driver', shirt: 0xd2a83c, pants: 0x252a32, x: 10, z: 0, h: 0, mission: 0 },
+  { id: 'deniz', name: 'Deniz Kaya', role: 'Taxi driver', shirt: 0xd2a83c, pants: 0x252a32, x: 6, z: 0, h: 0, mission: 0 },
   { id: 'jonas', name: 'Jonas Novak', role: 'Alex’s brother', shirt: 0x365d75, pants: 0x24272a, x: 480, z: 10, h: Math.PI, mission: 4 },
   { id: 'viktor', name: 'Viktor Brandt', role: 'Businessman', shirt: 0x292d38, pants: 0x15171b, x: 660, z: -590, h: Math.PI / 2, mission: 10 },
   { id: 'lena', name: 'Lena Hartmann', role: 'Investigator', shirt: 0x536c4c, pants: 0x24272a, x: -240, z: -240, h: 0, mission: 8 },

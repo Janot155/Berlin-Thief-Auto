@@ -145,7 +145,7 @@ function lock(){/* Pointer lock is optional; drag-look is available without brow
 function resume(){state='play';$('ov').style.display='none';lock()}
 function cutscene(which,phase='intro'){let beats,focusId=null;if(typeof which==='number'){beats=CAMPAIGN_CUTSCENES[which]?.[phase];focusId=MS[which]?.[10]||null}else beats=[{speaker:'NIKO',line:String(which),camera:[1,0,1],look:[0,1,0],duration:3.2}];me.visible=!cur;cutsceneDirector.play(beats,focusId)}
 function seedCrowd(){for(const p of peds){const x=p.ax==='x'?p.u:p.k*P+p.sd*10.5,z=p.ax==='x'?p.k*P+p.sd*10.5:p.u,d=Math.hypot(x-pl.x,z-pl.z);p.g.position.set(x,0,z);p.lod.position.set(x,0,z);p.g.visible=d<16;p.lod.visible=d>=16&&d<72}for(const a of storyPeople)a.g.visible=Math.hypot(a.x-pl.x,a.z-pl.z)<72}
-function start(s){audio();money=300;mi=0;stage=0;mt=0;houseRepair=0;hp=100;wanted=0;jc=0;gt=17;pl.x=0;pl.z=0;stats={kills:0,dist:0};storyChoices={};talker=null;cutsceneDirector.skip();$('talk').hidden=true;
+function start(s){audio();money=300;mi=0;stage=0;mt=0;houseRepair=0;hp=100;wanted=0;jc=0;gt=17;pl.x=2;pl.z=0;stats={kills:0,dist:0};storyChoices={};talker=null;cutsceneDirector.skip();$('talk').hidden=true;
 if(s){money=s.m;mi=s.mi;stage=s.st||0;mt=s.mt||0;houseRepair=s.hr||0;pl.x=s.x;pl.z=s.z;jc=s.jc;gt=s.gt;stats.kills=s.k||0;storyChoices=s.q&&typeof s.q==='object'?s.q:{}}
 cur=null;dress(me,JC[jc]);resetWeapons(s);cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar);seedCrowd();resume();if(s&&mi>=MS.length&&storyChoices.ending===undefined)endingChoice()}
 function applyGfx(){gfx=perf.quality;resize()}
@@ -168,7 +168,7 @@ const angd=(a,b)=>((b-a+PI)%(2*PI)+2*PI)%(2*PI)-PI,V1=new T.Vector3();
 function rmCar(c){scene.remove(c.g);cars.splice(cars.indexOf(c),1)}
 function spawnPol(){const a=R()*6.28;let x=pl.x+Math.sin(a)*100,z=pl.z+Math.cos(a)*100;if(R()<.5)x=Math.round(x/P)*P;else z=Math.round(z/P)*P;x=Math.max(-W,Math.min(W,x));z=Math.max(-W,Math.min(W,z));mkCar('police',x,z,0,{pol:1})}
 function crime(n){if(!wanted)lastSeen=null;wanted=Math.min(3,wanted+n);heat=25;toast('Wanted level '+wanted)}
-function hurt(n){hp-=n;if(hp<=0){toast('Busted — €100 fine');money=Math.max(0,money-100);hp=100;wanted=0;cur=null;pl.x=12;pl.z=12;cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar)}}
+function hurt(n){hp-=n;if(hp<=0){toast('Busted — €100 fine');money=Math.max(0,money-100);hp=100;wanted=0;cur=null;pl.x=2;pl.z=0;cars.filter(c=>c.ai&&c.ai.pol).forEach(rmCar)}}
 function toggleCar(){if(cur){const c=cur;cur=null;pl.x=c.x+Math.cos(c.h)*2.8;pl.z=c.z-Math.sin(c.h)*2.8;pl.y=0;pv.x=pv.z=0;toast('You stepped out');return}
 let b=null,bd=6;for(const c of cars){if(c===cur||(c.ai&&c.ai.pol))continue;const d=Math.hypot(c.x-pl.x,c.z-pl.z);if(d<bd){bd=d;b=c}}if(b){if(b.ai&&b.ai.ax){b.ai=null;b.v=0}cur=b;toast('Driving: '+b.s.n)}}
 let endingPending=false;

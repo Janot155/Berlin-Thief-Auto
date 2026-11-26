@@ -49,16 +49,19 @@ export class CutsceneDirector {
       const sign=x>=0?-1:1;dirX=-gapZ/gap*sign;dirZ=gapX/gap*sign;
     }else if(Math.abs(x)>=Math.abs(z)){dirX=Math.sign(x)||1;dirZ=0}
     else{dirX=0;dirZ=Math.sign(z)||1}
-    const side = gap>1?Math.min(8.5,Math.max(6.5,gap*.8)):8.5;
+    const side = gap>1?Math.min(6.5,Math.max(4.5,gap*1.05)):5.5;
     this.from = this.camera.position.clone();
     this.fromRotation.copy(this.camera.quaternion);
-    this.to = center.clone().add(new THREE.Vector3(dirX * side, 3.3, dirZ * side));
-    this.target = center.clone().add(new THREE.Vector3(0, 1.05, 0));
+    this.to = center.clone().add(new THREE.Vector3(dirX * side, 2.35, dirZ * side));
+    this.target = center.clone().add(new THREE.Vector3(0, 1.15, 0));
     this.lookRig.position.copy(this.to);
     this.lookRig.lookAt(this.target);
     this.toRotation.copy(this.lookRig.quaternion);
     this.duration = beat.duration || 2.4;
-    this.moveDuration = Math.min(.55, Math.max(.28, this.duration * .2));
+    this.moveDuration = Math.min(.4, Math.max(.2, this.duration * .14));
+    // Open on the actual speakers. A long sweep in from the menu camera made
+    // the entire first line play while the camera was still over rooftops.
+    if(this.index===0){this.camera.position.copy(this.to);this.camera.quaternion.copy(this.toRotation);this.from.copy(this.to);this.fromRotation.copy(this.toRotation)}
     this.elapsed = 0;
     this.caption.textContent = beat.speaker ? `${beat.speaker}: ${beat.line}` : beat.line;
     this.overlay.classList.add('on');
