@@ -1,86 +1,63 @@
-// Small, data-driven camera timeline used for every story mission.
-export class CutsceneDirector {
-  constructor(camera, overlay, caption, getPlayer, performanceMode) {
-    this.camera = camera;
-    this.overlay = overlay;
-    this.caption = caption;
-    this.getPlayer = getPlayer;
-    this.performanceMode = performanceMode;
-    this.lookRig = new THREE.Object3D();
-    this.fromRotation = new THREE.Quaternion();
-    this.toRotation = new THREE.Quaternion();
-    this.gameFar = camera.far;
-    this.active = false;
-    this.beats = [];
-    this.index = 0;
-    this.elapsed = 0;
-  }
+Ы^љ›bћhҐкЯў№­…в'ЉШљ–,ЮзЪє[C®+ЮІЉ^­«bўz'¶…ЉW’КЛ^љљиѕ'^­цў•зKЛИHЫX[Ш[Y\HљYИЩY\ИЭЬћHШЩ[™\И™XYX›N€Щ]H]ZXЪЫKЫЫ€B‹ЛИЬXZЩ\њИЪ[HHX[ЩЭYH^\Л[™\ЩHHZ\ЬЪ[Ы€ЫЫќXЭЪ[€™X\ћK‚™^ЬќЫ\ЬИЭ]ШЩ[™Q\™XЭЬ€В€ЫЫњЭќXЭЬЉШ[Y\KЭ™\›^KШ\[Ы‹Щ]^Y\‹\™›Ь›X[ЩS[ЩKЩ]›ШЭ\КHВ€\ЛШ[Y\HHШ[Y\NВ€\Л›Э™\›^HHЭ™\›^NВ€\ЛШ\[Ы€HШ\[ЫЋВ€\Л™Щ]^Y\€HЩ]^Y\ЋВ€\Л™Щ]›ШЭ\ИHЩ]›ШЭ\ОВ€\Лњ\™›Ь›X[ЩS[ЩHH\™›Ь›X[ЩS[ЩNВ€\Л›ЫЪФљYИH™]И‘QK“Шљ™XЭС
 
-  play(beats) {
-    if (!Array.isArray(beats) || !beats.length) return;
-    this.beats = beats;
-    this.index = 0;
-    this.elapsed = 0;
-    this.active = true;
-    this.gameFar = this.camera.far;
-    this.camera.far = Math.min(this.gameFar, 150);
-    this.camera.updateProjectionMatrix();
-    this.performanceMode?.beginCinematic();
-    document.body.classList.add('cinematic');
-    this.setBeat();
-  }
+NВ€\Л™њ›ЫT›Э][Ы€H™]И‘QK”]X]\›љ[ЫЉ
+NВ€\ЛќФ›Э][Ы€H™]И‘QK”]X]\›љ[ЫЉ
+NВ€\Л™Ш[YQ\€HШ[Y\K™\ЋВ€\ЛXЭ]™HH[ЩNВ€\Л™X]ИHЧNВ€\Лљ[™^HВ€\Л™[\ЩYHВ€\Л™›ШЭ\ТYHќ[В€B‚€^J™X]Л›ШЭ\ТYHќ[
+HВ€Y€
+P\њ^Kљ\Р\њ^J™X]КHX™X]Л›[™Э
+H™]\›ЋВ€\Л™X]ИH™X]ОВ€\Л™›ШЭ\ТYH›ШЭ\ТYВ€\Лљ[™^HВ€\Л™[\ЩYHВ€\ЛXЭ]™HHќYNВ€\Л™Ш[YQ\€H\ЛШ[Y\K™\ЋВ€\ЛШ[Y\K™\€HX]›Z[Љ\Л™Ш[YQ\‹Ќ
+NВ€\ЛШ[Y\Kќ\]T›Ъ™XЭ[Ы“X]љ^
 
-  setBeat() {
-    const beat = this.beats[this.index];
-    const player = this.getPlayer();
-    const [x, y, z] = beat.camera || [18, 10, 22];
-    const [lx, ly, lz] = beat.look || [0, 1, 0];
-    this.from = this.camera.position.clone();
-    this.fromRotation.copy(this.camera.quaternion);
-    this.to = player.clone().add(new THREE.Vector3(x, y, z));
-    this.target = player.clone().add(new THREE.Vector3(lx, ly, lz));
-    this.lookRig.position.copy(this.to);
-    this.lookRig.lookAt(this.target);
-    this.toRotation.copy(this.lookRig.quaternion);
-    this.duration = beat.duration || 2.4;
-    this.elapsed = 0;
-    this.caption.textContent = beat.speaker ? `${beat.speaker}: ${beat.line}` : beat.line;
-    this.overlay.classList.add('on');
-  }
+NВ€\Лњ\™›Ь›X[ЩS[ЩOЛ™YЪ[ђЪ[™[X]XК
+NВ€ШЭ[Y[ќ›ЩKЫ\ЬУ\ЭY
+	ШЪ[™[X]XЙКNВ€\ЛњЩ]™X]
 
-  update(dt) {
-    if (!this.active) return false;
-    this.elapsed += dt;
-    const q = Math.max(0, Math.min(1, this.elapsed / this.duration));
-    const smooth = q * q * (3 - 2 * q);
-    this.camera.position.lerpVectors(this.from, this.to, smooth);
-    this.camera.quaternion.slerpQuaternions(this.fromRotation, this.toRotation, smooth);
-    if (q >= 1) {
-      this.index++;
-      if (this.index >= this.beats.length) {
-        this.active = false;
-        this.overlay.classList.remove('on');
-        document.body.classList.remove('cinematic');
-        this.restoreView();
-        return false;
-      }
-      this.setBeat();
-    }
-    return true;
-  }
+NВ€B‚€Щ]™X]
 
-  skip() {
-    if (!this.active) return;
-    this.active = false;
-    this.overlay.classList.remove('on');
-    document.body.classList.remove('cinematic');
-    this.restoreView();
-  }
+HВ€ЫЫњЭ™X]H\Л™X]ЦЭ\Лљ[™^NВ€ЫЫњЭ^Y\€H\Л™Щ]^Y\Љ
+NВ€ЫЫњЭ›ШЭ\ИH\Л™›ШЭ\ТYИ\Л™Щ]›ШЭ\ПЛЉ\Л™›ШЭ\ТY
+H€ќ[В€ЫЫњЭЫЬЩQ›ШЭ\ИH›ШЭ\И	‰€^Y\‹™\Э[ЩUК›ШЭ\КHЋИ›ШЭ\И€^Y\ЋВ€ЫЫњЭЩ[ќ\€H^Y\‹ЫЫ™J
+KY
+ЫЬЩQ›ШЭ\КK›][\TШШ[\ЉЌJNВ€ЫЫњЭЮ—HH™X]Ш[Y\HМKWNВ€ЫЫњЭ[™ЭHX]љ\Э
+ЉHNВ€ЛИШЬљ\YЩ™њЩ]И™]љ[Э\ЫHЩ[ќHШ[Y\H[њИЩ€Y]™\И›ЭYЪB€ЛИЪ]K€ЩY\]™X\ћHЫИќZ[[™ЬИШ[››Эљ[HЪЫHЪЭ‚€ЫЫњЭЪYHHX]›Z[ЉЌKX]›X^
+‹ЌKЫЬЩQ›ШЭ\Л™\Э[ЩUК^Y\ЉH
+€Ћ
+JNВ€\Л™њ›ЫHH\ЛШ[Y\KњЬЪ][Ы‹ЫЫ™J
+NВ€\Л™њ›ЫT›Э][Ы‹ЫЬJ\ЛШ[Y\Kњ]X]\›љ[ЫЉNВ€\ЛќИHЩ[ќ\‹ЫЫ™J
+KY
+™]И‘QK•™XЭЬЊКИ[™Э
+€ЪYKЛЊЛ€И[™Э
+€ЪYJJNВ€\Лќ\™Щ]HЩ[ќ\‹ЫЫ™J
+KY
+™]И‘QK•™XЭЬЊКKЊK
+JNВ€\Л›ЫЪФљYЛњЬЪ][Ы‹ЫЬJ\ЛќКNВ€\Л›ЫЪФљYЛ›ЫЪР]
+\Лќ\™Щ]
+NВ€\ЛќФ›Э][Ы‹ЫЬJ\Л›ЫЪФљYЛњ]X]\›љ[ЫЉNВ€\Л™\][Ы€H™X]™\][Ы€‹ЌВ€\Л›[Э™Q\][Ы€HX]›Z[ЉЌMKX]›X^
+ЊЋ\Л™\][Ы€
+€ЊЉJNВ€\Л™[\ЩYHВ€\ЛШ\[Ы‹ќ^ЫЫќ[ќH™X]њЬXZЩ\€И	Ш™X]њЬXZЩ\џN€	Ш™X]›[™_X€™X]›[™NВ€\Л›Э™\›^KЫ\ЬУ\ЭY
+	ЫЫ‰КNВ€B‚€\]J
+HВ€Y€
+]\ЛXЭ]™JH™]\›€[ЩNВ€\Л™[\ЩY
+ПHВ€ЫЫњЭHHX]›X^
+X]›Z[ЉK\Л™[\ЩYИ\Л›[Э™Q\][ЫЉJNВ€ЫЫњЭЫ[ЫЭHH
+€H
+€
+ИH€
+€JNВ€\ЛШ[Y\KњЬЪ][Ы‹›\њ™XЭЬњК\Л™њ›ЫK\ЛќЛЫ[ЫЭ
+NВ€\ЛШ[Y\Kњ]X]\›љ[Ы‹њЫ\њ]X]\›љ[ЫњК\Л™њ›ЫT›Э][Ы‹\ЛќФ›Э][Ы‹Ы[ЫЭ
+NВ€Y€
+\Л™[\ЩYЏH\Л™\][ЫЉHВ€\Лљ[™^
+КОВ€Y€
+\Лљ[™^ЏH\Л™X]Л›[™Э
+HВ€\ЛXЭ]™HH[ЩNВ€\Л›Э™\›^KЫ\ЬУ\Эњ™[[Э™J	ЫЫ‰КNВ€ШЭ[Y[ќ›ЩKЫ\ЬУ\Эњ™[[Э™J	ШЪ[™[X]XЙКNВ€\Лњ™\ЭЬ™UљY]К
+NВ€™]\›€[ЩNВ€B€\ЛњЩ]™X]
 
-  restoreView() {
-    this.camera.far = this.gameFar;
-    this.camera.updateProjectionMatrix();
-    this.performanceMode?.endCinematic();
-  }
-}
+NВ€B€™]\›€ќYNВ€B‚€ЪЪ\
 
+HВ€Y€
+]\ЛXЭ]™JH™]\›ЋВ€\ЛXЭ]™HH[ЩNВ€\Л›Э™\›^KЫ\ЬУ\Эњ™[[Э™J	ЫЫ‰КNВ€ШЭ[Y[ќ›ЩKЫ\ЬУ\Эњ™[[Э™J	ШЪ[™[X]XЙКNВ€\Лњ™\ЭЬ™UљY]К
+NВ€B‚€™\ЭЬ™UљY]К
+HВ€\Л™›ШЭ\ТYHќ[В€\ЛШ[Y\K™\€H\Л™Ш[YQ\ЋВ€\ЛШ[Y\Kќ\]T›Ъ™XЭ[Ы“X]љ^
+
+NВ€\Лњ\™›Ь›X[ЩS[ЩOЛ™[™Ъ[™[X]XК
+NВ€BџB

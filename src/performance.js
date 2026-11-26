@@ -1,85 +1,51 @@
-const QUALITY = [
-  { name: 'Low', pixel: 0.4, shadow: 0, map: 256 },
-  { name: 'Medium', pixel: 0.55, shadow: 0, map: 512 },
-  { name: 'High', pixel: 0.75, shadow: 1, map: 512 },
-  { name: 'Ultra', pixel: 0.95, shadow: 1, map: 768 }
-];
+Û^š›bh¥êß¢¹­…â'ŠØš–,ŞçÚº[C®+Ş²Š^­«b¢z'¶…ŠW’ÊË^ššè¾'^­ö¢•çXÛÛœİUPSUHHÂˆÈ˜[YNˆ	ÓİÉË^[ˆMKÚYİÎˆX\ˆMˆKˆÈ˜[YNˆ	ÓYY][IË^[ˆÚYİÎˆX\ˆLLˆKˆÈ˜[YNˆ	ÒYÚ	Ë^[ˆKÚYİÎˆKX\ˆÍKˆÈ˜[YNˆ	Õ[˜IË^[ˆKŒËÚYİÎˆKX\ˆLB—NÂ‚™^ÜÛ\ÜÈ\™›Ü›X[˜ÙS[Ûš]ÜˆÂˆÛÛœİXİÜŠ™[™\™\‹YÚ[™[
+HÂˆ\Ëœ™[™\™\ˆH™[™\™\Âˆ\Ë›YÚHYÚÂˆ\Ëœ[™[H[™[ÂˆHÈÛÛœİØ]™YH[X™\ŠØØ[İÜ˜YÙK™Ù]][J	Ø™\›[›Y™Kœ]X[]KŒ‰ÊHÏÈŠNÈ\Ëœ]X[]HH[X™\‹š\Ñš[š]JØ]™Y
+HÈX]›Z[ŠËX]›X^
+Ø]™Y
+JHˆÈBˆØ]ÚÈ\Ëœ]X[]HHÈBˆ\Ë™œ˜[Y\ÈHÂˆ\Ëİ[HÂˆ\Ë™œÈHÂˆ\Ë™œ˜[YS\ÈHÂˆ\Ë›\İ[™[HÂˆ\Ë›\İY\HÂˆ\Ë˜Ú[™[X]XÈH˜[ÙNÂˆ\Ë›X^^[HÂˆ\Ëœ^[ØØ[HHÂˆ\ËœÙ]
+\Ëœ]X[]JNÂˆB‚ˆÙ]
+]™[
+HÂˆ\Ëœ]X[]HHX]›X^
+X]›Z[ŠË]™[
+JNÂˆÛÛœİHHUPSUVİ\Ëœ]X[]WNÂˆ\Ë›X^^[HKœ^[Âˆ\Ëœ^[ØØ[HHKœ^[Âˆ\Ëœ™[™\™\‹œÙ]^[˜][ÊX]›Z[Š]šXÙT^[˜][ÈK\Ëœ^[ØØ[JJNÂˆ\Ëœ™[™\™\‹œÚYİÓX\™[˜X›YHH\KœÚYİÎÂˆ\Ë›YÚ˜Ø\İÚYİÈHH\KœÚYİÎÂˆ\Ë›YÚœÚYİË›X\Ú^™KœÙ]
+K›X\K›X\
+NÂˆ\Ë›YÚœÚYİË˜Ø[Y\˜K\]T›Ú™Xİ[Û“X]š^
 
-export class PerformanceMonitor {
-  constructor(renderer, light, panel) {
-    this.renderer = renderer;
-    this.light = light;
-    this.panel = panel;
-    try { const saved = Number(localStorage.getItem('berlinlife.quality') ?? 1); this.quality = Number.isFinite(saved) ? Math.min(3, Math.max(0, saved)) : 1; }
-    catch { this.quality = 1; }
-    this.frames = 0;
-    this.total = 0;
-    this.fps = 0;
-    this.frameMs = 0;
-    this.lastPanel = 0;
-    this.lastAdapt = 0;
-    this.cinematic = false;
-    this.maxPixel = 0.4;
-    this.pixelScale = 0.4;
-    this.set(this.quality);
-  }
+NÂˆHÈØØ[İÜ˜YÙKœÙ]][J	Ø™\›[›Y™Kœ]X[]KŒ‰Ëİš[™Ê\Ëœ]X[]JJNÈHØ]ÚßBˆ™]\›ˆK›˜[YNÂˆB‚ˆŞXÛJ
+HÈ™]\›ˆ\ËœÙ]
 
-  set(level) {
-    this.quality = Math.max(0, Math.min(3, level | 0));
-    const q = QUALITY[this.quality];
-    this.maxPixel = q.pixel;
-    this.pixelScale = q.pixel;
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, this.pixelScale));
-    this.renderer.shadowMap.enabled = !!q.shadow;
-    this.light.castShadow = !!q.shadow;
-    this.light.shadow.mapSize.set(q.map, q.map);
-    this.light.shadow.camera.updateProjectionMatrix();
-    try { localStorage.setItem('berlinlife.quality', String(this.quality)); } catch {}
-    return q.name;
-  }
-
-  cycle() { return this.set((this.quality + 1) % QUALITY.length); }
-  name() { return QUALITY[this.quality].name; }
-
-  beginCinematic() {
-    if (this.cinematic) return;
-    this.cinematic = true;
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 0.4));
-    this.renderer.shadowMap.enabled = false;
-    this.light.castShadow = false;
-  }
-
-  endCinematic() {
-    if (!this.cinematic) return;
-    this.cinematic = false;
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, this.pixelScale));
-    const q = QUALITY[this.quality];
-    this.renderer.shadowMap.enabled = !!q.shadow;
-    this.light.castShadow = !!q.shadow;
-  }
-
-  sample(dt, now, counts = {}) {
-    this.frames++;
-    this.total += dt;
-    this.frameMs = dt * 1000;
-    if (now - this.lastPanel < 250) return;
-    this.fps = this.total ? this.frames / this.total : 0;
-    this.frames = 0;
-    this.total = 0;
-    this.lastPanel = now;
-    if (now - this.lastAdapt > 1600 && this.fps > 0) {
-      const before = this.pixelScale;
-      if (this.fps < 24) this.pixelScale = Math.max(0.3, before * 0.72);
-      else if (this.fps < 38) this.pixelScale = Math.max(0.35, before - 0.08);
-      else if (this.fps > 52) this.pixelScale = Math.min(this.cinematic ? 0.4 : this.maxPixel, before + 0.04);
-      if (Math.abs(before - this.pixelScale) >= 0.035) this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, this.pixelScale));
-      this.lastAdapt = now;
-    }
-    if (!this.panel || this.panel.hidden) return;
-    if (typeof counts === 'function') counts = counts();
-    const info = this.renderer.info;
-    const memory = performance.memory ? `${Math.round(performance.memory.usedJSHeapSize / 1048576)} MB` : 'n/a';
-    this.panel.textContent = `FPS ${this.fps.toFixed(0)} Â· ${this.frameMs.toFixed(1)} ms\nDraw calls ${info.render.calls} Â· triangles ${info.render.triangles.toLocaleString()}\nNPCs ${counts.npcs || 0} Â· cars ${counts.cars || 0} Â· quality ${this.name()}\nJS memory ${memory}`;
-  }
-}
-
+\Ëœ]X[]H
+ÈJH	HUPSUK›[™İ
+NÈBˆ˜[YJ
+HÈ™]\›ˆUPSUVİ\Ëœ]X[]WK›˜[YNÈB‚ˆ™YÚ[Ú[™[X]XÊ
+HÂˆYˆ
+\Ë˜Ú[™[X]XÊH™]\›Âˆ\Ë˜Ú[™[X]XÈHYNÂˆËÈÙY\HÚ\œ\ˆÙ[XİY™\ÛÛ][Ûˆ\š[™ÈX[ÙİYNÈÛ›H]\ÙHÚYİÜË‚ˆ\Ëœ™[™\™\‹œÚYİÓX\™[˜X›YH˜[ÙNÂˆ\Ë›YÚ˜Ø\İÚYİÈH˜[ÙNÂˆB‚ˆ[™Ú[™[X]XÊ
+HÂˆYˆ
+]\Ë˜Ú[™[X]XÊH™]\›Âˆ\Ë˜Ú[™[X]XÈH˜[ÙNÂˆ\Ëœ™[™\™\‹œÙ]^[˜][ÊX]›Z[Š]šXÙT^[˜][ÈK\Ëœ^[ØØ[JJNÂˆÛÛœİHHUPSUVİ\Ëœ]X[]WNÂˆ\Ëœ™[™\™\‹œÚYİÓX\™[˜X›YHH\KœÚYİÎÂˆ\Ë›YÚ˜Ø\İÚYİÈHH\KœÚYİÎÂˆB‚ˆØ[\J›İËÛİ[ÈHßJHÂˆ\Ë™œ˜[Y\ÊÊÎÂˆ\Ëİ[
+ÏHÂˆ\Ë™œ˜[YS\ÈH
+ˆLÂˆYˆ
+›İÈH\Ë›\İ[™[L
+H™]\›Âˆ\Ë™œÈH\Ëİ[È\Ë™œ˜[Y\ÈÈ\Ëİ[ˆÂˆ\Ë™œ˜[Y\ÈHÂˆ\Ëİ[HÂˆ\Ë›\İ[™[H›İÎÂˆYˆ
+›İÈH\Ë›\İY\ˆMŒ	‰ˆ\Ë™œÈˆ
+HÂˆÛÛœİ™Y›Ü™HH\Ëœ^[ØØ[NÂˆYˆ
+\Ë™œÈ
+H\Ëœ^[ØØ[HHX]›X^
+ŒË™Y›Ü™H
+ˆÌŠNÂˆ[ÙHYˆ
+\Ë™œÈÎ
+H\Ëœ^[ØØ[HHX]›X^
+ŒÍK™Y›Ü™HHŒ
+NÂˆ[ÙHYˆ
+\Ë™œÈˆLŠH\Ëœ^[ØØ[HHX]›Z[Š\Ë›X^^[™Y›Ü™H
+ÈŒ
+NÂˆYˆ
+X]˜XœÊ™Y›Ü™HH\Ëœ^[ØØ[JHHŒÍJH\Ëœ™[™\™\‹œÙ]^[˜][ÊX]›Z[Š]šXÙT^[˜][ÈK\Ëœ^[ØØ[JJNÂˆ\Ë›\İY\H›İÎÂˆBˆYˆ
+]\Ëœ[™[\Ëœ[™[šY[ŠH™]\›ÂˆYˆ
+\[ÙˆÛİ[ÈOOH	Ù[˜İ[Û‰ÊHÛİ[ÈHÛİ[Ê
+NÂˆÛÛœİ[™›ÈH\Ëœ™[™\™\‹š[™›ÎÂˆÛÛœİY[[ÜHH\™›Ü›X[˜ÙK›Y[[ÜHÈ	ÓX]œ›İ[™
+\™›Ü›X[˜ÙK›Y[[ÜK\ÙY”ÒX\Ú^™HÈLMÍŠ_HP˜ˆ	Û‹ØIÎÂˆ\Ëœ[™[^ÛÛ[H”È	İ\Ë™œËÑš^Y
+
+_H0­È	İ\Ë™œ˜[YS\ËÑš^Y
+J_H\×‘˜]ÈØ[È	Ú[™›Ëœ™[™\‹˜Ø[ßH0­ÈšX[™Û\È	Ú[™›Ëœ™[™\‹šX[™Û\ËÓØØ[Tİš[™Ê
+_W“”ÜÈ	ØÛİ[Ë›œÜÈH0­ÈØ\œÈ	ØÛİ[Ë˜Ø\œÈH0­È]X[]H	İ\Ë›˜[YJ
+_W’”ÈY[[ÜH	ÛY[[Ü_XÂˆBŸB‚

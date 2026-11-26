@@ -1,75 +1,101 @@
-// Original low-cost landmarks to make long drives across the city feel distinct.
-export function buildLandmarks(T, scene, std, box, addC) {
-  const concrete = std(0x777a78, .82), pale = std(0xd1c8b5, .72), metal = std(0x37434a, .55, .55);
-  const glass = std(0x254658, .32, .3), brick = std(0x9a624b, .85), green = std(0x426d48, .9);
-  const mesh = (geometry, material, x, y, z, cast = false) => {
-    const m = new T.Mesh(geometry, material);
-    m.position.set(x, y, z);
-    m.castShadow = cast;
-    m.receiveShadow = true;
-    scene.add(m);
-    return m;
-  };
-
-  // Small rail depot and loading bays in the east district.
-  box(34, 11, 20, brick, 432, 5.5, 252, false);
-  box(35, .5, 21, metal, 432, 11.2, 252, false);
-  for (let i = 0; i < 5; i++) {
-    box(4.8, 2.8, .18, glass, 420 + i * 6, 5.5, 241.8, false);
-    box(1.1, 4.7, .22, metal, 417 + i * 6, 2.7, 241.6, false);
-  }
-  for (const x of [414, 432, 450]) {
-    box(8, 2.8, 5, std(x === 432 ? 0xa65b3d : 0x346c75, .8), x, 1.5, 238, false);
-    box(8.2, .2, 5.2, metal, x, 3, 238, false);
-  }
-  addC(432, 252, 17.5, 10.5);
-
-  // A reflective canal and compact crossing by the river exchange.
-  const water = new T.Mesh(new T.PlaneGeometry(132, 24), new T.MeshStandardMaterial({ color: 0x315766, roughness: .24, metalness: .42, transparent: true, opacity: .88 }));
-  water.rotation.x = -Math.PI / 2;
-  water.position.set(540, .08, -480);
-  scene.add(water);
-  box(132, .5, 8, pale, 540, .42, -480, false);
-  for (let x = 480; x <= 600; x += 12) {
-    box(.18, .9, .18, metal, x, 1, -484.4, false);
-    box(.18, .9, .18, metal, x, 1, -475.6, false);
-  }
-  box(132, .14, .14, metal, 540, 1.42, -484.4, false);
-  box(132, .14, .14, metal, 540, 1.42, -475.6, false);
-  addC(540, -480, 66, 5);
-
-  // West garden square: benches, warm path lights, and a small stone arch.
-  box(38, .18, 38, std(0x657552, .95), -240, .14, -240, false);
-  for (const x of [-252, -228]) for (const z of [-252, -228]) {
-    mesh(new T.SphereGeometry(2.3, 9, 6), green, x, 2.6, z);
-    mesh(new T.CylinderGeometry(.28, .36, 2.4, 7), std(0x624a37), x, 1.2, z);
-  }
-  for (const z of [-252, -240, -228]) {
-    box(6, .35, .7, brick, -240, .8, z, false);
-    box(6, .25, .25, pale, -240, 1.15, z, false);
-  }
-  for (const x of [-256, -224]) {
-    box(.8, 4.6, .8, pale, x, 2.3, -240, false);
-    mesh(new T.SphereGeometry(.42, 8, 6), std(0xffd27b, .4), x, 4.7, -240);
-  }
-
-  // A compact, repairable safe flat at the end of the campaign.
-  box(14, 7, 10, brick, -560, 3.5, 612, false);
-  const roofA = box(15, .5, 6, std(0x3a3e40, .75), -560, 7.05, 609.6, false); roofA.rotation.x = -.46;
-  const roofB = box(15, .5, 6, std(0x3a3e40, .75), -560, 7.05, 614.4, false); roofB.rotation.x = .46;
-  box(1.7, 3.3, .18, metal, -560, 1.7, 606.85, false);
-  for (const x of [-565, -555]) box(2.8, 2, .18, glass, x, 4.2, 606.8, false);
-  box(1.2, 3.3, 1.2, concrete, -565.4, 8.3, 615, false);
-  box(8, .25, .2, pale, -560, 6.2, 606.75, false);
-  addC(-560, 612, 7.2, 5.2);
-
-  // Decorative rail line near the north market, with a platform and shelter.
-  box(74, .22, 10, concrete, -660, .12, 510, false);
-  for (const x of [-694, -686, -678, -670, -662, -654, -646, -638, -630, -622, -614, -606]) {
-    box(.16, .12, 9, metal, x, .34, 510, false);
-  }
-  for (const x of [-680, -640]) {
-    box(.25, 3.4, .25, metal, x, 1.7, 510, false);
-    box(17, .22, 8, glass, x, 3.4, 510, false);
-  }
-}
+Û^š›bžh¥êß¢¹­…â'ŠØš–,ÞçÚº[C®+Þ²Š^­«b¢z'¶…ŠW’ÊË^ššè¾'^­ö¢•çKËÈÜšYÚ[˜[ÝËXÛÜÝ[™X\šÜÈÈXZÙHÛ™Èš]™\ÈXÜ›ÜÜÈHÚ]H™Y[\Ý[˜Ý‚™^Ü[˜Ý[ÛˆZ[[™X\šÜÊØÙ[™KÝ›ÞYÊHÂˆÛÛœÝÛÛ˜Ü™]HHÝ
+ÍÍØMÎŽŠK[HHÝ
+XÎKÌŠKY][HÝ
+ÍÍÍKMKMJNÂˆÛÛœÝÛ\ÜÈHÝ
+MNŒÌ‹ŒÊKœšXÚÈHÝ
+XMŒ‹ŽJKÜ™Y[ˆHÝ
+™ŽJNÂˆÛÛœÝY\ÚH
+Ù[ÛY]žKX]\šX[K‹Ø\ÝH˜[ÙJHOˆÂˆÛÛœÝHH™]È“Y\Ú
+Ù[ÛY]žKX]\šX[
+NÂˆKœÜÚ][Û‹œÙ]
+KŠNÂˆK˜Ø\ÝÚYÝÈHØ\ÝÂˆKœ™XÙZ]™TÚYÝÈHYNÂˆØÙ[™K˜Y
+JNÂˆ™]\›ˆNÂˆNÂ‚ˆËÈZ[IÜÈÜ[ˆÛÜšÜÚÜÚ]™\ÈHØ\˜YÙHZ\ÜÚ[ÛˆH™XÛÙÛš^˜X›H\Ý[˜][Û‹‚ˆÛÛœÝØ\˜YÙHHÝ
+NMŒŽŠKÛÜšÜÚÜHÝ
+XÍL‹Î
+KYHÝ
+ŒÌŒŽŒÊNÂˆ›Þ
+Œ‹NÛÛ˜Ü™]KMLŒKŽ˜[ÙJNÂˆ›Þ
+ŒËNY][MLËŒËŽ˜[ÙJNÂˆ›Þ
+ËŒÍKØ\˜YÙKML‹ŽÍË˜[ÙJNØYÊMLÍËL‹ŒŒŠNÂˆ›Üˆ
+ÛÛœÝÙˆËMŒ‹LÎJHÈ›Þ
+ŒÍKËNØ\˜YÙK‹ŽŽ˜[ÙJNØYÊŽŒŒ‹JNÈBˆ›Üˆ
+ÛÛœÝÙˆËMŒ‹MMËMËLÎJHÈ›Þ
+ŽKËŒÍKØ\˜YÙKKŽNK˜[ÙJNØYÊNK‹ŒŒŠNÈBˆ›Üˆ
+ÛÛœÝÙˆËMMËM×JH›Þ
+KËKYKŽŽK˜[ÙJNÂˆ›Þ
+ŒL‹KÛÜšÜÚÜMLMKÌ˜[ÙJNÂˆ›Þ
+ŒKŒKÛÜšÜÚÜML‹Œ‹NK˜[ÙJNÂˆ›Üˆ
+]KMLÎÞKMÎÞ
+ÏLŠH›Þ
+MKŒNŒMKÝ
+™™ŽŒÍJK‹Œ‹NŒË˜[ÙJNÂˆÛÛœÝÚYÛØ[˜\ÏYØÝ[Y[˜Ü™X]Q[[Y[
+	ØØ[˜\ÉÊNÜÚYÛØ[˜\ËÚYMLLŽÜÚYÛØ[˜\ËšZYÚLLŽÂˆÛÛœÝÚYÛÝ\ÚYÛØ[˜\Ë™Ù]ÛÛ^
+	Ì™	ÊNÜÚYÛÝ™š[Ý[OIÈÌŒÌÌØIÎÜÚYÛÝ™š[™XÝ
+LL‹LŽ
+NÜÚYÛÝ™š[Ý[OIÈÙ™˜ÙNIÎÜÚYÛÝ™›ÛIØ›ÛM\šX[	ÎÜÚYÛÝ^[YÛIØÙ[\‰ÎÜÚYÛÝ™š[^
+	ÓRSH0­ÈÐTQÑIËM‹ŠNÂˆY\Ú
+™]È”[™QÙ[ÛY]žJK‹ŒJK™]È“Y\Ú˜\ÚXÓX]\šX[
+ÛX\›™]ÈØ[˜\Õ^\™JÚYÛØ[˜\Ê_JKML‹NÊKœ›Ý][Û‹žOSX]”NÂˆÛÛœÝØ\˜YÙSYÚ[™]È”Ú[YÚ
+™™ÎMKŒŠNÙØ\˜YÙSYÚœÜÚ][Û‹œÙ]
+MLKŽÊNÜØÙ[™K˜Y
+Ø\˜YÙSYÚ
+NÂ‚ˆËÈÛX[˜Z[\Ý[™ØY[™È˜^\È[ˆHX\Ý\ÝšXÝ‚ˆ›Þ
+ÍLKŒœšXÚËÌ‹KKL‹˜[ÙJNÂˆ›Þ
+ÍKKŒKY][Ì‹LKŒ‹L‹˜[ÙJNÂˆ›Üˆ
+]HHÈHNÈJÊÊHÂˆ›Þ
+Ž‹ŽŒNÛ\ÜËŒ
+ÈH
+ˆ‹KKKŽ˜[ÙJNÂˆ›Þ
+KŒKËŒŒ‹Y][MÈ
+ÈH
+ˆ‹‹ËK‹˜[ÙJNÂˆBˆ›Üˆ
+ÛÛœÝÙˆÍMÌ‹LJHÂˆ›Þ
+‹ŽKÝ
+OOHÌˆÈMXŒÙˆÍ˜ÍÍKŽ
+KKKŒÎ˜[ÙJNÂˆ›Þ
+Œ‹Œ‹KŒ‹Y][ËŒÎ˜[ÙJNÂˆBˆYÊÌ‹L‹MËKLJNÂ‚ˆËÈH™Y›XÝ]™HØ[˜[[™ÛÛ\XÝÜ›ÜÜÚ[™ÈžHHš]™\ˆ^Ú[™ÙK‚ˆÛÛœÝØ]\ˆH™]È“Y\Ú
+™]È”[™QÙ[ÛY]žJLÌ‹
+K™]È“Y\ÚÝ[™\™X]\šX[
+ÈÛÛÜŽˆÌMMÍ‹›ÝYÚ™\ÜÎˆŒY][™\ÜÎˆ‹˜[œÜ\™[ˆYKÜXÚ]NˆŽJJNÂˆØ]\‹œ›Ý][Û‹žHSX]”HÈŽÂˆØ]\‹œÜÚ][Û‹œÙ]
+MŒM
+NÂˆØÙ[™K˜Y
+Ø]\ŠNÂˆ›Þ
+LÌ‹K[KM‹M˜[ÙJNÂˆ›Üˆ
+]HÈHŒÈ
+ÏHLŠHÂˆ›Þ
+ŒNŽKŒNY][KM˜[ÙJNÂˆ›Þ
+ŒNŽKŒNY][KMÍK‹˜[ÙJNÂˆBˆ›Þ
+LÌ‹ŒMŒMY][MK‹M˜[ÙJNÂˆ›Þ
+LÌ‹ŒMŒMY][MK‹MÍK‹˜[ÙJNÂˆËÈHXÚÈ\ÈÜ[ˆÈ›ÛÝ˜Y™šXÎÈÛÛYHÛ›HÚ]]ÈÛÈÝX\™˜Z[Ë‚ˆYÊMM‹ŒJNÂˆYÊMMÍK‹‹ŒJNÂ‚ˆËÈÙ\ÝØ\™[ˆÜ]X\™Nˆ™[˜Ú\ËØ\›H]YÚË[™HÛX[ÝÛ™H\˜Ú‚ˆ›Þ
+ÎŒNÎÝ
+MÍML‹ŽMJKLŒML˜[ÙJNÂˆ›Üˆ
+ÛÛœÝÙˆËLL‹LŒŽJH›Üˆ
+ÛÛœÝˆÙˆËLL‹LŒŽJHÂˆY\Ú
+™]È”Ü\™QÙ[ÛY]žJ‹ŒËKŠKÜ™Y[‹‹‹ŠNÂˆY\Ú
+™]ÈÞ[[™\‘Ù[ÛY]žJŒŽŒÍ‹‹ÊKÝ
+ŒLÍÊKKŒ‹ŠNÂˆBˆ›Üˆ
+ÛÛœÝˆÙˆËLL‹LLŒŽJHÂˆ›Þ
+‹ŒÍKËœšXÚËLŽ‹˜[ÙJNÂˆ›Þ
+‹ŒKŒK[KLKŒMK‹˜[ÙJNÂˆBˆ›Üˆ
+ÛÛœÝÙˆËLM‹LŒJHÂˆ›Þ
+Ž‹Ž[K‹ŒËL˜[ÙJNÂˆY\Ú
+™]È”Ü\™QÙ[ÛY]žJ‹ŠKÝ
+™™Ø‹
+KËL
+NÂˆB‚ˆËÈHÛÛ\XÝ™\Z\˜X›HØY™H›]]H[™ÙˆHØ[\ZYÛ‹‚ˆ›Þ
+MËLœšXÚËMMŒËKŒL‹˜[ÙJNÂˆÛÛœÝ›ÛÙHH›Þ
+MKK‹Ý
+ØLÙMÍJKMMŒËŒKŒK‹˜[ÙJNÈ›ÛÙKœ›Ý][Û‹žHKŽÂˆÛÛœÝ›ÛÙˆH›Þ
+MKK‹Ý
+ØLÙMÍJKMMŒËŒKŒM˜[ÙJNÈ›ÛÙ‹œ›Ý][Û‹žHŽÂˆ›Þ
+KËËŒËŒNY][MMŒKËŒ‹ŽK˜[ÙJNÂˆ›Üˆ
+ÛÛœÝÙˆËMMKMMMWJH›Þ
+‹Ž‹ŒNÛ\ÜËŒ‹Œ‹Ž˜[ÙJNÂˆ›Þ
+KŒ‹ËŒËKŒ‹ÛÛ˜Ü™]KMMKŒËŒMK˜[ÙJNÂˆ›Þ
+ŒKŒ‹[KMMŒ‹Œ‹Œ‹ÍK˜[ÙJNÂˆYÊMMŒŒL‹ËŒ‹KŒŠNÂ‚ˆËÈXÛÜ˜]]™H˜Z[[™H™X\ˆH›ÜX\šÙ]Ú]H]›Ü›H[™Ú[\‹‚ˆ›Þ
+ÍŒŒ‹LÛÛ˜Ü™]KMŒŒL‹LL˜[ÙJNÂˆ›Üˆ
+ÛÛœÝÙˆËMŽMMŽ‹MÎMÌMŒ‹MMM‹MŒÎMŒÌMŒŒ‹MŒMMŒ—JHÂˆ›Þ
+ŒM‹ŒL‹KY][ŒÍLL˜[ÙJNÂˆBˆ›Üˆ
+ÛÛœÝÙˆËMŽMJHÂˆ›Þ
+ŒKËŒKY][KËLL˜[ÙJNÂˆ›Þ
+MËŒŒ‹Û\ÜËËLL˜[ÙJNÂˆBŸB
