@@ -41,13 +41,18 @@ export class CutsceneDirector {
     const closeFocus = focus && player.distanceTo(focus) < 28 ? focus : player;
     const center = player.clone().add(closeFocus).multiplyScalar(.5);
     const [x, , z] = beat.camera || [1, 0, 1];
-    const length = Math.hypot(x, z) || 1;
-    // Scripted offsets previously sent the camera tens of metres through the
-    // city. Keep it nearby so buildings cannot fill the whole shot.
-    const side = Math.min(8.5, Math.max(6.5, closeFocus.distanceTo(player) * .8));
+    const gapX=closeFocus.x-player.x,gapZ=closeFocus.z-player.z,gap=Math.hypot(gapX,gapZ);
+    let dirX,dirZ;
+    if(closeFocus!==player&&gap>1){
+      // Put the camera beside the line between the two speakers, over the
+      // open street, rather than on a diagonal that lands inside a building.
+      const sign=x>=0?-1:1;dirX=-gapZ/gap*sign;dirZ=gapX/gap*sign;
+    }else if(Math.abs(x)>=Math.abs(z)){dirX=Math.sign(x)||1;dirZ=0}
+    else{dirX=0;dirZ=Math.sign(z)||1}
+    const side = gap>1?Math.min(8.5,Math.max(6.5,gap*.8)):8.5;
     this.from = this.camera.position.clone();
     this.fromRotation.copy(this.camera.quaternion);
-    this.to = center.clone().add(new THREE.Vector3(x / length * side, 3.3, z / length * side));
+    this.to = center.clone().add(new THREE.Vector3(dirX * side, 3.3, dirZ * side));
     this.target = center.clone().add(new THREE.Vector3(0, 1.05, 0));
     this.lookRig.position.copy(this.to);
     this.lookRig.lookAt(this.target);
