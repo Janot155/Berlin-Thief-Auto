@@ -32,13 +32,13 @@ export class CutsceneDirector {
 
   setBeat() {
     const beat = this.beats[this.index];
-    const p = this.getPlayer();
+    const player = this.getPlayer();
     const [x, y, z] = beat.camera || [18, 10, 22];
     const [lx, ly, lz] = beat.look || [0, 1, 0];
     this.from = this.camera.position.clone();
     this.fromRotation.copy(this.camera.quaternion);
-    this.to = p.position.clone().add(new THREE.Vector3(x, y, z));
-    this.target = p.position.clone().add(new THREE.Vector3(lx, ly, lz));
+    this.to = player.clone().add(new THREE.Vector3(x, y, z));
+    this.target = player.clone().add(new THREE.Vector3(lx, ly, lz));
     this.lookRig.position.copy(this.to);
     this.lookRig.lookAt(this.target);
     this.toRotation.copy(this.lookRig.quaternion);
