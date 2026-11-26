@@ -37,19 +37,23 @@ export class CutsceneDirector {
   setBeat() {
     const beat = this.beats[this.index];
     const player = this.getPlayer();
-    const focus = this.focusId ? this.getFocus?.(this.focusId) : null;
-    const closeFocus = focus && player.distanceTo(focus) < 28 ? focus : player;
-    const center = player.clone().add(closeFocus).multiplyScalar(.5);
+    const focusId = beat.focusId || this.focusId;
+    const focus = focusId ? this.getFocus?.(focusId) : null;
+    const paired = focus && player.distanceTo(focus) < 28;
+    const closeFocus = paired ? focus : player;
+    // If the scripted speaker is elsewhere, cut to that character directly;
+    // never spend the line flying across the map toward them.
+    const center = paired ? player.clone().add(focus).multiplyScalar(.5) : (focus || player).clone();
     const [x, , z] = beat.camera || [1, 0, 1];
     const gapX=closeFocus.x-player.x,gapZ=closeFocus.z-player.z,gap=Math.hypot(gapX,gapZ);
     let dirX,dirZ;
-    if(closeFocus!==player&&gap>1){
+    if(paired&&gap>1){
       // Put the camera beside the line between the two speakers, over the
       // open street, rather than on a diagonal that lands inside a building.
       const sign=x>=0?1:-1;dirX=-gapZ/gap*sign;dirZ=gapX/gap*sign;
     }else if(Math.abs(x)>=Math.abs(z)){dirX=Math.sign(x)||1;dirZ=0}
     else{dirX=0;dirZ=Math.sign(z)||1}
-    const side = gap>1?Math.min(3.8,Math.max(2.8,gap*.65)):3.5;
+    const side = gap>1?Math.min(5.2,Math.max(4.5,gap*.58)):4.8;
     this.from = this.camera.position.clone();
     this.fromRotation.copy(this.camera.quaternion);
     this.to = center.clone().add(new THREE.Vector3(dirX * side, 2.45, dirZ * side));
@@ -59,9 +63,12 @@ export class CutsceneDirector {
     this.toRotation.copy(this.lookRig.quaternion);
     this.duration = beat.duration || 2.4;
     this.moveDuration = Math.min(.4, Math.max(.2, this.duration * .14));
-    // Open on the actual speakers. A long sweep in from the menu camera made
-    // the entire first line play while the camera was still over rooftops.
-    if(this.index===0){this.camera.position.copy(this.to);this.camera.quaternion.copy(this.toRotation);this.from.copy(this.to);this.fromRotation.copy(this.toRotation)}
+    // Cut directly to a composed speaker shot. Interpolating from the gameplay
+    // camera made dialogue drift over rooftops and buildings before settling.
+    this.camera.position.copy(this.to);
+    this.camera.quaternion.copy(this.toRotation);
+    this.from.copy(this.to);
+    this.fromRotation.copy(this.toRotation);
     this.elapsed = 0;
     this.caption.textContent = beat.speaker ? `${beat.speaker}: ${beat.line}` : beat.line;
     this.overlay.classList.add('on');
