@@ -10,8 +10,8 @@ export class PerformanceMonitor {
     this.renderer = renderer;
     this.light = light;
     this.panel = panel;
-    try { const saved = Number(localStorage.getItem('berlinlife.quality') ?? 0); this.quality = Number.isFinite(saved) ? Math.min(1, Math.max(0, saved)) : 0; }
-    catch { this.quality = 0; }
+    try { const saved = Number(localStorage.getItem('berlinlife.quality') ?? 1); this.quality = Number.isFinite(saved) ? Math.min(3, Math.max(0, saved)) : 1; }
+    catch { this.quality = 1; }
     this.frames = 0;
     this.total = 0;
     this.fps = 0;

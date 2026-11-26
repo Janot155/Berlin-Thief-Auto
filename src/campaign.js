@@ -21,11 +21,11 @@ export const CAMPAIGN_CUTSCENES = [
 export const CAST = [
   { id: 'mila', name: 'Mila Weiss', role: 'Mechanic and Alex’s friend', shirt: 0xb44a36, pants: 0x252a32, x: -53, z: 6, h: Math.PI / 2, mission: 1 },
   { id: 'deniz', name: 'Deniz Kaya', role: 'Taxi driver', shirt: 0xd2a83c, pants: 0x252a32, x: 12, z: 12, h: 0, mission: 0 },
-  { id: 'jonas', name: 'Jonas Novak', role: 'Alex’s brother', shirt: 0x365d75, pants: 0x24272a, x: 120, z: 12, h: Math.PI, mission: 4 },
-  { id: 'viktor', name: 'Viktor Brandt', role: 'Businessman', shirt: 0x292d38, pants: 0x15171b, x: 120, z: -120, h: Math.PI / 2, mission: 10 },
-  { id: 'lena', name: 'Lena Hartmann', role: 'Investigator', shirt: 0x536c4c, pants: 0x24272a, x: -30, z: -30, h: 0, mission: 8 },
+  { id: 'jonas', name: 'Jonas Novak', role: 'Alex’s brother', shirt: 0x365d75, pants: 0x24272a, x: 480, z: 8, h: Math.PI, mission: 4 },
+  { id: 'viktor', name: 'Viktor Brandt', role: 'Businessman', shirt: 0x292d38, pants: 0x15171b, x: 650, z: -600, h: Math.PI / 2, mission: 10 },
+  { id: 'lena', name: 'Lena Hartmann', role: 'Investigator', shirt: 0x536c4c, pants: 0x24272a, x: -240, z: -240, h: 0, mission: 8 },
   { id: 'clerk', name: 'Rafi Yilmaz', role: 'Späti shopkeeper', shirt: 0x3b7658, pants: 0x252a32, x: 90, z: 27, h: Math.PI, mission: 3 },
-  { id: 'niko', name: 'Niko Petrov', role: 'Mechanic and flatmate', shirt: 0xc06c39, pants: 0x26272b, x: -140, z: 150, h: Math.PI / 2, mission: 11 }
+  { id: 'niko', name: 'Niko Petrov', role: 'Mechanic and flatmate', shirt: 0xc06c39, pants: 0x26272b, x: -560, z: 600, h: Math.PI / 2, mission: 11 }
 ];
 
 export const NPC_LINES = {
