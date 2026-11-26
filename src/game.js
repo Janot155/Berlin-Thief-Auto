@@ -290,7 +290,7 @@ function buyStuff(){if(cur||Math.hypot(pl.x-cl.x,pl.z-cl.z)>6||wi>0)return;
 if(!own[2]&&money>=600){money-=600;own[2]=1;mag[2]=30;res[2]=120;toast('Bought SMG −€600')}
 else if(!own[3]&&money>=900){money-=900;own[3]=1;mag[3]=6;res[3]=30;toast('Bought shotgun −€900')}
 else if(money>=50){money-=50;[1,2,3].forEach(i=>{if(own[i])res[i]=[0,60,120,30][i]});toast('Ammo refilled −€50')}else toast('Not enough money')}
-function resetWeapons(s){own=[1,1,0,0];mag=[0,12,30,6];res=[0,60,120,30];wi=0;if(s&&/^[01]{4}$/.test(s.w||''))own=s.w.split('').map(Number);offs.forEach(f=>scene.remove(f.g));offs.length=0;rob.on=0;showGun();wp=s?null:{x:90,z:12};if(!s)toast('GPS set to the Späti — follow the yellow arrows')}
+function resetWeapons(s){own=[1,1,0,0];mag=[0,12,30,6];res=[0,60,120,30];wi=0;if(s&&/^[01]{4}$/.test(s.w||''))own=s.w.split('').map(Number);offs.forEach(f=>scene.remove(f.g));offs.length=0;rob.on=0;showGun();wp=null;if(!s)toast('Follow the yellow mission route to Deniz')}
 function showGun(){gunM.forEach((g,i)=>{if(g)g.visible=i==wi});reloadT=0;$('xh').style.display=wi?'block':'none'}
 function reload(){if(!wi||reloadT>0||mag[wi]>=WP[wi].mag||res[wi]<=0)return;reloadT=1.1;toast('Reloading…')}
 function fire(){const w=WP[wi];if(fireT>0||reloadT>0)return;if(mag[wi]<=0){reload();return}
